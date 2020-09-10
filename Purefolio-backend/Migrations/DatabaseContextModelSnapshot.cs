@@ -18,59 +18,123 @@ namespace Purefolio_backend.Migrations
                 .HasAnnotation("ProductVersion", "3.1.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            modelBuilder.Entity("Purefolio.DatabaseContext.Blog", b =>
+            modelBuilder.Entity("Purefolio.DatabaseContext.Nace", b =>
                 {
-                    b.Property<int>("BlogId")
+                    b.Property<int>("NaceId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("blog_id")
+                        .HasColumnName("nace_id")
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("Url")
-                        .HasColumnName("url")
+                    b.Property<string>("NaceCode")
+                        .IsRequired()
+                        .HasColumnName("nace_code")
                         .HasColumnType("text");
 
-                    b.HasKey("BlogId")
-                        .HasName("pk_blogs");
+                    b.HasKey("NaceId")
+                        .HasName("pk_nace");
 
-                    b.ToTable("blogs");
+                    b.ToTable("nace");
                 });
 
-            modelBuilder.Entity("Purefolio.DatabaseContext.Post", b =>
+            modelBuilder.Entity("Purefolio.DatabaseContext.NaceRegionData", b =>
                 {
-                    b.Property<int>("PostId")
+                    b.Property<int>("NaceRegionDataId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("post_id")
+                        .HasColumnName("nace_region_data_id")
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int>("BlogId")
-                        .HasColumnName("blog_id")
+                    b.Property<int>("NaceId")
+                        .HasColumnName("nace_id")
                         .HasColumnType("integer");
 
-                    b.Property<string>("Content")
-                        .HasColumnName("content")
+                    b.Property<int>("RegionId")
+                        .HasColumnName("region_id")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("corruptionRate")
+                        .HasColumnName("corruption_rate")
                         .HasColumnType("text");
 
-                    b.Property<string>("Title")
-                        .HasColumnName("title")
+                    b.Property<string>("emissionPerYer")
+                        .HasColumnName("emission_per_yer")
                         .HasColumnType("text");
 
-                    b.HasKey("PostId")
-                        .HasName("pk_posts");
+                    b.Property<string>("genderPayGap")
+                        .HasColumnName("gender_pay_gap")
+                        .HasColumnType("text");
 
-                    b.HasIndex("BlogId")
-                        .HasName("ix_posts_blog_id");
+                    b.Property<int>("year")
+                        .HasColumnName("year")
+                        .HasColumnType("integer");
 
-                    b.ToTable("posts");
+                    b.HasKey("NaceRegionDataId")
+                        .HasName("pk_nace_region_data");
+
+                    b.HasIndex("NaceId")
+                        .HasName("ix_nace_region_data_nace_id");
+
+                    b.HasIndex("RegionId")
+                        .HasName("ix_nace_region_data_region_id");
+
+                    b.ToTable("nace_region_data");
                 });
 
-            modelBuilder.Entity("Purefolio.DatabaseContext.Post", b =>
+            modelBuilder.Entity("Purefolio.DatabaseContext.Region", b =>
                 {
-                    b.HasOne("Purefolio.DatabaseContext.Blog", "Blog")
-                        .WithMany("Posts")
-                        .HasForeignKey("BlogId")
-                        .HasConstraintName("fk_posts_blogs_blog_id")
+                    b.Property<int>("RegionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("region_id")
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("RegionCode")
+                        .IsRequired()
+                        .HasColumnName("region_code")
+                        .HasColumnType("text");
+
+                    b.HasKey("RegionId")
+                        .HasName("pk_region");
+
+                    b.ToTable("region");
+                });
+
+            modelBuilder.Entity("Purefolio.DatabaseContext.RegionData", b =>
+                {
+                    b.Property<int>("RegionDataId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("region_data_id")
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("RegionDetailId")
+                        .HasColumnName("region_detail_id")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("RegionEmission")
+                        .HasColumnName("region_emission")
+                        .HasColumnType("text");
+
+                    b.HasKey("RegionDataId")
+                        .HasName("pk_region_data");
+
+                    b.ToTable("region_data");
+                });
+
+            modelBuilder.Entity("Purefolio.DatabaseContext.NaceRegionData", b =>
+                {
+                    b.HasOne("Purefolio.DatabaseContext.Nace", "Nace")
+                        .WithMany()
+                        .HasForeignKey("NaceId")
+                        .HasConstraintName("fk_nace_region_data_nace_nace_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Purefolio.DatabaseContext.Region", "Region")
+                        .WithMany()
+                        .HasForeignKey("RegionId")
+                        .HasConstraintName("fk_nace_region_data_region_region_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
