@@ -2,6 +2,7 @@ using System;
 
 namespace Purefolio_backend
 {
+    // TODO: Remove: Is here to give an example
     public class WeatherForecast
     {
         public DateTime Date { get; set; }
