@@ -1,10 +1,7 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Purefolio.DatabaseContext;
+using Purefolio_backend.Models;
 
 namespace Purefolio_backend.Controllers
 {
