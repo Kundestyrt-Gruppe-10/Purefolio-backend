@@ -17,18 +17,23 @@ namespace Purefolio_backend
         public static void Main(string[] args)
         {
             // Main application configurer
-            var host = CreateHostBuilder(args)
-                .ConfigureLogging((hostingContext, logging) =>
-                {
-                    logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
-                    logging.AddConsole();
-                    logging.AddDebug();
-                    logging.AddEventSourceLogger();
-                })
-                .Build();
+            var host =
+                CreateHostBuilder(args)
+                    .ConfigureLogging((hostingContext, logging) =>
+                    {
+                        logging
+                            .AddConfiguration(hostingContext
+                                .Configuration
+                                .GetSection("Logging"));
+                        logging.AddConsole();
+                        logging.AddDebug();
+                        logging.AddEventSourceLogger();
+                    })
+                    .Build();
 
             // Logger for startup logging
-            var logger = host.Services.GetRequiredService<ILogger<Repository>>();
+            var logger =
+                host.Services.GetRequiredService<ILogger<Repository>>();
 
             SeedDatabase(logger);
 
@@ -41,18 +46,15 @@ namespace Purefolio_backend
             // TODO: Rewrite this to a proper seed method
             try
             {
-                logger.LogWarning("TEEEEST");
                 var rp = new Repository(logger);
-                var response = rp.AddOrUpdateNace(
-                    new Nace()
-                    {
-                        NaceCode = "NACE!",
-                        NaceId = 1
-                    });
+                var response =
+                    rp
+                        .AddOrUpdateNace(new Nace()
+                        { NaceCode = "NACE!", NaceId = 1 });
                 logger.LogWarning(response.ToString());
-                var allNace= rp.getAllNace();
+                var allNace = rp.getAllNace();
                 logger.LogWarning(allNace.ToString());
-            } 
+            }
             catch (Exception exception)
             {
                 logger.LogError(exception.StackTrace);
@@ -60,7 +62,8 @@ namespace Purefolio_backend
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
+            Host
+                .CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();

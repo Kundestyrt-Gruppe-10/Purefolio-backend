@@ -46,7 +46,7 @@ namespace Purefolio_backend.Models
         [Required]
         public int RegionId { get; set; } // Foreign key. Primary key
         [Required]
-        public Region Region { get; set; } // Nacigation property
+        public Region Region { get; set; } // Navigation property
         public int year { get; set; }
         public string emissionPerYer { get; set; }
         public string genderPayGap { get; set; }
