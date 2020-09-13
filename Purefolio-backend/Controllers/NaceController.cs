@@ -24,5 +24,9 @@ namespace Purefolio_backend.Controllers
                     new Nace() { NaceId = 1, NaceCode="Noe"} ,
                 };
         }
+        public string Test()
+        {
+            return "hei";
+        }
     }
 }
