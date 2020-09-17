@@ -13,6 +13,10 @@ namespace Purefolio_backend.Models
 
     [Required]
     public string RegionCode { get; set; } // Primary key
+
+    public string RegionName { get; set; }
+
+    public int Area { get; set; }
   }
 
   public class Nace
@@ -21,6 +25,7 @@ namespace Purefolio_backend.Models
 
     [Required]
     public string NaceCode { get; set; } // Primary key
+    public string NaceName { get; set; }
 
     public override bool Equals(object obj)
     {
@@ -33,42 +38,35 @@ namespace Purefolio_backend.Models
     }
 
     public override string ToString()
-    {
-      return NaceCode.ToString();
-    }
+      {
+            return NaceCode + " - " + NaceName;
+      }
   }
 
   public class NaceRegionData
   {
-    public int NaceRegionDataId { get; set; } // Primary key
+   public int NaceRegionDataId { get; set; } // Primary key
+        [Required]
+        public int NaceId { get; set; } // Foreign key. Primary key
+        [Required]
+        public Nace Nace { get; set; }
+        [Required]
+        public int RegionId { get; set; } // Foreign key. Primary key
+        [Required]
+        public Region Region { get; set; } // Navigation property
+        public int year { get; set; }
+        public double emissionPerYer { get; set; }
+        public double genderPayGap { get; set; }
+    }
+    public class RegionData
+    {
+        public int RegionDataId { get; set; }
+        public int RegionId { get; set; } // Foreign key
 
-    [Required]
-    public int NaceId { get; set; } // Foreign key. Primary key
-
-    [Required]
-    public Nace Nace { get; set; }
-
-    [Required]
-    public int RegionId { get; set; } // Foreign key. Primary key
-
-    [Required]
-    public Region Region { get; set; } // Navigation property
-
-    public int year { get; set; }
-
-    public string emissionPerYer { get; set; }
-
-    public string genderPayGap { get; set; }
-
-    public string corruptionRate { get; set; }
-  }
-
-  public class RegionData
-  {
-    public int RegionDataId { get; set; }
-
-    public int RegionDetailId { get; set; }
-
-    public string RegionEmission { get; set; } // Foreign key
-  }
+        public int year { get; set; }
+        public int population { get; set; }
+        // GDP in million of euros
+        public int gdp { get; set; }
+        public int corruptionRate { get; set; }
+    }
 }
