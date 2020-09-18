@@ -41,13 +41,9 @@ namespace Purefolio_backend
       // TODO: Rewrite this to a proper seed method
       try
       {
-        logger.LogWarning("TEEEEST");
         var rp = new Repository(logger);
         var response =
           rp.AddOrUpdateNace(new Nace() { NaceCode = "NACE!", NaceId = 1 });
-        logger.LogWarning(response.ToString());
-        var allNace = rp.getAllNace();
-        logger.LogWarning(allNace.ToString());
       }
       catch (Exception exception)
       {
