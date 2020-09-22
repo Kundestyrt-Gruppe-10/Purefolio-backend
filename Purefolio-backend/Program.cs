@@ -30,25 +30,7 @@ namespace Purefolio_backend
       // Logger for startup logging
       var logger = host.Services.GetRequiredService<ILogger<DatabaseStore>>();
 
-      SeedDatabase (logger);
-
       host.Run();
-    }
-
-    // TODO: Move to seperate location
-    private static void SeedDatabase(ILogger<DatabaseStore> logger)
-    {
-      // TODO: Rewrite this to a proper seed method
-      try
-      {
-        var rp = new DatabaseStore(logger);
-        var response =
-          rp.AddOrUpdateNace(new Nace() { NaceCode = "NACE!", NaceId = 1 });
-      }
-      catch (Exception exception)
-      {
-        logger.LogError(exception.StackTrace);
-      }
     }
 
     public static IHostBuilder CreateHostBuilder(string[] args) =>
