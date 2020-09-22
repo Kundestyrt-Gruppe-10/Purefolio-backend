@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace Purefolio_backend
 {
-    public class Repository
+    public class DatabaseService
 
     {
         private DatabaseContext db;
-        private readonly ILogger<Repository> _logger;
-        public Repository(ILogger<Repository> _logger)
+        private readonly ILogger<DatabaseService> _logger;
+        public DatabaseService(ILogger<DatabaseService> _logger)
         {
             this.db = new DatabaseContext();
             this._logger = _logger;

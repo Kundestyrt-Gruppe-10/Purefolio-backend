@@ -22,7 +22,7 @@ namespace Purefolio_backend
     {
       services.AddControllers();
       services.AddDbContext<DatabaseContext>();
-      services.AddSingleton<Repository>();
+      services.AddSingleton<DatabaseService>();
       services.AddSingleton<EuroStatFetchService>();
     }
 
