@@ -5,8 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Purefolio.DatabaseContext;
-using Purefolio_backend.Services;
-
+using Purefolio_backend.Services;
+
 namespace Purefolio_backend
 {
   public class Startup
