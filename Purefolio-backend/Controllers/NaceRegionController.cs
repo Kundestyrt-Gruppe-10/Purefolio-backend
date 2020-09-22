@@ -16,26 +16,20 @@ namespace Purefolio_backend.Controllers
       _logger = logger;
     }
 
-    [HttpGet]
-    public IEnumerable<NaceRegionData> Get()
-    {
-      return new List<NaceRegionData>()
-      {
-        new NaceRegionData()
+        private readonly ILogger<NaceRegionDataController> _logger;
+
+        private MockDataService mockDataService;
+
+        public NaceRegionDataController(ILogger<NaceRegionDataController> logger, MockDataService mockDataService)
         {
-          RegionId = 0,
-          year = 2018,
-          NaceId = 0,
-          emissionPerYer = -1,
-          genderPayGap = 14
-        },
-        new NaceRegionData()
+            _logger = logger;
+            this.mockDataService = mockDataService;
+        }
+
+        [HttpGet]
+        public IEnumerable<NaceRegionData> Get()
         {
-          RegionId = 0,
-          year = 2018,
-          NaceId = 1,
-          emissionPerYer = -1,
-          genderPayGap = 6.4
+            return mockDataService.getAllNaceRegionData();
         }
       };
     }

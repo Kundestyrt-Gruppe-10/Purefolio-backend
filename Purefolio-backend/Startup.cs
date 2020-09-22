@@ -24,6 +24,7 @@ namespace Purefolio_backend
       services.AddDbContext<DatabaseContext>();
       services.AddSingleton<DatabaseStore>();
       services.AddSingleton<EuroStatFetchService>();
+      services.AddSingleton<MockDataService>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

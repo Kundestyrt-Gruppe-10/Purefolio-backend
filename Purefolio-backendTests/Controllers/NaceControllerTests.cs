@@ -16,6 +16,8 @@ namespace Purefolio_backend.Controllers.Tests
     public class NaceControllerTests
     {
         public NaceController naceController;
+        public MockDataService mockDataService;
+
         [TestMethod()]
         public void NaceControllerTest()
         {
@@ -25,7 +27,7 @@ namespace Purefolio_backend.Controllers.Tests
         public void GetTest()
         {
             var mockLogger = new Mock<ILogger<NaceController>>();
-            this.naceController = new NaceController(mockLogger.Object);
+            this.naceController = new NaceController(mockLogger.Object, mockDataService);
             
             Assert.AreEqual(naceController.Get().First(), 
             new Nace() { NaceId = 0, NaceCode = "A", NaceName = "Agriculture, forestry and fishing" }
