@@ -20,10 +20,10 @@ namespace Purefolio_backend.Controllers
         }
 
         [HttpGet]
-        [Route("naces")]
-        public IEnumerable<Nace> GetAllNaces()
+        [Route("output-url")]
+        public void GetOutputUrl()
         {
-            return _euroStatFetchService.GetAllNaces();
+            _euroStatFetchService.getEuroStatURL("env_wqdq");
         }
     }
 }

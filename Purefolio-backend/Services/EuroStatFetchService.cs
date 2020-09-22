@@ -13,22 +13,33 @@ namespace Purefolio_backend
 
     {
         private readonly ILogger<EuroStatFetchService> _logger;
+
+        private String euroStatApiEndpoint = "eurostat/jkalf/static";
+        private List<String> naces = new List<string> {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U"};
+        private List<int> years = new List<int> {2015,2016,2017,2018};
         public EuroStatFetchService(ILogger<EuroStatFetchService> _logger)
 
         {
             this._logger = _logger;
         }
 
-        public IEnumerable<Nace> GetAllNaces()
+
+        private String getNaceFilters()
         {
-            return new List<Nace>() {
+            return "nace_r2=" + string.Join("&nace_r2=", naces);
+        }
 
-                new Nace() { NaceId = 0, NaceCode = "A", NaceName = "Agriculture, forestry and fishing" },
+        public String getEuroStatURL(string tablecode)
+        {
+            string url = euroStatApiEndpoint + tablecode + "?" + getNaceFilters();
+            _logger.LogInformation(message:url);
+            return url;
+        }
 
-                new Nace() { NaceId = 1, NaceCode = "B", NaceName = "Mining and quarrying" },
-
-                new Nace() { NaceId = 2, NaceCode = "C", NaceName = "Manufacturing" }
-            };
+        public void GetAirPolutionData()
+        {
+            String tableCode = "env_ac_ainah_r2";
+            List<string> airPolData = new List<string> {"CO2"};
 
         }
 
