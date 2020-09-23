@@ -13,8 +13,9 @@ namespace Purefolio_backend
 
         public DataSetProperties()
         {
+            // TODO: Change key to something else in case of multiple calls to the same set.
             filters = new Dictionary<string, string>();
-            filters.Add("env_ac_ainah_r2", "unit=KG_HAB&airpol=GHG&airpol=CO2"); 
+            filters.Add("env_ac_ainah_r2", "unit=KG_HAB&airpol=GHG"); 
             filters.Add("hsw_n2_03", "unit=RT_INC&age=TOTAL");  
             filters.Add("earn_gr_gpgr2", "unit=PC");
             filters.Add("env_ac_taxind2", "tax=ENV&unit=MIO_EUR");
