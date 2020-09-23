@@ -28,7 +28,7 @@ namespace Purefolio_backend
           .Build();
 
       // Logger for startup logging
-      var logger = host.Services.GetRequiredService<ILogger<Repository>>();
+      var logger = host.Services.GetRequiredService<ILogger<DatabaseService>>();
 
       SeedDatabase (logger);
 
@@ -36,12 +36,12 @@ namespace Purefolio_backend
     }
 
     // TODO: Move to seperate location
-    private static void SeedDatabase(ILogger<Repository> logger)
+    private static void SeedDatabase(ILogger<DatabaseService> logger)
     {
       // TODO: Rewrite this to a proper seed method
       try
       {
-        var rp = new Repository(logger);
+        var rp = new DatabaseService(logger);
         var response =
           rp.AddOrUpdateNace(new Nace() { NaceCode = "NACE!", NaceId = 1 });
       }
