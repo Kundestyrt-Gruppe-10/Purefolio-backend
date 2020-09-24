@@ -16,9 +16,8 @@ namespace Purefolio.DatabaseContext
     protected override void OnConfiguring(
       DbContextOptionsBuilder optionsBuilder
     ) =>
-      optionsBuilder
-        .// TODO: Use a configuration file instead of hard coding database string.
-        UseNpgsql("Host=localhost;Port=10101;Database=purefolio;Username=purefolio;Password=password")
+      optionsBuilder // TODO: Use a configuration file instead of hard coding database string.
+        .UseNpgsql("Host=localhost;Port=10101;Database=purefolio;Username=purefolio;Password=password")
         .UseSnakeCaseNamingConvention();
 
     // This initialises database with tables on startup
