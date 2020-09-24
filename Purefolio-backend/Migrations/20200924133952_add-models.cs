@@ -3,7 +3,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Purefolio_backend.Migrations
 {
-    public partial class ermodel170920 : Migration
+    public partial class addmodels : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -44,9 +44,9 @@ namespace Purefolio_backend.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     region_id = table.Column<int>(nullable: false),
                     year = table.Column<int>(nullable: false),
-                    population = table.Column<int>(nullable: false),
-                    gdp = table.Column<int>(nullable: false),
-                    corruption_rate = table.Column<int>(nullable: false)
+                    population = table.Column<int>(nullable: true),
+                    gdp = table.Column<int>(nullable: true),
+                    corruption_rate = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -62,8 +62,8 @@ namespace Purefolio_backend.Migrations
                     nace_id = table.Column<int>(nullable: false),
                     region_id = table.Column<int>(nullable: false),
                     year = table.Column<int>(nullable: false),
-                    emission_per_yer = table.Column<double>(nullable: false),
-                    gender_pay_gap = table.Column<double>(nullable: false)
+                    emission_per_yer = table.Column<double>(nullable: true),
+                    gender_pay_gap = table.Column<double>(nullable: true)
                 },
                 constraints: table =>
                 {
