@@ -9,13 +9,6 @@ namespace Purefolio_backend.Controllers
   [Route("/naces")]
   public class NaceController : ControllerBase
   {
-    private readonly ILogger<NaceController> _logger;
-
-    public NaceController(ILogger<NaceController> logger)
-    {
-      _logger = logger;
-    }
-
         private readonly ILogger<NaceController> _logger;
 
         private MockDataService mockDataService;
@@ -32,10 +25,5 @@ namespace Purefolio_backend.Controllers
             return mockDataService.getAllNaces();
         }
     }
-
-    public string Test()
-    {
-      return "hei";
-    }
   }
-}
+

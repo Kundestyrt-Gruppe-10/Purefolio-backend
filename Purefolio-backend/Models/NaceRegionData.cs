@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
+using System.Linq; 
 
 namespace Purefolio_backend.Models
 {
@@ -16,5 +18,31 @@ namespace Purefolio_backend.Models
         public int year { get; set; }
         public double emissionPerYer { get; set; }
         public double genderPayGap { get; set; }
+
+    public override bool Equals(object obj) 
+        { 
+            if (obj == null || GetType() != obj.GetType()) 
+            { 
+                return false; 
+            } 
+            NaceRegionData other = (NaceRegionData) obj; 
+            return this.NaceId == other.NaceId && this.RegionId == other.RegionId && this.year == other.year; 
+        } 
+ 
+        public NaceRegionData merge(NaceRegionData other) 
+        { 
+          if(this.Equals(other)){ 
+            List<System.Reflection.PropertyInfo> props = this.GetType().GetProperties().ToList(); 
+            foreach (System.Reflection.PropertyInfo prop in props) 
+            { 
+                object value = prop.GetValue(other); 
+                if(value != null) 
+                { 
+                  prop.SetValue(this, value); 
+                } 
+            } 
+          } 
+          return this; 
+        } 
     }
 }

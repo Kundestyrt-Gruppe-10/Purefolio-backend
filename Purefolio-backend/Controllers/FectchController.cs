@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Purefolio_backend.Models;
 
 namespace Purefolio_backend.Controllers
 {
@@ -37,4 +38,3 @@ namespace Purefolio_backend.Controllers
         }
     }
   }
-}

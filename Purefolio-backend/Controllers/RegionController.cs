@@ -9,13 +9,6 @@ namespace Purefolio_backend.Controllers
   [Route("/regions")]
   public class RegionController : ControllerBase
   {
-    private readonly ILogger<RegionController> _logger;
-
-    public RegionController(ILogger<RegionController> logger)
-    {
-      _logger = logger;
-    }
-
         private readonly ILogger<RegionController> _logger;
 
         private MockDataService mockDataService;
@@ -33,4 +26,3 @@ namespace Purefolio_backend.Controllers
         }
     }
   }
-}
