@@ -1,22 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.Extensions.Logging;
 using Purefolio.DatabaseContext;
 using Purefolio_backend.Models;
 
 namespace Purefolio_backend
 {
-  public class DatabaseService
+  public class DatabaseStore
   {
     // TODO: When project grows, split this up into multiple classes
     private DatabaseContext db;
 
-    private readonly ILogger<DatabaseService> _logger;
+    private readonly ILogger<DatabaseStore> _logger;
 
-    public DatabaseService(ILogger<DatabaseService> _logger)
+    public DatabaseStore(ILogger<DatabaseStore> _logger)
     {
       this.db = new DatabaseContext();
       this._logger = _logger;
