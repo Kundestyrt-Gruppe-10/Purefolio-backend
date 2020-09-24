@@ -26,6 +26,8 @@ namespace Purefolio_backend.Controllers.Tests
         [TestMethod()]
         public void GetTest()
         {
+            var mockDataStoreLogger = new Mock<ILogger<MockDataStore>>();
+            var mockDataStore = new MockDataStore(mockDataStoreLogger.Object);
             var mockLogger = new Mock<ILogger<NaceController>>();
             this.naceController = new NaceController(mockLogger.Object, mockDataStore);
             
