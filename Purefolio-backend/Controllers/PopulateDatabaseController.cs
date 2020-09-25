@@ -15,34 +15,34 @@ namespace Purefolio_backend.Controllers
 
         private DatabaseContext db;
 
-        private MockDataStore mockDataStore;
+        private MockData mockData;
 
-        public PopulateDatabaseController(ILogger<PopulateDatabaseController> logger, DatabaseContext db, MockDataStore mockDataStore)
+        public PopulateDatabaseController(ILogger<PopulateDatabaseController> logger, DatabaseContext db, MockData mockData)
         {
             _logger = logger;
             this.db = db;
-            this.mockDataStore = mockDataStore;
+            this.mockData = mockData;
         }
 
         [HttpGet]
         public void PopulateDatabase()
         {
-            foreach (Nace nace in mockDataStore.getAllNaces())
+            foreach (Nace nace in mockData.getAllNaces())
             {
                 db.Nace.Add(nace);
             }
 
-            foreach (RegionData regionData in mockDataStore.getAllRegionData())
+            foreach (RegionData regionData in mockData.getAllRegionData())
             {
                 db.RegionData.Add(regionData);
             }
 
-            foreach (Region region in mockDataStore.getAllRegions())
+            foreach (Region region in mockData.getAllRegions())
             {
                 db.Region.Add(region);
             }
 
-            foreach (NaceRegionData naceRegionData in mockDataStore.getAllNaceRegionData())
+            foreach (NaceRegionData naceRegionData in mockData.getAllNaceRegionData())
             {
                 db.NaceRegionData.Add(naceRegionData);
             }

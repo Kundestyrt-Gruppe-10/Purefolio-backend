@@ -11,18 +11,18 @@ namespace Purefolio_backend.Controllers
   {
         private readonly ILogger<RegionController> _logger;
 
-        private MockDataStore mockDataStore;
+        private MockData mockData;
 
-        public RegionController(ILogger<RegionController> logger, MockDataStore mockDataStore)
+        public RegionController(ILogger<RegionController> logger, MockData mockData)
         {
             _logger = logger;
-            this.mockDataStore = mockDataStore;
+            this.mockData = mockData;
         }
 
         [HttpGet]
         public IEnumerable<Region> Get()
         {
-            return mockDataStore.getAllRegions();
+            return mockData.getAllRegions();
         }
     }
   }

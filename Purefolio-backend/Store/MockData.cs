@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace Purefolio_backend
 {
-    public class MockDataStore
+    public class MockData
 
     {
-        private readonly ILogger<MockDataStore> _logger;
+        private readonly ILogger<MockData> _logger;
 
         private List<Nace> naces = new List<Nace>() {
 
@@ -88,7 +88,7 @@ namespace Purefolio_backend
 
             };
 
-        public MockDataStore(ILogger<MockDataStore> _logger)
+        public MockData(ILogger<MockData> _logger)
         {
             this._logger = _logger;
         }      

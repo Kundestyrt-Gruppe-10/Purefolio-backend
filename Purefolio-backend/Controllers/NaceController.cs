@@ -11,18 +11,18 @@ namespace Purefolio_backend.Controllers
   {
         private readonly ILogger<NaceController> _logger;
 
-        private MockDataStore mockDataStore;
+        private MockData mockData;
 
-        public NaceController(ILogger<NaceController> logger, MockDataStore mockDataStore)
+        public NaceController(ILogger<NaceController> logger, MockData mockData)
         {
             _logger = logger;
-            this.mockDataStore = mockDataStore;
+            this.mockData = mockData;
         }
 
         [HttpGet]
         public IEnumerable<Nace> Get()
         {
-            return mockDataStore.getAllNaces();
+            return mockData.getAllNaces();
         }
     }
   }
