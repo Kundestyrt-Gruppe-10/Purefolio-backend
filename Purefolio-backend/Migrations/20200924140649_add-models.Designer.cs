@@ -9,8 +9,8 @@ using Purefolio.DatabaseContext;
 namespace Purefolio_backend.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20200917120638_er-model-17.09.20")]
-    partial class ermodel170920
+    [Migration("20200924140649_add-models")]
+    partial class addmodels
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -9,35 +9,20 @@ namespace Purefolio_backend.Controllers
   [Route("/naceregiondata")]
   public class NaceRegionDataController : ControllerBase
   {
-    private readonly ILogger<NaceRegionDataController> _logger;
+        private readonly ILogger<NaceRegionDataController> _logger;
 
-    public NaceRegionDataController(ILogger<NaceRegionDataController> logger)
-    {
-      _logger = logger;
-    }
+        private MockData mockData;
 
-    [HttpGet]
-    public IEnumerable<NaceRegionData> Get()
-    {
-      return new List<NaceRegionData>()
-      {
-        new NaceRegionData()
+        public NaceRegionDataController(ILogger<NaceRegionDataController> logger, MockData mockData)
         {
-          RegionId = 0,
-          year = 2018,
-          NaceId = 0,
-          emissionPerYer = -1,
-          genderPayGap = 14
-        },
-        new NaceRegionData()
+            _logger = logger;
+            this.mockData = mockData;
+        }
+
+        [HttpGet]
+        public IEnumerable<NaceRegionData> Get()
         {
-          RegionId = 0,
-          year = 2018,
-          NaceId = 1,
-          emissionPerYer = -1,
-          genderPayGap = 6.4
+            return mockData.getAllNaceRegionData();
         }
       };
     }
-  }
-}

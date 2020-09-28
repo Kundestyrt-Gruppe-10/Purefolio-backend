@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Purefolio_backend.Models;
 
 namespace Purefolio_backend.Controllers
 {
@@ -20,11 +21,20 @@ namespace Purefolio_backend.Controllers
       _euroStatFetchService = euroStatFetchService;
     }
 
-    [HttpGet]
-    [Route("output-url")]
-    public void GetOutputUrl()
-    {
-      _euroStatFetchService.getEuroStatURL("env_wqdq");
+        [HttpGet]
+        [Route("output-url")]
+        public void GetOutputUrl()
+        {
+            _euroStatFetchService.getEuroStatURL("env_wqdq");
+        }
+
+        [HttpGet]
+        [Route("test")]
+        public NaceRegionData getInfo()
+        {
+            NaceRegionData nrd =  new NaceRegionData(){NaceId=1, RegionId=2, year=2019, genderPayGap = 1.3};
+            NaceRegionData nrd2 =  new NaceRegionData(){NaceId=1, RegionId=2, year=2019, emissionPerYer = 100};                 
+            return nrd.merge(nrd2);
+        }
     }
   }
-}

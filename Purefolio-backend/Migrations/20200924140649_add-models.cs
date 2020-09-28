@@ -3,7 +3,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Purefolio_backend.Migrations
 {
-    public partial class ermodel170920 : Migration
+    public partial class addmodels : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
