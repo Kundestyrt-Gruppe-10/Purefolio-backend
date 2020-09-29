@@ -2,6 +2,8 @@
 Backend for the Portfolio project
 
 ## Installation
+0. Install Docker: https://www.docker.com/
+
 1. Install:
 - [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 - [.NET Core](https://docs.microsoft.com/en-us/dotnet/core/install/)
@@ -18,7 +20,10 @@ Backend for the Portfolio project
 5. Run application
 `dotnet run`
 
-## Linux
+## Installation Linux
+Install docker: https://www.docker.com/
+
+Use your respective Linux package manager for all steps below:
 Install runtime
 `dotnet-runtime`
 
