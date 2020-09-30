@@ -32,7 +32,7 @@ namespace Purefolio_backend.Controllers.Tests
             this.naceController = new NaceController(mockLogger.Object, mockData);
             
             Assert.AreEqual(naceController.Get().First(), 
-            new Nace() { NaceId = 0, NaceCode = "A", NaceName = "Agriculture, forestry and fishing" }
+            new Nace() { naceId = 0, naceCode = "A", naceName = "Agriculture, forestry and fishing" }
             );
         }
     }
