@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Purefolio.DatabaseContext;
+using Purefolio_backend.Services;
 
 namespace Purefolio_backend
 {
@@ -22,6 +23,7 @@ namespace Purefolio_backend
     {
       services.AddControllers();
       services.AddDbContext<DatabaseContext>();
+      services.AddSingleton<MockDataService>();
       services.AddSingleton<DatabaseStore>();
       services.AddSingleton<EuroStatFetchService>();
       services.AddSingleton<MockData>();

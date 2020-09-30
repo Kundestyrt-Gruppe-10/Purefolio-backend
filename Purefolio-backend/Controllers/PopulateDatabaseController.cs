@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Purefolio_backend.Models;
 using Purefolio.DatabaseContext;
+using Purefolio_backend.Services;
+using System;
 
 namespace Purefolio_backend.Controllers
 {
@@ -13,41 +15,20 @@ namespace Purefolio_backend.Controllers
 
         private readonly ILogger<PopulateDatabaseController> _logger;
 
-        private DatabaseContext db;
 
-        private MockData mockData;
+        private MockDataService mockDataService;
 
-        public PopulateDatabaseController(ILogger<PopulateDatabaseController> logger, DatabaseContext db, MockData mockData)
+        public PopulateDatabaseController(ILogger<PopulateDatabaseController> logger, DatabaseContext db, MockData mockData,
+            MockDataService mockDataService)
         {
             _logger = logger;
-            this.db = db;
-            this.mockData = mockData;
+            this.mockDataService = mockDataService;
         }
 
         [HttpGet]
-        public void PopulateDatabase()
+        public Boolean PopulateDatabase()
         {
-            foreach (Nace nace in mockData.getAllNaces())
-            {
-                db.Nace.Add(nace);
-            }
-
-            foreach (RegionData regionData in mockData.getAllRegionData())
-            {
-                db.RegionData.Add(regionData);
-            }
-
-            foreach (Region region in mockData.getAllRegions())
-            {
-                db.Region.Add(region);
-            }
-
-            foreach (NaceRegionData naceRegionData in mockData.getAllNaceRegionData())
-            {
-                db.NaceRegionData.Add(naceRegionData);
-            }
-
-            db.SaveChanges();
+            return mockDataService.PopulateDatabase();
         }
     }
 }
