@@ -13,12 +13,13 @@ namespace Purefolio.DatabaseContext
 
     public DbSet<NaceRegionData> NaceRegionData { get; set; }
 
-    protected override void OnConfiguring(
-      DbContextOptionsBuilder optionsBuilder
-    ) =>
-      optionsBuilder // TODO: Use a configuration file instead of hard coding database string.
-        .UseNpgsql("Host=localhost;Port=10101;Database=purefolio;Username=purefolio;Password=password")
-        .UseSnakeCaseNamingConvention();
+        protected override void OnConfiguring(
+          DbContextOptionsBuilder optionsBuilder
+        ) =>
+          optionsBuilder // TODO: Use a configuration file instead of hard coding database string.
+            .UseNpgsql("Host=localhost;Port=10101;Database=purefolio;Username=purefolio;Password=password")
+            .EnableSensitiveDataLogging() // TODO: Remove before production
+            .UseSnakeCaseNamingConvention();
 
     // This initialises database with tables on startup
     protected override void OnModelCreating(ModelBuilder modelBuilder)
