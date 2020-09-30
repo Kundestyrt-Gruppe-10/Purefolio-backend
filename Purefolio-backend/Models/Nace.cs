@@ -1,29 +1,31 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Purefolio_backend.Models
 {
     public class Nace
   {
-    public int NaceId { get; set; }
+    public int naceId { get; set; }
 
     [Required]
-    public string NaceCode { get; set; } // Primary key
-    public string NaceName { get; set; }
+    [Index(IsUnique = true)]
+    public string naceCode { get; set; } // Primary key
+    public string naceName { get; set; }
 
     public override bool Equals(object obj)
     {
-      return obj is Nace nace && NaceCode == nace.NaceCode;
+      return obj is Nace nace && naceCode == nace.naceCode;
     }
 
     public override int GetHashCode()
     {
-      return HashCode.Combine(NaceCode);
+      return HashCode.Combine(naceCode);
     }
 
     public override string ToString()
       {
-            return NaceCode + " - " + NaceName;
+            return naceCode + " - " + naceName;
       }
   }
 }

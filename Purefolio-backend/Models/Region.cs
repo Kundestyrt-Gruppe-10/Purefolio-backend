@@ -1,16 +1,19 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Purefolio_backend.Models
 {
     public class Region
   {
-    public int RegionId { get; set; }
+    [Key]
+    public int regionId { get; set; }
 
     [Required]
-    public string RegionCode { get; set; } // Primary key
+    [Index(IsUnique = true)]
+    public string regionCode { get; set; } // Primary key
 
-    public string RegionName { get; set; }
+    public string regionName { get; set; }
 
-    public int Area { get; set; }
+    public int area { get; set; }
   }
 }

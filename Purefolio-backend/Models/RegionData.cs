@@ -1,9 +1,14 @@
-﻿namespace Purefolio_backend.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Purefolio_backend.Models
 {
     public class RegionData
     {
-        public int RegionDataId { get; set; }
-        public int RegionId { get; set; } // Foreign key
+        [Key]
+        public int regionDataId { get; set; }
+        public int regionId { get; set; } // Foreign key
+        [Required]
+        public Region region { get; set; }
 
         public int year { get; set; }
         public int population { get; set; }
