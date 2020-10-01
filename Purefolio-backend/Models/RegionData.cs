@@ -11,9 +11,9 @@ namespace Purefolio_backend.Models
         public Region region { get; set; }
 
         public int year { get; set; }
-        public int population { get; set; }
+        public int? population { get; set; }
         // GDP in million of euros
-        public int gdp { get; set; }
-        public int corruptionRate { get; set; }
+        public int? gdp { get; set; }
+        public int? corruptionRate { get; set; }
     }
 }
