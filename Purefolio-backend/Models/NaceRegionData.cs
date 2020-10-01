@@ -15,8 +15,8 @@ namespace Purefolio_backend.Models
     public Region region { get; set; } // Navigation property
     public int regionId { get; set; } // Foreign key. Primary key
     public int year { get; set; }
-    public double emissionPerYer { get; set; }
-    public double genderPayGap { get; set; }
+    public double? emissionPerYer { get; set; }
+    public double? genderPayGap { get; set; }
 
     public override int GetHashCode()
     {
