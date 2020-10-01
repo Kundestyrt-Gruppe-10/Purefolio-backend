@@ -7,7 +7,12 @@ using Purefolio_backend.Models;
 
 namespace Purefolio_backend
 {
-  public class DatabaseStore
+  public interface IDatabaseStore
+    {
+        // TODO: Add all methods to this interface for easy mocking
+        public Nace createNace(Nace nace);
+    }
+  public class DatabaseStore: IDatabaseStore
   {
     // TODO: When project grows, split this up into multiple classes
     private DatabaseContext db;
