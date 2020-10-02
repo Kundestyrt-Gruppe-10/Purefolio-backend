@@ -50,8 +50,8 @@ namespace Purefolio_backend.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<double?>("emissionPerYer")
-                        .HasColumnName("emission_per_yer")
+                    b.Property<double?>("emissionPerYear")
+                        .HasColumnName("emission_per_year")
                         .HasColumnType("double precision");
 
                     b.Property<double?>("genderPayGap")

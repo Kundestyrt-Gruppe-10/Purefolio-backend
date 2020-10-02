@@ -9,10 +9,11 @@ namespace Purefolio_backend.Models
     {
         [Key]
         public int regionDataId { get; set; }
+        [Required]
         public int regionId { get; set; } // Foreign key
         [Required]
         public Region region { get; set; }
-
+        [Required]
         public int year { get; set; }
         public int? population { get; set; }
         // GDP in million of euros
