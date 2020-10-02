@@ -10,7 +10,6 @@ namespace Purefolio_backend.Models.Tests
 
         private RegionData rd1WithCorruptionData;
         private RegionData rd1WithPopulationData;
-        private RegionData rd2;
         private RegionData rd1WithCorruptionAndPopulationData;
         private RegionData rd2WithoutData;
         private List<string> requiredFields;
