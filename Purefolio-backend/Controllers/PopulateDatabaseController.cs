@@ -18,11 +18,14 @@ namespace Purefolio_backend.Controllers
 
         private MockDataService mockDataService;
 
-        public PopulateDatabaseController(ILogger<PopulateDatabaseController> logger, DatabaseContext db, MockData mockData,
+        private DatabaseStore databaseStore;
+
+        public PopulateDatabaseController(ILogger<PopulateDatabaseController> logger, DatabaseStore databaseStore, MockData mockData,
             MockDataService mockDataService)
         {
             _logger = logger;
             this.mockDataService = mockDataService;
+            this.databaseStore = databaseStore;
         }
 
         [HttpGet]
@@ -30,5 +33,22 @@ namespace Purefolio_backend.Controllers
         {
             return mockDataService.PopulateDatabase();
         }
+
+        [HttpGet]
+        [Route("/merge")]
+        public List<RegionData> AddRegionData()
+        {
+            List<RegionData> newData = new List<RegionData>(){
+                new RegionData() { regionId = 1, year = 2018, gdp = 482353484},
+                new RegionData() { regionId = 2, year = 2018, gdp = 482353634},
+                new RegionData() { regionId = 3, year = 2018, gdp = 482348634},
+                new RegionData() { regionId = 4,  year = 2018, gdp = 435348634},
+                new RegionData() { regionId = 5,  year = 2018, gdp = 235348634},
+            };
+
+            return databaseStore.addRegionData(newData);
+        }
+
+
     }
 }

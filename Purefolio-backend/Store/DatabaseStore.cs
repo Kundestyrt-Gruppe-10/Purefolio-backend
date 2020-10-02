@@ -81,5 +81,25 @@ namespace Purefolio_backend
             db.SaveChanges();
             return regionData;
     }
+
+    public List<RegionData> addRegionData(List<RegionData> newRegionData)
+    {
+      List<RegionData> existingRegionData = db.RegionData.ToList();
+      foreach (RegionData newRD in newRegionData)
+      {
+          RegionData existingElement = existingRegionData.Find((exRD)=> exRD.Equals(newRD));
+          if (existingElement == null)
+          {
+              createRegionData(newRD);
+          }
+          else
+          {
+              existingElement.merge(newRD);
+              db.SaveChanges();
+          }
+      }
+      return db.RegionData.ToList();
+    }
+
   }
 }

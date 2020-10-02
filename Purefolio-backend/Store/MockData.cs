@@ -85,10 +85,15 @@ namespace Purefolio_backend
         private List<RegionData> regionData = new List<RegionData>() 
             { 
                 new RegionData() { regionId = 1,  corruptionRate = 84, year = 2019, population = 5328212, gdp = 360300 },
-                new RegionData() {  regionId = 2, corruptionRate = 85, year = 2019, population = 10230185, gdp = 474194},
+                new RegionData() { regionId = 2, corruptionRate = 85, year = 2019, population = 10230185, gdp = 474194},
                 new RegionData() { regionId = 3,  corruptionRate = 87, year = 2019, population = 5806081, gdp = 310002},
-                new RegionData() { regionId = 3,  corruptionRate = 86, year = 2019, population = 5517919, gdp = 240557},
-                new RegionData() {  regionId = 3, corruptionRate = 0, year = 2019, population = 446824564, gdp = 13953148},
+                new RegionData() { regionId = 4,  corruptionRate = 86, year = 2019, population = 5517919, gdp = 240557},
+                new RegionData() { regionId = 5, corruptionRate = 0, year = 2019, population = 446824564, gdp = 13953148},
+                new RegionData() { regionId = 1, year = 2018 },
+                new RegionData() { regionId = 2, year = 2018 },
+                new RegionData() { regionId = 3, year = 2018 },
+                new RegionData() { regionId = 4, year = 2018 },
+                new RegionData() { regionId = 5, year = 2018 },
                 
 
             };
