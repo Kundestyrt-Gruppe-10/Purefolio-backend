@@ -20,22 +20,13 @@ namespace Purefolio_backend.Models
         public int? gdp { get; set; }
         public int? corruptionRate { get; set; }
 
-        public List<string> essentialFields = new List<string>(){
+        public static List<string> essentialFields = new List<string>(){
           "regionDataId", "regionId", "region", "year"
         };
 
     public List<System.Reflection.PropertyInfo> getDataProperties()
     {
-      List<System.Reflection.PropertyInfo> dataProps = new List<System.Reflection.PropertyInfo>();
-      List<System.Reflection.PropertyInfo> allProps = this.GetType().GetProperties().ToList(); 
-      foreach (System.Reflection.PropertyInfo prop in allProps)
-      {
-          if(!essentialFields.Contains(prop.Name))
-          {
-            dataProps.Add(prop);
-          }
-      }
-      return dataProps;
+      return this.GetType().GetProperties().Where(prop => !essentialFields.Contains(prop.Name)).ToList();
     }
 
     public override int GetHashCode()
