@@ -35,7 +35,7 @@ namespace Purefolio_backend.Controllers
         }
 
         [HttpGet]
-        [Route("/merge")]
+        [Route("merge")]
         public List<RegionData> AddRegionData()
         {
             List<RegionData> newData = new List<RegionData>(){
