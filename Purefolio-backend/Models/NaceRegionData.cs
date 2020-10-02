@@ -21,6 +21,13 @@ namespace Purefolio_backend.Models
     public double? emissionPerYear { get; set; }
     public double? genderPayGap { get; set; }
 
+    public static List<string> essentialFields = new List<string>(){"naceRegionDataId", "region", "regionId", "nace", "naceId", "year"};
+
+    public List<System.Reflection.PropertyInfo> getDataProperties()
+    {
+      return this.GetType().GetProperties().Where(prop => !essentialFields.Contains(prop.Name)).ToList();
+    }
+
     public override int GetHashCode()
     {
       return base.GetHashCode();
@@ -39,7 +46,7 @@ namespace Purefolio_backend.Models
     public NaceRegionData merge(NaceRegionData other) 
     { 
       if(this.Equals(other)){ 
-        List<System.Reflection.PropertyInfo> props = this.GetType().GetProperties().ToList(); 
+        List<System.Reflection.PropertyInfo> props = getDataProperties();
         foreach (System.Reflection.PropertyInfo prop in props) 
         { 
             object value = prop.GetValue(other); 

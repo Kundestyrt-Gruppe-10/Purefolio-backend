@@ -101,5 +101,24 @@ namespace Purefolio_backend
       return db.RegionData.ToList();
     }
 
+    public List<NaceRegionData> addNaceRegionData(List<NaceRegionData> newNaceRegionData)
+    {
+      List<NaceRegionData> existingNaceRegionData = db.NaceRegionData.ToList();
+      foreach (NaceRegionData newNRD in newNaceRegionData)
+      {
+          NaceRegionData existingElement = existingNaceRegionData.Find((exNRD)=> exNRD.Equals(newNRD));
+          if (existingElement == null)
+          {
+              createNaceRegionData(newNRD);
+          }
+          else
+          {
+              existingElement.merge(newNRD);
+              db.SaveChanges();
+          }
+      }
+      return db.NaceRegionData.ToList();
+    }
+
   }
 }

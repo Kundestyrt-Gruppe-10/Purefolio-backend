@@ -78,8 +78,8 @@ namespace Purefolio_backend
 
         private List<NaceRegionData> naceRegionData = new List<NaceRegionData>() 
             { 
-                new NaceRegionData() { regionId = 1, naceId =15,  year = 2018, emissionPerYear = -1, genderPayGap = 14 },   
-                new NaceRegionData() { regionId = 2, year = 2018, naceId = 15, emissionPerYear = -1, genderPayGap = 6.4 }, 
+                new NaceRegionData() { regionId = 1, naceId =15,  year = 2018, genderPayGap = 14 },   
+                new NaceRegionData() { regionId = 2, naceId = 15, year = 2018, genderPayGap = 6.4 },
             };
         
         private List<RegionData> regionData = new List<RegionData>() 
