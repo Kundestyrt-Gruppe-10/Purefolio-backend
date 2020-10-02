@@ -33,33 +33,5 @@ namespace Purefolio_backend.Controllers
         {
             return mockDataService.PopulateDatabase();
         }
-
-        [HttpGet]
-        [Route("merge-rd")]
-        public List<RegionData> AddRegionData()
-        {
-            List<RegionData> newData = new List<RegionData>(){
-                new RegionData() { regionId = 1, year = 2018, population = 482353484},
-                new RegionData() { regionId = 2, year = 2018, population = 482353634},
-                new RegionData() { regionId = 3, year = 2018, population = 482348634},
-                new RegionData() { regionId = 4,  year = 2018, population = 435348634},
-                new RegionData() { regionId = 5,  year = 2018, population = 235348634},
-            };
-
-            return databaseStore.addRegionData(newData);
-        }
-
-        [HttpGet]
-        [Route("merge-nrd")]
-        public List<NaceRegionData> AddNaceRegionData()
-        {
-            List<NaceRegionData> newData = new List<NaceRegionData>(){
-                new NaceRegionData() { regionId = 1, naceId = 15,  year = 2018, emissionPerYer = 4567078 },   
-                new NaceRegionData() { regionId = 2, naceId = 15, year = 2018, emissionPerYer = 435365 },  
-            };
-
-            return databaseStore.addNaceRegionData(newData);
-        }
-
     }
 }
