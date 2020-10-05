@@ -7,8 +7,12 @@ using Purefolio_backend.Models;
 
 namespace Purefolio_backend
 {
-  public class DatabaseStore
-  {
+  public interface IDatabaseStore
+    {
+        public List<Nace> getAllNace();
+    }
+    public class DatabaseStore : IDatabaseStore
+    {
     // TODO: When project grows, split this up into multiple classes
     private DatabaseContext db;
 
