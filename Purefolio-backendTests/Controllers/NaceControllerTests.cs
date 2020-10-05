@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+/*
 namespace Purefolio_backend.Controllers.Tests
 {
     [TestClass()]
@@ -36,7 +37,7 @@ namespace Purefolio_backend.Controllers.Tests
             Assert.AreEqual(naceController.Get().First(), 
             new Nace() { naceId = 0, naceCode = "A", naceName = "Agriculture, forestry and fishing" }
             );
-          */
         }
     }
 }
+          */

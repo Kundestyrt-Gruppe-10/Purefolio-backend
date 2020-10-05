@@ -20,7 +20,6 @@ namespace Purefolio_backend
       this.db = db;
       this._logger = _logger;
     }
-
     public Nace AddOrUpdateNace(Nace nace)
     {
       _logger.LogInformation($"AdOrUpdateNace {nace}");

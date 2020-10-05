@@ -101,7 +101,11 @@ namespace Purefolio_backend
         public MockData(ILogger<MockData> _logger)
         {
             this._logger = _logger;
-        }      
+        }
+
+        public MockData()
+        {
+        }
 
         public List<Nace> getAllNaces()
         {
