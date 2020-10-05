@@ -1,6 +1,6 @@
 version: "3.7"
 services:
-  cardiolearndb:
+  purefoliodb:
     image: postgres:12
     container_name: purefoliodb
     ports:
