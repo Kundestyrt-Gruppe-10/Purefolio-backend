@@ -10,12 +10,15 @@ namespace Purefolio_backend.Models
     public int naceRegionDataId { get; set; } // Primary key
     [Required]
     public Nace nace { get; set; }
+    [Required]
     public int naceId { get; set; } // Foreign key. Primary key
     [Required]
     public Region region { get; set; } // Navigation property
+    [Required]
     public int regionId { get; set; } // Foreign key. Primary key
+    [Required]
     public int year { get; set; }
-    public double? emissionPerYer { get; set; }
+    public double? emissionPerYear { get; set; }
     public double? genderPayGap { get; set; }
 
     public override int GetHashCode()

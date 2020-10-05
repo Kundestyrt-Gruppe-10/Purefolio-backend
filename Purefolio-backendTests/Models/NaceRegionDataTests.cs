@@ -27,9 +27,9 @@ namespace Purefolio_backend.Models.Tests
         [TestInitialize()]
         public void Setup()
         {
-            nrd1WithEmissionPerYear = new NaceRegionData(){naceId = naceId1, regionId = regionId1, year=testYear, emissionPerYer = testEmissionPerYer };
+            nrd1WithEmissionPerYear = new NaceRegionData(){naceId = naceId1, regionId = regionId1, year=testYear, emissionPerYear = testEmissionPerYer };
             nrd1WithGenderPayGap = new NaceRegionData(){naceId = naceId1,regionId = regionId1, year=testYear, genderPayGap = testGenderPayGap };
-            nrd1WithEmissionAndGenderPayGap = new NaceRegionData(){naceId = naceId1, regionId = regionId1, year=testYear, genderPayGap = testGenderPayGap,emissionPerYer = testEmissionPerYer};
+            nrd1WithEmissionAndGenderPayGap = new NaceRegionData(){naceId = naceId1, regionId = regionId1, year=testYear, genderPayGap = testGenderPayGap,emissionPerYear = testEmissionPerYer};
             nrd2WithoutData = new NaceRegionData(){regionId = regionId2, year = testYear};
             requiredFields = new List<string>(){"naceRegionDataId", "region", "regionId", "nace", "naceId", "year"};
         }
@@ -102,7 +102,7 @@ namespace Purefolio_backend.Models.Tests
         public void ObjectsShouldNotMergeWhenDifferentYears(int year1, int year2)
         {
             NaceRegionData nrd1 = new NaceRegionData(){year=year1, regionId = regionId1, naceId = naceId1 };
-            NaceRegionData nrd2 = new NaceRegionData(){year=year2, regionId = regionId2, naceId = naceId1, emissionPerYer = testEmissionPerYer};
+            NaceRegionData nrd2 = new NaceRegionData(){year=year2, regionId = regionId2, naceId = naceId1, emissionPerYear = testEmissionPerYer};
             
             NaceRegionData nrdMerged = nrd1.merge(nrd2);
 
@@ -114,7 +114,7 @@ namespace Purefolio_backend.Models.Tests
         public void ObjectsShouldNotMergeWhenDifferentRegionIds(int id1, int id2)
         {
             NaceRegionData nrd1 = new NaceRegionData(){regionId = id1, naceId = naceId1, year=testYear };
-            NaceRegionData nrd2 = new NaceRegionData(){regionId = id2, naceId = naceId1, year=testYear, emissionPerYer = testEmissionPerYer};
+            NaceRegionData nrd2 = new NaceRegionData(){regionId = id2, naceId = naceId1, year=testYear, emissionPerYear = testEmissionPerYer};
             
             NaceRegionData nrdMerged = nrd1.merge(nrd2);
 
@@ -126,7 +126,7 @@ namespace Purefolio_backend.Models.Tests
         public void ObjectsShouldNotMergeWhenDifferentNaceIds(int id1, int id2)
         {
             NaceRegionData nrd1 = new NaceRegionData(){naceId = id1, regionId = regionId1,  year=testYear };
-            NaceRegionData nrd2 = new NaceRegionData(){naceId = id2, regionId = regionId1,  year=testYear, emissionPerYer = testEmissionPerYer};
+            NaceRegionData nrd2 = new NaceRegionData(){naceId = id2, regionId = regionId1,  year=testYear, emissionPerYear = testEmissionPerYer};
             
             NaceRegionData nrdMerged = nrd1.merge(nrd2);
 
