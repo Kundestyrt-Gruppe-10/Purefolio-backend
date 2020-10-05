@@ -7,8 +7,6 @@ using Microsoft.Extensions.Logging;
 using Purefolio.DatabaseContext;
 using Purefolio_backend.Services;
 
-
-
 namespace Purefolio_backend
 {
   public class Startup
@@ -30,6 +28,12 @@ namespace Purefolio_backend
       services.AddSingleton<EuroStatFetchService>();
       services.AddSingleton<MockData>();
       services.AddHttpClient();
+      services.AddCors(options => options.AddPolicy("AllowAnyPolicy", builder =>
+      {
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+      }));
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,13 +43,14 @@ namespace Purefolio_backend
       ILoggerFactory loggerFactory
     )
     {
+      app.UseRouting();
+      
       if (env.IsDevelopment())
       {
+        app.UseCors("AllowAnyPolicy");
         app.UseDeveloperExceptionPage();
       }
-
-      app.UseRouting();
-
+      
       app.UseAuthorization();
 
       app
