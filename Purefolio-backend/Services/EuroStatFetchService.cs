@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Net.Http;
+using System.Text.Json; 
 
 namespace Purefolio_backend
 {
@@ -46,7 +47,9 @@ namespace Purefolio_backend
 
             if (response.IsSuccessStatusCode)
             {
-                _logger.LogInformation("It worked");
+                using var responseStream = await response.Content.ReadAsStreamAsync();
+                var json = await JsonSerializer.DeserializeAsync<object>(responseStream);
+                _logger.LogInformation(json.ToString());
             }else{
                 _logger.LogInformation("It failed");
             }
