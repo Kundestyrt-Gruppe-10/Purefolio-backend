@@ -14,9 +14,10 @@ namespace Purefolio_backend
 
     private readonly ILogger<DatabaseStore> _logger;
 
-    public DatabaseStore(ILogger<DatabaseStore> _logger)
+    public DatabaseStore(ILogger<DatabaseStore> _logger, DatabaseContext db)
     {
-      this.db = new DatabaseContext();
+      // this.db = new DatabaseContext();
+      this.db = db;
       this._logger = _logger;
     }
 

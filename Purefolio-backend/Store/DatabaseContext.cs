@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Purefolio_backend.Models;
+using System;
 
 namespace Purefolio.DatabaseContext
 {
@@ -12,15 +14,18 @@ namespace Purefolio.DatabaseContext
     public DbSet<RegionData> RegionData { get; set; }
 
     public DbSet<NaceRegionData> NaceRegionData { get; set; }
+    public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
 
-        protected override void OnConfiguring(
-          DbContextOptionsBuilder optionsBuilder
-        ) =>
-          optionsBuilder // TODO: Use a configuration file instead of hard coding database string.
-            .UseNpgsql("Host=localhost;Port=10101;Database=purefolio;Username=purefolio;Password=password")
-            .EnableSensitiveDataLogging() // TODO: Remove before production
-            .UseSnakeCaseNamingConvention();
+    protected override void OnConfiguring(
+      DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder
+          //.UseNpgsql("Host=localhost;Port=10101;Database=purefolio;Username=purefolio;Password=password")
+          //.UseNpgsql(configuration["ConnectionStrings:DefaultConnection"])
+          .EnableSensitiveDataLogging() // TODO: Remove before production
+          .UseSnakeCaseNamingConvention();
 
+    }
     // This initialises database with tables on startup
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

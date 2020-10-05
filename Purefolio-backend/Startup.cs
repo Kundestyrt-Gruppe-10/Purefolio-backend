@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -22,11 +23,13 @@ namespace Purefolio_backend
     public void ConfigureServices(IServiceCollection services)
     {
       services.AddControllers();
-      services.AddDbContext<DatabaseContext>();
-      services.AddSingleton<MockDataService>();
-      services.AddSingleton<DatabaseStore>();
-      services.AddSingleton<EuroStatFetchService>();
-      services.AddSingleton<MockData>();
+      services.AddDbContext<DatabaseContext>(options =>
+        options.UseNpgsql(Configuration.GetConnectionString("Development"))
+      );
+      services.AddScoped<MockDataService>();
+      services.AddScoped<DatabaseStore>();
+      services.AddScoped<EuroStatFetchService>();
+      services.AddScoped<MockData>();
       services.AddHttpClient();
       services.AddCors(options => options.AddPolicy("AllowAnyPolicy", builder =>
       {
@@ -50,7 +53,31 @@ namespace Purefolio_backend
         app.UseCors("AllowAnyPolicy");
         app.UseDeveloperExceptionPage();
       }
-      
+      if (env.IsProduction() || env.IsStaging())
+      {
+        app.UseExceptionHandler("/Error");
+      }
+
+      // TODO: Remove before release
+      // Deleting and recreating Database on each boot
+      if (env.IsProduction() || env.IsStaging())
+      {
+        using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope()) {
+          var context = serviceScope.ServiceProvider.GetRequiredService<DatabaseContext>();
+          context.Database.EnsureDeleted();
+          context.Database.EnsureCreated();
+          }
+        // Populate database on startup
+        using (var serviceScrope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+        {
+          var service = serviceScrope.ServiceProvider.GetRequiredService<MockDataService>();
+          service.PopulateDatabase();
+        }
+      }
+
+
+      app.UseRouting();
+
       app.UseAuthorization();
 
       app

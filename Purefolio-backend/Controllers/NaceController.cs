@@ -9,20 +9,20 @@ namespace Purefolio_backend.Controllers
   [Route("/naces")]
   public class NaceController : ControllerBase
   {
-        private readonly ILogger<NaceController> _logger;
+      private readonly ILogger<NaceController> _logger;
 
-        private MockData mockData;
+      private DatabaseStore databaseStore;
 
-        public NaceController(ILogger<NaceController> logger, MockData mockData)
+      public NaceController(ILogger<NaceController> logger, DatabaseStore databaseStore)
         {
             _logger = logger;
-            this.mockData = mockData;
+            this.databaseStore = databaseStore;
         }
 
         [HttpGet]
         public IEnumerable<Nace> Get()
         {
-            return mockData.getAllNaces();
+          return databaseStore.getAllNace();
         }
     }
   }
