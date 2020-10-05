@@ -28,9 +28,24 @@ namespace Purefolio_backend
       return nace;
     }
 
-    public List<Nace> getAllNace()
+    public List<Nace> getAllNaces()
     {
       return db.Nace.ToList();
+    }
+
+    public List<Region> getAllRegions()
+    {
+      return db.Region.ToList();
+    }
+
+    public List<RegionData> getAllRegionData()
+    {
+      return db.RegionData.ToList();
+    }
+
+    public List<NaceRegionData> getAllNaceRegionData()
+    {
+      return db.NaceRegionData.ToList();
     }
 
     public Region getRegionById(int regionId)
