@@ -11,6 +11,21 @@ using System.Text.Json;
 
 namespace Purefolio_backend
 {
+    public class EuroStatData
+    {
+        public string version {get; set;}
+        public string label {get; set;}
+        public string href {get; set;}
+        public string source {get; set;}
+        public string updated {get; set;}
+        public object status {get; set;}
+        public object extension {get; set;}
+        public object value {get; set;}
+        public object dimension {get; set;}
+        public object id {get; set;}
+        public object size {get; set;}
+        
+    }
     public class EuroStatFetchService
 
     {
@@ -48,8 +63,8 @@ namespace Purefolio_backend
             if (response.IsSuccessStatusCode)
             {
                 using var responseStream = await response.Content.ReadAsStreamAsync();
-                var json = await JsonSerializer.DeserializeAsync<object>(responseStream);
-                _logger.LogInformation(json.ToString());
+                var data = await JsonSerializer.DeserializeAsync<EuroStatData>(responseStream);
+                _logger.LogInformation(data.value.ToString());
             }else{
                 _logger.LogInformation("It failed");
             }
