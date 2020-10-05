@@ -18,11 +18,14 @@ namespace Purefolio_backend.Controllers
 
         private MockDataService mockDataService;
 
-        public PopulateDatabaseController(ILogger<PopulateDatabaseController> logger, DatabaseContext db, MockData mockData,
+        private DatabaseStore databaseStore;
+
+        public PopulateDatabaseController(ILogger<PopulateDatabaseController> logger, DatabaseStore databaseStore, MockData mockData,
             MockDataService mockDataService)
         {
             _logger = logger;
             this.mockDataService = mockDataService;
+            this.databaseStore = databaseStore;
         }
 
         [HttpGet]

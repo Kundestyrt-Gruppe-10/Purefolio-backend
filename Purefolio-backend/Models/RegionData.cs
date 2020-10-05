@@ -20,7 +20,16 @@ namespace Purefolio_backend.Models
         public int? gdp { get; set; }
         public int? corruptionRate { get; set; }
 
-        public override int GetHashCode()
+        public static List<string> essentialFields = new List<string>(){
+          "regionDataId", "regionId", "region", "year"
+        };
+
+    public List<System.Reflection.PropertyInfo> getDataProperties()
+    {
+      return this.GetType().GetProperties().Where(prop => !essentialFields.Contains(prop.Name)).ToList();
+    }
+
+    public override int GetHashCode()
     {
       return base.GetHashCode();
     }
@@ -38,7 +47,7 @@ namespace Purefolio_backend.Models
     public RegionData merge(RegionData other) 
     { 
       if(this.Equals(other)){ 
-        List<System.Reflection.PropertyInfo> props = this.GetType().GetProperties().ToList(); 
+        List<System.Reflection.PropertyInfo> props = getDataProperties();
         foreach (System.Reflection.PropertyInfo prop in props) 
         { 
             object value = prop.GetValue(other); 

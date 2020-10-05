@@ -78,17 +78,22 @@ namespace Purefolio_backend
 
         private List<NaceRegionData> naceRegionData = new List<NaceRegionData>() 
             { 
-                new NaceRegionData() { regionId = 1, naceId =15,  year = 2018, emissionPerYear = -1, genderPayGap = 14 },   
-                new NaceRegionData() { regionId = 2, year = 2018, naceId = 15, emissionPerYear = -1, genderPayGap = 6.4 }, 
+                new NaceRegionData() { regionId = 1, naceId =15,  year = 2018, genderPayGap = 14 },   
+                new NaceRegionData() { regionId = 2, naceId = 15, year = 2018, genderPayGap = 6.4 },
             };
         
         private List<RegionData> regionData = new List<RegionData>() 
             { 
                 new RegionData() { regionId = 1,  corruptionRate = 84, year = 2019, population = 5328212, gdp = 360300 },
-                new RegionData() {  regionId = 2, corruptionRate = 85, year = 2019, population = 10230185, gdp = 474194},
+                new RegionData() { regionId = 2, corruptionRate = 85, year = 2019, population = 10230185, gdp = 474194},
                 new RegionData() { regionId = 3,  corruptionRate = 87, year = 2019, population = 5806081, gdp = 310002},
-                new RegionData() { regionId = 3,  corruptionRate = 86, year = 2019, population = 5517919, gdp = 240557},
-                new RegionData() {  regionId = 3, corruptionRate = 0, year = 2019, population = 446824564, gdp = 13953148},
+                new RegionData() { regionId = 4,  corruptionRate = 86, year = 2019, population = 5517919, gdp = 240557},
+                new RegionData() { regionId = 5, corruptionRate = 0, year = 2019, population = 446824564, gdp = 13953148},
+                new RegionData() { regionId = 1, year = 2018 },
+                new RegionData() { regionId = 2, year = 2018 },
+                new RegionData() { regionId = 3, year = 2018 },
+                new RegionData() { regionId = 4, year = 2018 },
+                new RegionData() { regionId = 5, year = 2018 },
                 
 
             };
