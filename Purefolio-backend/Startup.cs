@@ -7,6 +7,8 @@ using Microsoft.Extensions.Logging;
 using Purefolio.DatabaseContext;
 using Purefolio_backend.Services;
 
+
+
 namespace Purefolio_backend
 {
   public class Startup
@@ -27,6 +29,7 @@ namespace Purefolio_backend
       services.AddSingleton<DatabaseStore>();
       services.AddSingleton<EuroStatFetchService>();
       services.AddSingleton<MockData>();
+      services.AddHttpClient();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

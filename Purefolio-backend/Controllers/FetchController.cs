@@ -25,7 +25,7 @@ namespace Purefolio_backend.Controllers
         [Route("output-url")]
         public void GetOutputUrl()
         {
-            _euroStatFetchService.getEuroStatURL("env_wqdq");
+            _euroStatFetchService.fetchData("env_ac_taxind2");
         }
     }
   }
