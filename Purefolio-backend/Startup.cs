@@ -43,13 +43,14 @@ namespace Purefolio_backend
       ILoggerFactory loggerFactory
     )
     {
+      app.UseRouting();
+      
       if (env.IsDevelopment())
       {
         app.UseCors("AllowAnyPolicy");
         app.UseDeveloperExceptionPage();
       }
-
-      app.UseRouting();
+      
       app.UseAuthorization();
 
       app
