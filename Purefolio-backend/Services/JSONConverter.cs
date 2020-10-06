@@ -14,12 +14,14 @@ namespace Purefolio_backend
 
     public class JSONConverter
     {    
-        private readonly ILogger<EuroStatFetchService> _logger;
+        private readonly ILogger<JsonConverter> _logger;
+        private DatabaseStore databaseStore;
 
-        public JSONConverter(ILogger<EuroStatFetchService> _logger)
+        public JSONConverter(ILogger<JsonConverter> _logger, DatabaseStore databaseStore)
 
         {
             this._logger = _logger;
+            this.databaseStore = databaseStore;
         }
         
 
@@ -62,7 +64,8 @@ namespace Purefolio_backend
                 string Geo = geo[indexes[IDinOrder.IndexOf("geo")]];
                 string Year = time[indexes[IDinOrder.IndexOf("time")]];
 
-                _logger.LogInformation(message:"Value on index " + entry.Key +  ": " + entry.Value + ", Nace: " + Nace + ", Geo: " + Geo + ", Year: " + Year);
+                _logger.LogInformation(message:"Value on index " + entry.Key +  ": " + entry.Value + ", NaceId: " + Nace + ", Geo: " + Geo + ", Year: " + Year);
+            
             }
 
             return nrdList;

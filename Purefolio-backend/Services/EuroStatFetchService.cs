@@ -38,12 +38,15 @@ namespace Purefolio_backend
 
         private String euroStatApiEndpoint = "http://ec.europa.eu/eurostat/wdds/rest/data/v2.1/json/en/";
         private static String StaticFilters = "precision=1";
+
+        private DatabaseStore databaseStore;
         
-        public EuroStatFetchService(ILogger<EuroStatFetchService> _logger, IHttpClientFactory clientFactory)
+        public EuroStatFetchService(ILogger<EuroStatFetchService> _logger, IHttpClientFactory clientFactory, DatabaseStore databaseStore, JSONConverter jSONConverter)
 
         {
             this._logger = _logger;
-            this.JSONConverter = new JSONConverter(_logger);
+            this.databaseStore = databaseStore;
+            this.JSONConverter = jSONConverter;
         }
 
         public String GetEuroStatURL(string tablecode)
@@ -60,6 +63,7 @@ namespace Purefolio_backend
             List<NaceRegionData> EurostatNRData = JSONConverter.convert(jsonString, tablecode);
             if(!EurostatNRData.Equals(null)){
                 //_logger.LogInformation(message:"Made JSON-string to NaceRegionObjects.");
+
             }
             _logger.LogInformation(message:GetEuroStatURL(tablecode));
             

@@ -30,6 +30,7 @@ namespace Purefolio_backend
       services.AddScoped<DatabaseStore>();
       services.AddScoped<EuroStatFetchService>();
       services.AddScoped<MockData>();
+      services.AddScoped<JSONConverter>();
       services.AddHttpClient();
       services.AddCors(options => options.AddPolicy("AllowAnyPolicy", builder =>
       {

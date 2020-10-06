@@ -34,6 +34,21 @@ namespace Purefolio_backend
       return db.Nace.ToList();
     }
 
+    public int getRegionIdByRegionCode(string regionCode)
+    {
+        return db.Region
+            .Where(row =>
+                row.regionCode == regionCode
+            ).Single().regionId;
+    }
+
+    public int getNaceIdByNaceCode(string naceCode)
+    {
+        return db.Nace
+            .Where(row =>
+                row.naceCode == naceCode
+            ).Single().naceId;
+    }
     public Region getRegionById(int regionId)
         {
             return db.Region
