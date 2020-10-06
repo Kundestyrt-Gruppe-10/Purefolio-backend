@@ -72,10 +72,9 @@ namespace Purefolio_backend
         using (var serviceScrope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
         {
           var service = serviceScrope.ServiceProvider.GetRequiredService<MockDataService>();
-          service.PopulateDatabase();
+          //service.PopulateDatabase();
         }
       }
-
 
       app.UseRouting();
 
