@@ -25,7 +25,23 @@ namespace Purefolio_backend.Controllers
         [Route("output-url")]
         public void GetOutputUrl()
         {
-            _euroStatFetchService.fetchData("env_ac_taxind2");
+            _euroStatFetchService.GetEuroStatURL("env_ac_taxind2");
+        }
+
+        [HttpGet]
+        [Route("populate-db")]
+        public void PopulateDB()
+        {
+            _euroStatFetchService.PopulateDB("env_ac_taxind2");
+        }
+
+        [HttpGet]
+        [Route("test")]
+        public NaceRegionData getInfo()
+        {
+            NaceRegionData nrd =  new NaceRegionData(){ naceId=2,regionId=2, year=2019, genderPayGap = 1.3};
+            NaceRegionData nrd2 =  new NaceRegionData(){ naceId=1, regionId=2, year=2019, emissionPerYer = 100};                 
+            return nrd.merge(nrd2);
         }
     }
   }

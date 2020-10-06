@@ -6,8 +6,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Net;
 using System.Net.Http;
-using System.Text.Json; 
+using System.Net.Http.Headers;
 
 namespace Purefolio_backend
 {
@@ -30,13 +31,12 @@ namespace Purefolio_backend
 
     {
         private readonly ILogger<EuroStatFetchService> _logger;
+        static HttpClient client = new HttpClient();
 
         private DataSetProperties dsp = new DataSetProperties();
 
         private String euroStatApiEndpoint = "http://ec.europa.eu/eurostat/wdds/rest/data/v2.1/json/en/";
-        private String staticFilters = "?precision=1&";
-
-        private IHttpClientFactory clientFactory;
+        private static String StaticFilters = "precision=1";
         
         public EuroStatFetchService(ILogger<EuroStatFetchService> _logger, IHttpClientFactory clientFactory)
 
@@ -45,30 +45,18 @@ namespace Purefolio_backend
             this.clientFactory = clientFactory;
         }
 
-        public String getEuroStatURL(string tablecode)
+        public String GetEuroStatURL(string tablecode)
         {
-            string url = euroStatApiEndpoint + tablecode + staticFilters + dsp.getFilters(tablecode);
-            _logger.LogInformation(message:url);
-            return url;
+            return euroStatApiEndpoint + tablecode + '?' + StaticFilters + '&' + dsp.getFilters(tablecode);
         }
 
-        public async void fetchData(string tablecode)
+        public async void PopulateDB(string tablecode)
         {
-            var request = new HttpRequestMessage(HttpMethod.Get,getEuroStatURL(tablecode));
-
-            var client = clientFactory.CreateClient();
-
-            var response = await client.SendAsync(request);
-
-            if (response.IsSuccessStatusCode)
-            {
-                using var responseStream = await response.Content.ReadAsStreamAsync();
-                var data = await JsonSerializer.DeserializeAsync<EuroStatData>(responseStream);
-                _logger.LogInformation(data.value.ToString());
-            }else{
-                _logger.LogInformation("It failed");
-            }
+            HttpResponseMessage response = await client.GetAsync(GetEuroStatURL(tablecode));
+            String jsonString = response.Content.ReadAsStringAsync().Result;
+            
+            _logger.LogInformation(message:jsonString);
+            
         }
-
     }
 }

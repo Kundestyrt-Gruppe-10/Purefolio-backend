@@ -25,16 +25,16 @@ namespace Purefolio_backend
 
 
         public String getFilters(String tableID){
-            return "" + filters[tableID] + getTimeFilters() + getNaceFilters();
+            return "" + filters[tableID] + '&' + getTimeFilters() + '&' + getNaceFilters();
         }
 
         private String getTimeFilters(){
-            return "&time=" + string.Join("&time=", years);
+            return "time=" + string.Join("&time=", years);
         }
 
         private String getNaceFilters()
         {
-            return "&nace_r2=" + string.Join("&nace_r2=", naces);
+            return "nace_r2=" + string.Join("&nace_r2=", naces);
         }
 
 
