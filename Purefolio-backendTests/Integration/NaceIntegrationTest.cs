@@ -6,24 +6,34 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xunit;
 using System.Linq;
+using Castle.Core.Logging;
+using Microsoft.Extensions.Logging;
+using System;
 
 namespace Purefolio_backendTests.IntegrationTests
 {
     public class NaceIntegrationTest : IClassFixture<CustomWebApplicationFactory<Startup>>
   {
         private readonly HttpClient _client;
+        private readonly ILogger<NaceIntegrationTest> _logger;
 
-        public NaceIntegrationTest(CustomWebApplicationFactory<Startup> factory)
+        public NaceIntegrationTest(
+            CustomWebApplicationFactory<Startup> factory
+        
+            )
         {
             _client = factory.CreateClient();
+            //_logger = logger;
         }
 
-        [Theory]
-        [InlineData("/naces")]
-        public async Task CanGetNaces(string url)
+        //[Theory]
+        //[InlineData("/naces")]
+        [Fact]
+        public async Task CanGetNaces()
         {
             // The endpoint or route of the controller action.
-            var httpResponse = await _client.GetAsync(url);
+            var httpResponse = await _client.GetAsync("/naces");
+            //_logger.LogError(httpResponse.Content.ToString());
 
             // Must be successful.
             httpResponse.EnsureSuccessStatusCode();

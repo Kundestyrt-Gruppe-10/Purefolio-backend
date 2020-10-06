@@ -23,8 +23,8 @@ namespace Purefolio_backend
     public void ConfigureServices(IServiceCollection services)
     {
       services.AddControllers();
-      services.AddDbContext<DatabaseContext>(options =>
-        options.UseNpgsql(Configuration.GetConnectionString("Development"))
+      services.AddDbContext<DatabaseContext>( options =>
+       options.UseNpgsql(Configuration.GetConnectionString("Development"))
       );
       services.AddScoped<MockDataService>();
       services.AddScoped<DatabaseStore>();
@@ -53,9 +53,10 @@ namespace Purefolio_backend
         app.UseCors("AllowAnyPolicy");
         app.UseDeveloperExceptionPage();
       }
+      app.UseDeveloperExceptionPage();
       if (env.IsProduction() || env.IsStaging())
       {
-        app.UseExceptionHandler("/Error");
+        // app.UseExceptionHandler("/Error");
       }
 
       // TODO: Remove before release
