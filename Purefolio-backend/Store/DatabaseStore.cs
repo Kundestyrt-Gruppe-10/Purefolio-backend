@@ -9,6 +9,7 @@ namespace Purefolio_backend
     public interface IDatabaseStore
     {
         public List<Nace> getAllNaces();
+        public List<NaceRegionData> getNaceRegionData(int? regionId, int? naceId, int? year);
     }
     public class DatabaseStore : IDatabaseStore
     {
@@ -45,6 +46,15 @@ namespace Purefolio_backend
         public List<NaceRegionData> getAllNaceRegionData()
         {
             return db.NaceRegionData.ToList();
+        }
+
+        public List<NaceRegionData> getNaceRegionData(int? regionId, int? naceId, int? year)
+        {
+            return db.NaceRegionData.Where(row => 
+                (regionId == null || row.regionId == regionId) &&
+                (naceId == null || row.naceId == naceId) &&
+                (year == null || row.year == year))
+                .ToList();
         }
 
         public List<RegionData> getAllRegionData()
