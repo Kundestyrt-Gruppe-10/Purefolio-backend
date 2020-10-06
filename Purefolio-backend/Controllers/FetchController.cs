@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Purefolio_backend.Models;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Purefolio_backend.Controllers
 {
@@ -31,7 +32,7 @@ namespace Purefolio_backend.Controllers
 
         [HttpGet]
         [Route("populate-db")]
-        public async Task<string> PopulateDB()
+        public async Task<List<NaceRegionData>> PopulateDB()
         {
             return await _euroStatFetchService.PopulateDB("hsw_n2_03");
         }

@@ -54,7 +54,7 @@ namespace Purefolio_backend
             return euroStatApiEndpoint + tablecode + '?' + StaticFilters + '&' + dsp.getFilters(tablecode);
         }
 
-        public async Task<string> PopulateDB(string tablecode)
+        public async Task<List<NaceRegionData>> PopulateDB(string tablecode)
         {
             // TODO: Handle no internet connection with proper error message.
             HttpResponseMessage response = await client.GetAsync(GetEuroStatURL(tablecode));
@@ -66,7 +66,7 @@ namespace Purefolio_backend
             }
             _logger.LogInformation(message:GetEuroStatURL(tablecode));
             
-            return "Done";
+            return EurostatNRData;
         }
     }
 }
