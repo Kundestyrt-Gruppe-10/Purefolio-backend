@@ -40,7 +40,7 @@ namespace Purefolio_backend.Controllers
         public NaceRegionData getInfo()
         {
             NaceRegionData nrd =  new NaceRegionData(){ naceId=2,regionId=2, year=2019, genderPayGap = 1.3};
-            NaceRegionData nrd2 =  new NaceRegionData(){ naceId=1, regionId=2, year=2019, emissionPerYer = 100};                 
+            NaceRegionData nrd2 =  new NaceRegionData(){ naceId=1, regionId=2, year=2019, emissionPerYear = 100};                 
             return nrd.merge(nrd2);
         }
     }
