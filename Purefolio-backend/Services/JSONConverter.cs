@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
+using System.Globalization;
 
 
 
@@ -47,7 +48,8 @@ namespace Purefolio_backend
 
             (IDinOrder, SizeinOrder) = MakeOrderedLists(id, size);
 
-        
+            List<Region> regions = databaseStore.getAllRegions();
+            List<Nace> naces = databaseStore.getAllNaces();
             
             List<int> indexes = new List<int>();
             foreach (KeyValuePair<string, string> entry in value)
@@ -60,12 +62,20 @@ namespace Purefolio_backend
                 indexes.Add((indexOfData % (SizeinOrder[1]*SizeinOrder[2]) / SizeinOrder[2]));
                 indexes.Add((indexOfData % (SizeinOrder[1]*SizeinOrder[2])) % SizeinOrder[2]);
 
-                string Nace = nace[indexes[IDinOrder.IndexOf("nace_r2")]];
-                string Geo = geo[indexes[IDinOrder.IndexOf("geo")]];
-                string Year = time[indexes[IDinOrder.IndexOf("time")]];
+                string naceCode = nace[indexes[IDinOrder.IndexOf("nace_r2")]];
+                string regionCode = geo[indexes[IDinOrder.IndexOf("geo")]];
 
-                _logger.LogInformation(message:"Value on index " + entry.Key +  ": " + entry.Value + ", NaceId: " + Nace + ", Geo: " + Geo + ", Year: " + Year);
-            
+                int year = int.Parse(time[indexes[IDinOrder.IndexOf("time")]]);
+                double propValue = double.Parse(entry.Value, CultureInfo.InvariantCulture);
+
+
+                Nace nace1 = naces.Find(nace => nace.naceCode == naceCode);
+                Region region = regions.Find(region => region.regionCode == regionCode);
+
+                if (nace != null && region != null){
+                    nrdList.Add(new NaceRegionData(){naceId=nace1.naceId, regionId=region.regionId, year=year, emissionPerYear=propValue});
+                }
+                
             }
 
             return nrdList;

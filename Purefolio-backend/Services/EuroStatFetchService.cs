@@ -54,7 +54,7 @@ namespace Purefolio_backend
             return euroStatApiEndpoint + tablecode + '?' + StaticFilters + '&' + dsp.getFilters(tablecode);
         }
 
-        public async void PopulateDB(string tablecode)
+        public async Task<string> PopulateDB(string tablecode)
         {
             // TODO: Handle no internet connection with proper error message.
             HttpResponseMessage response = await client.GetAsync(GetEuroStatURL(tablecode));
@@ -62,11 +62,11 @@ namespace Purefolio_backend
             
             List<NaceRegionData> EurostatNRData = JSONConverter.convert(jsonString, tablecode);
             if(!EurostatNRData.Equals(null)){
-                //_logger.LogInformation(message:"Made JSON-string to NaceRegionObjects.");
-
+                _logger.LogInformation(message:"Made JSON-string to NaceRegionObjects.");
             }
             _logger.LogInformation(message:GetEuroStatURL(tablecode));
             
+            return "Done";
         }
     }
 }
