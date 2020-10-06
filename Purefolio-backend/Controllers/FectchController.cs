@@ -32,7 +32,7 @@ namespace Purefolio_backend.Controllers
         [Route("populate-db")]
         public void PopulateDB()
         {
-            _euroStatFetchService.PopulateDB("env_ac_taxind2");
+            _euroStatFetchService.PopulateDB("hsw_n2_03");
         }
 
         [HttpGet]

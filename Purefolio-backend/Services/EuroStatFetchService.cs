@@ -34,6 +34,7 @@ namespace Purefolio_backend
         static HttpClient client = new HttpClient();
 
         private DataSetProperties dsp = new DataSetProperties();
+        private JSONConverter JSONConverter;
 
         private String euroStatApiEndpoint = "http://ec.europa.eu/eurostat/wdds/rest/data/v2.1/json/en/";
         private static String StaticFilters = "precision=1";
@@ -42,7 +43,7 @@ namespace Purefolio_backend
 
         {
             this._logger = _logger;
-            this.clientFactory = clientFactory;
+            this.JSONConverter = new JSONConverter(_logger);
         }
 
         public String GetEuroStatURL(string tablecode)
@@ -52,10 +53,15 @@ namespace Purefolio_backend
 
         public async void PopulateDB(string tablecode)
         {
+            // TODO: Handle no internet connection with proper error message.
             HttpResponseMessage response = await client.GetAsync(GetEuroStatURL(tablecode));
             String jsonString = response.Content.ReadAsStringAsync().Result;
             
-            _logger.LogInformation(message:jsonString);
+            List<NaceRegionData> EurostatNRData = JSONConverter.convert(jsonString, tablecode);
+            if(!EurostatNRData.Equals(null)){
+                //_logger.LogInformation(message:"Made JSON-string to NaceRegionObjects.");
+            }
+            _logger.LogInformation(message:GetEuroStatURL(tablecode));
             
         }
     }
