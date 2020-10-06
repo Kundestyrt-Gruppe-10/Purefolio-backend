@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using System.Globalization;
+using System.Reflection;
 
 
 
@@ -26,7 +27,7 @@ namespace Purefolio_backend
         }
         
 
-        public List<NaceRegionData> convert(String jsonString, String dataset){
+        public List<NaceRegionData> convert(String jsonString, String tableID){
             List<NaceRegionData> nrdList = new List<NaceRegionData>();
             List<string> IDinOrder = new List<string>();
             List<int> SizeinOrder = new List<int>();
@@ -73,7 +74,13 @@ namespace Purefolio_backend
                 Region region = regions.Find(region => region.regionCode == regionCode);
 
                 if (nace != null && region != null){
-                    nrdList.Add(new NaceRegionData(){naceId=nace1.naceId, regionId=region.regionId, year=year, emissionPerYear=propValue});
+                    NaceRegionData nrd = new NaceRegionData(){naceId=nace1.naceId, regionId=region.regionId, year=year};
+                    Type type = nrd.GetType();
+
+                    PropertyInfo prop = type.GetProperty(tableID);
+
+                    prop.SetValue (nrd, propValue, null);
+                    nrdList.Add(nrd);
                 }
                 
             }

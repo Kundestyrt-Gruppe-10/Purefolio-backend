@@ -34,7 +34,7 @@ namespace Purefolio_backend.Controllers
         [Route("populate-db")]
         public async Task<List<NaceRegionData>> PopulateDB()
         {
-            return await _euroStatFetchService.PopulateDB("hsw_n2_03");
+            return await _euroStatFetchService.PopulateDB();
         }
 
         [HttpGet]

@@ -34,21 +34,25 @@ namespace Purefolio_backend
             this.JSONConverter = jSONConverter;
         }
 
-        public String GetEuroStatURL(string tablecode)
+        public String GetEuroStatURL(string tableID)
         {
-            return euroStatApiEndpoint + tablecode + '?' + StaticFilters + '&' + dsp.getFilters(tablecode);
+            return euroStatApiEndpoint + dsp.getTableCode(tableID) + '?' + StaticFilters + '&' + dsp.getFilters(tableID);
         }
 
-        public async Task<List<NaceRegionData>> PopulateDB(string tablecode)
-        {
-            // TODO: Handle no internet connection with proper error message.
-            HttpResponseMessage response = await client.GetAsync(GetEuroStatURL(tablecode));
+        public async Task<List<NaceRegionData>> PopulateDB()
+        {   
+            foreach (var tableID in dsp.GetTableIDs())
+            {
+                // TODO: Handle no internet connection with proper error message.
+            HttpResponseMessage response = await client.GetAsync(GetEuroStatURL(tableID));
             String jsonString = response.Content.ReadAsStringAsync().Result;
             
-            List<NaceRegionData> EurostatNRData = JSONConverter.convert(jsonString, tablecode);
+            List<NaceRegionData> EurostatNRData = JSONConverter.convert(jsonString, tableID);
             databaseStore.addNaceRegionData(EurostatNRData);
+            }
             
-            return EurostatNRData;
+            
+            return databaseStore.getAllNaceRegionData();
         }
     }
 }
