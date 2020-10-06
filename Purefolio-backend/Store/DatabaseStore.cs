@@ -39,6 +39,16 @@ namespace Purefolio_backend
       return db.Region.ToList();
     }
 
+    public List<NaceRegionData> getAllNaceRegionData()
+    {
+      return db.NaceRegionData.ToList();
+    }
+
+    public List<RegionData> getAllRegionData()
+    {
+      return db.RegionData.ToList();
+    }
+
     public int getRegionIdByRegionCode(string regionCode)
     {
         return db.Region

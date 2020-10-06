@@ -12,21 +12,6 @@ using System.Net.Http.Headers;
 
 namespace Purefolio_backend
 {
-    public class EuroStatData
-    {
-        public string version {get; set;}
-        public string label {get; set;}
-        public string href {get; set;}
-        public string source {get; set;}
-        public string updated {get; set;}
-        public object status {get; set;}
-        public object extension {get; set;}
-        public object value {get; set;}
-        public object dimension {get; set;}
-        public object id {get; set;}
-        public object size {get; set;}
-        
-    }
     public class EuroStatFetchService
 
     {
@@ -61,10 +46,7 @@ namespace Purefolio_backend
             String jsonString = response.Content.ReadAsStringAsync().Result;
             
             List<NaceRegionData> EurostatNRData = JSONConverter.convert(jsonString, tablecode);
-            if(!EurostatNRData.Equals(null)){
-                _logger.LogInformation(message:"Made JSON-string to NaceRegionObjects.");
-            }
-            _logger.LogInformation(message:GetEuroStatURL(tablecode));
+            databaseStore.addNaceRegionData(EurostatNRData);
             
             return EurostatNRData;
         }
