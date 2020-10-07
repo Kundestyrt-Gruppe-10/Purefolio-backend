@@ -50,9 +50,6 @@ namespace Purefolio_backend
             List<Nace> naces = databaseStore.getAllNaces();
             
             List<int> indexes = new List<int>();
-            int i = 0;
-            int totalValues = value.Count;
-            Console.Write($"Start converting EuroStat data to NRD-objects");
             foreach (KeyValuePair<string, string> entry in value)
             {
                 
@@ -82,13 +79,8 @@ namespace Purefolio_backend
 
                     prop.SetValue (nrd, propValue, null);
                     nrdList.Add(nrd);
-                }
-                
-                Console.Write($"\rConverting to NRD-objects: {(double) i++*100/totalValues:0.00}%           ");
-                
+                }                
             }
-            Console.Write($"\rDone converting EuroStat data to NRD-objects\n");
-
             return nrdList;
         }
 

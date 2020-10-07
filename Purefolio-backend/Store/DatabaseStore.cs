@@ -136,9 +136,6 @@ namespace Purefolio_backend
     public List<NaceRegionData> addNaceRegionData(List<NaceRegionData> newNaceRegionData)
     {
       List<NaceRegionData> existingNaceRegionData = db.NaceRegionData.ToList();
-      int i = 0;
-      int totalNaceRegionData = newNaceRegionData.Count;
-      Console.Write($"Start merging/creating NRD-objects");
       foreach (NaceRegionData newNRD in newNaceRegionData)
       {
           NaceRegionData existingElement = existingNaceRegionData.Find((exNRD)=> exNRD.Equals(newNRD));
@@ -150,12 +147,8 @@ namespace Purefolio_backend
           {
               existingElement.merge(newNRD);
           }
-          Console.Write($"\rMerging/creating NRD-objects: {(double) i++*100/totalNaceRegionData:0.00}%           "); 
       }
-      Console.Write($"\rDone merging/creating NRD-objects            \n");
-      Console.Write($"Start saving NRD-objects");
       db.SaveChanges();
-      Console.Write($"\rDone saving NRD-objects     \n");
       return db.NaceRegionData.ToList();
     }
 

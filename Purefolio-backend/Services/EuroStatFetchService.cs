@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using Microsoft.VisualBasic;
 
 namespace Purefolio_backend
 {
@@ -41,21 +42,24 @@ namespace Purefolio_backend
 
         public async Task<List<NaceRegionData>> PopulateDB()
         {   
-            foreach (var tableID in dsp.GetTableIDs())
+            Dictionary<string, List<string>>.KeyCollection tableIDs = dsp.GetTableIDs();
+            int i = 0;
+            int infoMaxLength = 70;
+            string info;
+            foreach (var tableID in tableIDs)
             {
                 // TODO: Handle no internet connection with proper error message.
-
-            Console.WriteLine($"Start fetching data for property: {tableID}\n");
+            info = $"Saving data in database: {(double) i++*100/tableIDs.Count:0.0}% - {tableID}";
+            Console.Write($"\r{info}{Strings.Space(infoMaxLength-info.Length)}");
 
             HttpResponseMessage response = await client.GetAsync(GetEuroStatURL(tableID));
             String jsonString = response.Content.ReadAsStringAsync().Result;
             
             List<NaceRegionData> EurostatNRData = JSONConverter.convert(jsonString, tableID);
             databaseStore.addNaceRegionData(EurostatNRData);
-
-            Console.WriteLine($"\nDone fetching and saving data with property: {tableID}\n");
             }
-            
+            info = "Done saving data in database";
+            Console.Write($"\r{info}{Strings.Space(infoMaxLength-info.Length)}");
             
             return databaseStore.getAllNaceRegionData();
         }
