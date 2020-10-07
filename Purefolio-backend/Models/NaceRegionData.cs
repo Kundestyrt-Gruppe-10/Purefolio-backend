@@ -21,6 +21,8 @@ namespace Purefolio_backend.Models
     public double? emissionPerYear { get; set; }
     public double? genderPayGap { get; set; }
 
+    public double? workAccidentsIncidentRate { get; set; }
+
     public static List<string> essentialFields = new List<string>(){"naceRegionDataId", "region", "regionId", "nace", "naceId", "year"};
 
     public List<System.Reflection.PropertyInfo> getDataProperties()

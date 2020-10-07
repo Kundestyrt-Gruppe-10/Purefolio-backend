@@ -15,7 +15,7 @@ namespace Purefolio_backend
         {
             filters = new Dictionary<string, List<string>>();
             filters.Add("emissionPerYear", new List<string>{"env_ac_ainah_r2", "unit=KG_HAB&airpol=GHG"}); 
-            //filters.Add("workAccidentsIncidentRate", new List<string>{"hsw_n2_03", "unit=RT_INC&age=TOTAL"}); 
+            filters.Add("workAccidentsIncidentRate", new List<string>{"hsw_n2_03", "unit=RT_INC&age=TOTAL"}); 
             filters.Add("genderPayGap", new List<string>{"earn_gr_gpgr2", "unit=PC"}); 
             //filters.Add("environmentTaxes", new List<string>{"env_ac_taxind2", "tax=ENV&unit=MIO_EUR"}); 
         }
