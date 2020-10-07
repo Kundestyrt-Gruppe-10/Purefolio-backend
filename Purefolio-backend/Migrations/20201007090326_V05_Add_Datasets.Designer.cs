@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Purefolio.DatabaseContext;
@@ -9,9 +10,10 @@ using Purefolio.DatabaseContext;
 namespace Purefolio_backend.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20201007090326_V05_Add_Datasets")]
+    partial class V05_Add_Datasets
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,18 +56,6 @@ namespace Purefolio_backend.Migrations
                         .HasColumnName("emission_per_year")
                         .HasColumnType("double precision");
 
-                    b.Property<double?>("employeesPrimaryEducation")
-                        .HasColumnName("employees_primary_education")
-                        .HasColumnType("double precision");
-
-                    b.Property<double?>("employeesSecondaryEducation")
-                        .HasColumnName("employees_secondary_education")
-                        .HasColumnType("double precision");
-
-                    b.Property<double?>("employeesTertiaryEducation")
-                        .HasColumnName("employees_tertiary_education")
-                        .HasColumnType("double precision");
-
                     b.Property<double?>("environmentTaxes")
                         .HasColumnName("environment_taxes")
                         .HasColumnType("double precision");
@@ -85,10 +75,6 @@ namespace Purefolio_backend.Migrations
                     b.Property<int>("regionId")
                         .HasColumnName("region_id")
                         .HasColumnType("integer");
-
-                    b.Property<double?>("temporaryemployment")
-                        .HasColumnName("temporaryemployment")
-                        .HasColumnType("double precision");
 
                     b.Property<double?>("workAccidentsIncidentRate")
                         .HasColumnName("work_accidents_incident_rate")

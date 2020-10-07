@@ -20,8 +20,15 @@ namespace Purefolio_backend.Models
     public int year { get; set; }
     public double? emissionPerYear { get; set; }
     public double? genderPayGap { get; set; }
-
     public double? workAccidentsIncidentRate { get; set; }
+    public double? environmentTaxes { get; set; }
+    public double? fatalAccidentsAtWork { get; set; }
+    public double? temporaryemployment { get; set; }
+    public double? employeesPrimaryEducation { get; set; }
+    public double? employeesSecondaryEducation { get; set; }
+    public double? employeesTertiaryEducation { get; set; }
+
+    
 
     public static List<string> essentialFields = new List<string>(){"naceRegionDataId", "region", "regionId", "nace", "naceId", "year"};
 
