@@ -6,69 +6,62 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Net;
 using System.Net.Http;
-using System.Text.Json; 
+using System.Net.Http.Headers;
+using Microsoft.VisualBasic;
 
 namespace Purefolio_backend
 {
-    public class EuroStatData
-    {
-        public string version {get; set;}
-        public string label {get; set;}
-        public string href {get; set;}
-        public string source {get; set;}
-        public string updated {get; set;}
-        public object status {get; set;}
-        public object extension {get; set;}
-        public object value {get; set;}
-        public object dimension {get; set;}
-        public object id {get; set;}
-        public object size {get; set;}
-        
-    }
     public class EuroStatFetchService
 
     {
         private readonly ILogger<EuroStatFetchService> _logger;
+        static HttpClient client = new HttpClient();
 
         private DataSetProperties dsp = new DataSetProperties();
+        private JSONConverter JSONConverter;
 
         private String euroStatApiEndpoint = "http://ec.europa.eu/eurostat/wdds/rest/data/v2.1/json/en/";
-        private String staticFilters = "?precision=1&";
+        private static String StaticFilters = "precision=1";
 
-        private IHttpClientFactory clientFactory;
+        private DatabaseStore databaseStore;
         
-        public EuroStatFetchService(ILogger<EuroStatFetchService> _logger, IHttpClientFactory clientFactory)
+        public EuroStatFetchService(ILogger<EuroStatFetchService> _logger, IHttpClientFactory clientFactory, DatabaseStore databaseStore, JSONConverter JSONConverter)
 
         {
             this._logger = _logger;
-            this.clientFactory = clientFactory;
+            this.databaseStore = databaseStore;
+            this.JSONConverter = JSONConverter;
         }
 
-        public String getEuroStatURL(string tablecode)
+        public String GetEuroStatURL(string tableID)
         {
-            string url = euroStatApiEndpoint + tablecode + staticFilters + dsp.getFilters(tablecode);
-            _logger.LogInformation(message:url);
-            return url;
+            return euroStatApiEndpoint + dsp.getTableCode(tableID) + '?' + StaticFilters + '&' + dsp.getFilters(tableID);
         }
 
-        public async void fetchData(string tablecode)
-        {
-            var request = new HttpRequestMessage(HttpMethod.Get,getEuroStatURL(tablecode));
-
-            var client = clientFactory.CreateClient();
-
-            var response = await client.SendAsync(request);
-
-            if (response.IsSuccessStatusCode)
+        public async Task<List<NaceRegionData>> PopulateDB()
+        {   
+            Dictionary<string, List<string>>.KeyCollection tableIDs = dsp.GetTableIDs();
+            int i = 0;
+            int infoMaxLength = 70;
+            string info;
+            foreach (var tableID in tableIDs)
             {
-                using var responseStream = await response.Content.ReadAsStreamAsync();
-                var data = await JsonSerializer.DeserializeAsync<EuroStatData>(responseStream);
-                _logger.LogInformation(data.value.ToString());
-            }else{
-                _logger.LogInformation("It failed");
-            }
-        }
+                // TODO: Handle no internet connection with proper error message.
+            info = $"Saving data in database: {(double) i++*100/tableIDs.Count:0.0}% - {tableID}";
+            Console.Write($"\r{info}{Strings.Space(infoMaxLength-info.Length)}");
 
+            HttpResponseMessage response = await client.GetAsync(GetEuroStatURL(tableID));
+            String jsonString = response.Content.ReadAsStringAsync().Result;
+            
+            List<NaceRegionData> EurostatNRData = JSONConverter.convert(jsonString, tableID);
+            databaseStore.addNaceRegionData(EurostatNRData);
+            }
+            info = "Done saving data in database";
+            Console.Write($"\r{info}{Strings.Space(infoMaxLength-info.Length)}");
+            
+            return databaseStore.getAllNaceRegionData();
+        }
     }
 }

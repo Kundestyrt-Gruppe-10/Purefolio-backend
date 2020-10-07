@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Purefolio_backend.Models;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Purefolio_backend.Controllers
 {
@@ -25,7 +27,14 @@ namespace Purefolio_backend.Controllers
         [Route("output-url")]
         public void GetOutputUrl()
         {
-            _euroStatFetchService.fetchData("env_ac_taxind2");
+            _euroStatFetchService.GetEuroStatURL("env_ac_taxind2");
+        }
+
+        [HttpGet]
+        [Route("populate-db")]
+        public async Task<List<NaceRegionData>> PopulateDB()
+        {
+            return await _euroStatFetchService.PopulateDB();
         }
     }
   }

@@ -22,7 +22,7 @@ namespace Purefolio_backend.Controllers
         [HttpGet]
         public IEnumerable<Nace> Get()
         {
-          return databaseStore.getAllNace();
+          return databaseStore.getAllNaces();
         }
     }
   }

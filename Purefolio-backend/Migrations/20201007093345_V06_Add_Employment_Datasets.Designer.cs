@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Purefolio.DatabaseContext;
@@ -9,9 +10,10 @@ using Purefolio.DatabaseContext;
 namespace Purefolio_backend.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20201007093345_V06_Add_Employment_Datasets")]
+    partial class V06_Add_Employment_Datasets
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,16 +56,16 @@ namespace Purefolio_backend.Migrations
                         .HasColumnName("emission_per_year")
                         .HasColumnType("double precision");
 
-                    b.Property<double?>("employeesPrimaryEducation")
-                        .HasColumnName("employees_primary_education")
+                    b.Property<double?>("employeesEdLvl0_2")
+                        .HasColumnName("employees_ed_lvl0_2")
                         .HasColumnType("double precision");
 
-                    b.Property<double?>("employeesSecondaryEducation")
-                        .HasColumnName("employees_secondary_education")
+                    b.Property<double?>("employeesEdLvl3_4")
+                        .HasColumnName("employees_ed_lvl3_4")
                         .HasColumnType("double precision");
 
-                    b.Property<double?>("employeesTertiaryEducation")
-                        .HasColumnName("employees_tertiary_education")
+                    b.Property<double?>("employeesEdLvl5_8")
+                        .HasColumnName("employees_ed_lvl5_8")
                         .HasColumnType("double precision");
 
                     b.Property<double?>("environmentTaxes")

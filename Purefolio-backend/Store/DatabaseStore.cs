@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.Extensions.Logging;
 using Purefolio.DatabaseContext;
 using Purefolio_backend.Models;
+using System;
 
 namespace Purefolio_backend
 {
@@ -29,11 +30,41 @@ namespace Purefolio_backend
       return nace;
     }
 
-    public List<Nace> getAllNace()
+    public List<Nace> getAllNaces()
     {
       return db.Nace.ToList();
     }
 
+    public List<Region> getAllRegions()
+    {
+      return db.Region.ToList();
+    }
+
+    public List<NaceRegionData> getAllNaceRegionData()
+    {
+      return db.NaceRegionData.ToList();
+    }
+
+    public List<RegionData> getAllRegionData()
+    {
+      return db.RegionData.ToList();
+    }
+
+    public int getRegionIdByRegionCode(string regionCode)
+    {
+        return db.Region
+            .Where(row =>
+                row.regionCode == regionCode
+            ).Single().regionId;
+    }
+
+    public int getNaceIdByNaceCode(string naceCode)
+    {
+        return db.Nace
+            .Where(row =>
+                row.naceCode == naceCode
+            ).Single().naceId;
+    }
     public Region getRegionById(int regionId)
         {
             return db.Region
@@ -91,14 +122,14 @@ namespace Purefolio_backend
           RegionData existingElement = existingRegionData.Find((exRD)=> exRD.Equals(newRD));
           if (existingElement == null)
           {
-              createRegionData(newRD);
+              db.RegionData.Add(newRD);
           }
           else
           {
               existingElement.merge(newRD);
-              db.SaveChanges();
           }
       }
+      db.SaveChanges();
       return db.RegionData.ToList();
     }
 
@@ -110,14 +141,14 @@ namespace Purefolio_backend
           NaceRegionData existingElement = existingNaceRegionData.Find((exNRD)=> exNRD.Equals(newNRD));
           if (existingElement == null)
           {
-              createNaceRegionData(newNRD);
+              db.NaceRegionData.Add(newNRD);
           }
           else
           {
               existingElement.merge(newNRD);
-              db.SaveChanges();
           }
       }
+      db.SaveChanges();
       return db.NaceRegionData.ToList();
     }
 
