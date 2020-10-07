@@ -33,9 +33,6 @@ namespace Purefolio_backend
             List<int> SizeinOrder = new List<int>();
             
 
-
-            _logger.LogInformation(message:jsonString);
-
             // Getting fields in the nested JSON file
             var jsonDict = JsonConvert.DeserializeObject<Dictionary<string, Object>>(jsonString);
             var value = JsonConvert.DeserializeObject<Dictionary<string, string>>(jsonDict["value"].ToString());
@@ -53,8 +50,12 @@ namespace Purefolio_backend
             List<Nace> naces = databaseStore.getAllNaces();
             
             List<int> indexes = new List<int>();
+            int i = 0;
+            int totalValues = value.Count;
+            Console.Write($"Start converting EuroStat data to NRD-objects");
             foreach (KeyValuePair<string, string> entry in value)
             {
+                
                 indexes.Clear();
 
                 int indexOfData = int.Parse(entry.Key);
@@ -83,7 +84,10 @@ namespace Purefolio_backend
                     nrdList.Add(nrd);
                 }
                 
+                Console.Write($"\rConverting to NRD-objects: {(double) i++*100/totalValues:0.00}%           ");
+                
             }
+            Console.Write($"\rDone converting EuroStat data to NRD-objects\n");
 
             return nrdList;
         }

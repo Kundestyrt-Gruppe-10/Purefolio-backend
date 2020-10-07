@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.Extensions.Logging;
 using Purefolio.DatabaseContext;
 using Purefolio_backend.Models;
+using System;
 
 namespace Purefolio_backend
 {
@@ -126,15 +127,18 @@ namespace Purefolio_backend
           else
           {
               existingElement.merge(newRD);
-              db.SaveChanges();
           }
       }
+      db.SaveChanges();
       return db.RegionData.ToList();
     }
 
     public List<NaceRegionData> addNaceRegionData(List<NaceRegionData> newNaceRegionData)
     {
       List<NaceRegionData> existingNaceRegionData = db.NaceRegionData.ToList();
+      int i = 0;
+      int totalNaceRegionData = newNaceRegionData.Count;
+      Console.Write($"Start merging/creating NRD-objects");
       foreach (NaceRegionData newNRD in newNaceRegionData)
       {
           NaceRegionData existingElement = existingNaceRegionData.Find((exNRD)=> exNRD.Equals(newNRD));
@@ -145,9 +149,13 @@ namespace Purefolio_backend
           else
           {
               existingElement.merge(newNRD);
-              db.SaveChanges();
           }
+          Console.Write($"\rMerging/creating NRD-objects: {(double) i++*100/totalNaceRegionData:0.00}%           "); 
       }
+      Console.Write($"\rDone merging/creating NRD-objects            \n");
+      Console.Write($"Start saving NRD-objects");
+      db.SaveChanges();
+      Console.Write($"\rDone saving NRD-objects     \n");
       return db.NaceRegionData.ToList();
     }
 
