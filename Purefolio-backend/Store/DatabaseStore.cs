@@ -122,7 +122,7 @@ namespace Purefolio_backend
           RegionData existingElement = existingRegionData.Find((exRD)=> exRD.Equals(newRD));
           if (existingElement == null)
           {
-              createRegionData(newRD);
+              db.RegionData.Add(newRD);
           }
           else
           {
@@ -144,7 +144,7 @@ namespace Purefolio_backend
           NaceRegionData existingElement = existingNaceRegionData.Find((exNRD)=> exNRD.Equals(newNRD));
           if (existingElement == null)
           {
-              createNaceRegionData(newNRD);
+              db.NaceRegionData.Add(newNRD);
           }
           else
           {
