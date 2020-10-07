@@ -27,12 +27,12 @@ namespace Purefolio_backend
 
         private DatabaseStore databaseStore;
         
-        public EuroStatFetchService(ILogger<EuroStatFetchService> _logger, IHttpClientFactory clientFactory, DatabaseStore databaseStore, JSONConverter jSONConverter)
+        public EuroStatFetchService(ILogger<EuroStatFetchService> _logger, IHttpClientFactory clientFactory, DatabaseStore databaseStore, JSONConverter JSONConverter)
 
         {
             this._logger = _logger;
             this.databaseStore = databaseStore;
-            this.JSONConverter = jSONConverter;
+            this.JSONConverter = JSONConverter;
         }
 
         public String GetEuroStatURL(string tableID)
