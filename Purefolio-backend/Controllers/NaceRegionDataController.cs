@@ -20,9 +20,9 @@ namespace Purefolio_backend.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<NaceRegionData> Get()
+        public IEnumerable<NaceRegionData> Get(int? regionId, int? naceId, int? year)
         {
-            return databaseStore.getAllNaceRegionData();
+            return databaseStore.getNaceRegionData(regionId:regionId, naceId:naceId, year:year);
         }
       };
     }
