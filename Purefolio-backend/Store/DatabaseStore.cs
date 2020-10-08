@@ -9,6 +9,7 @@ namespace Purefolio_backend
     public interface IDatabaseStore
     {
         public List<Nace> getAllNaces();
+        public List<NaceRegionData> getNaceRegionData(int? regionId, int? naceId, int? year);
     }
     public class DatabaseStore : IDatabaseStore
     {

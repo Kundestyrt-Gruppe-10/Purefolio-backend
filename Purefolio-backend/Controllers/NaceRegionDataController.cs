@@ -11,9 +11,9 @@ namespace Purefolio_backend.Controllers
   {
         private readonly ILogger<NaceRegionDataController> _logger;
 
-        private DatabaseStore databaseStore;
+        private IDatabaseStore databaseStore;
 
-        public NaceRegionDataController(ILogger<NaceRegionDataController> logger, DatabaseStore databaseStore)
+        public NaceRegionDataController(ILogger<NaceRegionDataController> logger, IDatabaseStore databaseStore)
         {
             _logger = logger;
             this.databaseStore = databaseStore;
