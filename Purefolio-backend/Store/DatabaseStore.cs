@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
+﻿﻿using Microsoft.Extensions.Logging;
 using Purefolio.DatabaseContext;
 using Purefolio_backend.Models;
 using System.Collections.Generic;
@@ -10,6 +10,8 @@ namespace Purefolio_backend
     {
         public List<Nace> getAllNaces();
         public List<NaceRegionData> getNaceRegionData(int? regionId, int? naceId, int? year);
+        public List<Region> getAllRegions();
+        public List<RegionData> getAllRegionData();
     }
     public class DatabaseStore : IDatabaseStore
     {
