@@ -11,18 +11,18 @@ namespace Purefolio_backend.Controllers
   {
         private readonly ILogger<NaceRegionDataController> _logger;
 
-        private DatabaseStore databaseStore;
+        private IDatabaseStore databaseStore;
 
-        public NaceRegionDataController(ILogger<NaceRegionDataController> logger, DatabaseStore databaseStore)
+        public NaceRegionDataController(ILogger<NaceRegionDataController> logger, IDatabaseStore databaseStore)
         {
             _logger = logger;
             this.databaseStore = databaseStore;
         }
 
         [HttpGet]
-        public IEnumerable<NaceRegionData> Get()
+        public IEnumerable<NaceRegionData> Get(int? regionId, int? naceId, int? year)
         {
-            return databaseStore.getAllNaceRegionData();
+            return databaseStore.getNaceRegionData(regionId:regionId, naceId:naceId, year:year);
         }
       };
     }
