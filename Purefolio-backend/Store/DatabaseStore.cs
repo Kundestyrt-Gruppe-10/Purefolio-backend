@@ -116,12 +116,21 @@ namespace Purefolio_backend
             return nace;
         }
 
+<<<<<<< master
         public EuroStatTable createTable(EuroStatTable table)
+=======
+        public EuroStatTable createEuroStatTable(EuroStatTable table)
+>>>>>>> Add populating of EuroStatTable-objects, not working yet
         {
             db.EuroStatTable.Add(table);
             db.SaveChanges();
             return table;
         }
+<<<<<<< master
+=======
+
+        
+>>>>>>> Add populating of EuroStatTable-objects, not working yet
         public NaceRegionData createNaceRegionData(NaceRegionData naceRegionData)
         {
             db.NaceRegionData.Add(naceRegionData);

@@ -157,7 +157,11 @@ namespace Purefolio_backend
                 new Region() { regionCode = "UK", regionName = "United Kingdom", area = 242495 },
             };  
 
+<<<<<<< master:Purefolio-backend/Store/Data.cs
         protected List<EuroStatTable> euroStatTables = new List<EuroStatTable>()
+=======
+        private List<EuroStatTable> euroStatTables = new List<EuroStatTable>()
+>>>>>>> Add populating of EuroStatTable-objects, not working yet:Purefolio-backend/Store/MockData.cs
         {
             new EuroStatTable(){tableCode = "env_ac_ainah_r2", attributeName = "emissionPerYear", dataType="NaceRegionData", unit="unit=KG_HAB&airpol=GHG"},
             new EuroStatTable(){tableCode = "hsw_n2_03", attributeName = "workAccidentsIncidentRate", dataType="NaceRegionData", unit="unit=RT_INC&age=TOTAL"},
@@ -230,7 +234,17 @@ namespace Purefolio_backend
 
         public List<RegionData> getRegionData()
         {
+<<<<<<< master:Purefolio-backend/Store/Data.cs
             return this.regionData;
         }
+=======
+            return naceRegionData;
+        }  
+
+        public List<EuroStatTable> getAllEuroStatTables()
+        {
+            return euroStatTables;
+        } 
+>>>>>>> Add populating of EuroStatTable-objects, not working yet:Purefolio-backend/Store/MockData.cs
     }
 }
