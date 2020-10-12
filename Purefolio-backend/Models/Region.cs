@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Purefolio_backend.Models
@@ -15,5 +16,20 @@ namespace Purefolio_backend.Models
     public string regionName { get; set; }
 
     public int area { get; set; }
+
+    public override bool Equals(object obj)
+    {
+      return obj is Region region && regionCode == region.regionCode;
+    }
+
+    public override int GetHashCode()
+    {
+      return HashCode.Combine(regionCode);
+    }
+
+    public override string ToString()
+      {
+            return regionName;
+      }
   }
 }

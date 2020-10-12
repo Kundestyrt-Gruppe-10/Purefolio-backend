@@ -26,10 +26,10 @@ namespace Purefolio_backend
       services.AddDbContext<DatabaseContext>(options =>
         options.UseNpgsql(Configuration.GetConnectionString("Development"))
       );
-      services.AddScoped<MockDataService>();
+      services.AddScoped<BaseDataService>();
       services.AddScoped<DatabaseStore>();
       services.AddScoped<EuroStatFetchService>();
-      services.AddScoped<MockData>();
+      services.AddScoped<BaseData>();
       services.AddScoped<JSONConverter>();
       services.AddHttpClient();
       services.AddCors(options => options.AddPolicy("AllowAnyPolicy", builder =>
@@ -71,7 +71,7 @@ namespace Purefolio_backend
         // Populate database on startup
         using (var serviceScrope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
         {
-          var service = serviceScrope.ServiceProvider.GetRequiredService<MockDataService>();
+          var service = serviceScrope.ServiceProvider.GetRequiredService<BaseDataService>();
           //service.PopulateDatabase();
         }
       }
