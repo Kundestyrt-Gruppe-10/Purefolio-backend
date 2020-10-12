@@ -7,7 +7,7 @@ namespace Purefolio_backend
     {    
 
         private Dictionary<string, List<string>> filters;
-        private List<String> naces = new List<string> {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U"};
+        private List<String> naces = new List<string> {"A","B","C","D","E","F","G","H","I","I55","I56","J","J58","J59","J60","J61","J62","J63","K","K64","K65","K66","L","M","M69","M70","M71","M72","M73","M74","M75","N","N77","N78","N79","N80","N81","N82","O","P","Q","Q86","Q87","Q88","R","R90","R91","R92","R93","S","S94","S95","S96","T","T97","T98","U"};
         private List<int> years = new List<int> {2015,2016,2017,2018};
 
 
