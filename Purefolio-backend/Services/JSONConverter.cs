@@ -27,7 +27,7 @@ namespace Purefolio_backend
         }
         
 
-        public List<NaceRegionData> convert(String jsonString, String tableID){
+        public List<NaceRegionData> convert(String jsonString, String attributeName){
             List<NaceRegionData> nrdList = new List<NaceRegionData>();
             List<string> IDinOrder = new List<string>();
             List<int> SizeinOrder = new List<int>();
@@ -75,7 +75,7 @@ namespace Purefolio_backend
                     NaceRegionData nrd = new NaceRegionData(){naceId=nace1.naceId, regionId=region.regionId, year=year};
                     Type type = nrd.GetType();
 
-                    PropertyInfo prop = type.GetProperty(tableID);
+                    PropertyInfo prop = type.GetProperty(attributeName);
 
                     prop.SetValue (nrd, propValue, null);
                     nrdList.Add(nrd);

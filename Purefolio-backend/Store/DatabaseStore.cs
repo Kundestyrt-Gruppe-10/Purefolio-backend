@@ -12,6 +12,7 @@ namespace Purefolio_backend
         public List<NaceRegionData> getNaceRegionData(int? regionId, int? naceId, int? year);
         public List<Region> getAllRegions();
         public List<RegionData> getAllRegionData();
+        public List<EuroStatTable> getAllEuroStatTables();
     }
     public class DatabaseStore : IDatabaseStore
     {
@@ -64,6 +65,11 @@ namespace Purefolio_backend
             return db.RegionData.ToList();
         }
 
+        public List<EuroStatTable> getAllEuroStatTables()
+        {
+            return db.EuroStatTable.ToList();
+        }
+
         public int getRegionIdByRegionCode(string regionCode)
         {
             return db.Region
@@ -108,6 +114,13 @@ namespace Purefolio_backend
             db.Nace.Add(nace);
             db.SaveChanges();
             return nace;
+        }
+
+        public EuroStatTable createTable(EuroStatTable table)
+        {
+            db.EuroStatTable.Add(table);
+            db.SaveChanges();
+            return table;
         }
         public NaceRegionData createNaceRegionData(NaceRegionData naceRegionData)
         {
