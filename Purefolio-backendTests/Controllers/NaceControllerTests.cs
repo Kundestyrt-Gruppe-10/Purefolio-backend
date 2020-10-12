@@ -13,30 +13,20 @@ using System.Text;
 namespace Purefolio_backend.Controllers.Tests
 {
     [TestClass()]
-    public class NaceControllerTests
+    public class NaceControllerTests : ControllerTestBase
     {
-        public NaceController naceController;
-        public MockData mockData;
+        private NaceController naceController;
 
-        [TestMethod()]
-        public void NaceControllerTest()
+        public NaceControllerTests() : base()
         {
+            var controllerLogger = new Mock<ILogger<NaceController>>();
+            naceController = new NaceController(controllerLogger.Object, this._databaseStore);
         }
 
         [TestMethod()]
         public void GetTest()
         {
-            var mockDataLogger = new Mock<ILogger<MockData>>();
-            var mockData = new MockData(mockDataLogger.Object);
-            var mockLogger = new Mock<ILogger<NaceController>>();
-            var mockDatabaseStore = new Mock<IDatabaseStore>();
-            /*var nace = new Nace() { naceId = 0, naceCode = "A", naceName = "Agriculture, forestry and fishing" };
-            mockDatabaseStore.Setup(ds => ds.getAllNaces())
-                .Returns(new List<Nace>() { nace });
-            this.naceController = new NaceController(mockLogger.Object, mockDatabaseStore.Object);
-
-            Assert.AreEqual(naceController.Get().First(), nace
-            );*/
+            Assert.IsTrue(this._databaseStore.getAllNaces().SequenceEqual(naceController.Get()));
         }
     }
 }

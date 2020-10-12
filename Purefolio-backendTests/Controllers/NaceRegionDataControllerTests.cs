@@ -13,37 +13,21 @@ using System.Text;
 namespace Purefolio_backend.Controllers.Tests
 {
     [TestClass()]
-    public class NaceRegionDataControllerTests
+    public class NaceRegionDataControllerTests : ControllerTestBase
     {
-        public NaceRegionDataController naceController;
-        public MockData mockData;
-
-        [TestMethod()]
-        public void NaceControllerTest()
+        public NaceRegionDataController naceRegionDataController;
+        public NaceRegionDataControllerTests() : base()
         {
+            var controllerLogger = new Mock<ILogger<NaceRegionDataController>>();
+            naceRegionDataController = new NaceRegionDataController(controllerLogger.Object, this._databaseStore);
         }
 
         [TestMethod()]
-        public void GetTest()
-        {
-            var mockDataLogger = new Mock<ILogger<MockData>>();
-            var mockData = new MockData(mockDataLogger.Object);
-            var mockLogger = new Mock<ILogger<NaceRegionDataController>>();
-            var mockDatabaseStore = new Mock<IDatabaseStore>();
-
-            int naceId = 1;
-            int regionId = 2;
-            int year = 2018;
-
-            /*
-            NaceRegionData nrd = new NaceRegionData(){naceId = naceId, regionId = regionId, year = year, emissionPerYear = 20};
-            List<NaceRegionData> nrdList = new List<NaceRegionData>() { nrd };
-            mockDatabaseStore.Setup(ds => ds.getNaceRegionData(naceId, regionId, year))
-                .Returns(nrdList);
-            this.naceController = new NaceRegionDataController(mockLogger.Object, mockDatabaseStore.Object);
-
-            Assert.AreEqual(naceController.Get(naceId, regionId, year), nrdList);
-            */
+        [DataRow(1,15,2018)]
+        [DataRow(1,15,2019)]
+        public void GetTest(int naceId, int regionId, int year)
+        {            
+            Assert.IsTrue(this._databaseStore.getNaceRegionData(naceId, regionId, year).SequenceEqual(naceRegionDataController.Get(naceId, regionId, year)));
         }
     }
 }
