@@ -7,7 +7,7 @@ namespace Purefolio_backend
     {    
 
         private Dictionary<string, List<string>> filters;
-        private List<String> naces = new List<string> {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U"};
+        private List<String> naces = new List<string> {"A","A01","A02","A03","B","B05","B06","B07","B08","B09","C","C10","C11","C12","C13","C14","C15","C16","C17","C18","C19","C20","C21","C22","C23","C24","C25","C26","C27","C28","C29","C30","C31","C32","C33","D","E","E36","E37","E38","E39","F","F41","F42","F43","G","G45","G46","G47","H","H49","H50","H51","H52","H53","I","J","K","L","M","N","O","P","Q","R","S","T","U"};
         private List<int> years = new List<int> {2015,2016,2017,2018};
 
 
@@ -45,7 +45,7 @@ namespace Purefolio_backend
             if (naces.Count < end) {
                 end = naces.Count;
             }
-            
+
             List<String> queryNaces = naces.GetRange(start, end);
             return "nace_r2=" + string.Join("&nace_r2=", queryNaces);
         }
