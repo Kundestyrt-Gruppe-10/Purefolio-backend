@@ -19,6 +19,36 @@ namespace Purefolio_backend.Migrations
                 .HasAnnotation("ProductVersion", "3.1.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
+            modelBuilder.Entity("Purefolio_backend.Models.EuroStatTable", b =>
+                {
+                    b.Property<int>("tableId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("table_id")
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("attributeName")
+                        .HasColumnName("attribute_name")
+                        .HasColumnType("text");
+
+                    b.Property<string>("dataType")
+                        .HasColumnName("data_type")
+                        .HasColumnType("text");
+
+                    b.Property<string>("tableCode")
+                        .HasColumnName("table_code")
+                        .HasColumnType("text");
+
+                    b.Property<string>("unit")
+                        .HasColumnName("unit")
+                        .HasColumnType("text");
+
+                    b.HasKey("tableId")
+                        .HasName("pk_euro_stat_table");
+
+                    b.ToTable("EuroStatTable");
+                });
+
             modelBuilder.Entity("Purefolio_backend.Models.Nace", b =>
                 {
                     b.Property<int>("naceId")
