@@ -30,9 +30,9 @@ namespace Purefolio_backend
             this.JSONConverter = JSONConverter;
         }
 
-        public String GetEuroStatURL(string tableID)
+        public String GetEuroStatURL(string tableID, int index)
         {
-            return euroStatApiEndpoint + dsp.getTableCode(tableID) + '?' + StaticFilters + '&' + dsp.getFilters(tableID);
+            return euroStatApiEndpoint + dsp.getTableCode(tableID) + '?' + StaticFilters + '&' + dsp.getFilters(tableID, index);
         }
 
         public async Task<List<NaceRegionData>> PopulateDB()
@@ -47,16 +47,35 @@ namespace Purefolio_backend
                 info = $"Saving data in database: {(double)i++ * 100 / tableIDs.Count:0.0}% - {tableID}";
                 Console.Write($"\r{info}{Strings.Space(infoMaxLength - info.Length)}");
 
-                HttpResponseMessage response = await client.GetAsync(GetEuroStatURL(tableID));
-                String jsonString = response.Content.ReadAsStringAsync().Result;
+                await FetchAndStore(tableID);
 
-                List<NaceRegionData> EurostatNRData = JSONConverter.convert(jsonString, tableID);
-                databaseStore.addNaceRegionData(EurostatNRData);
             }
             info = "Done saving data in database";
             Console.Write($"\r{info}{Strings.Space(infoMaxLength - info.Length)}");
 
             return databaseStore.getAllNaceRegionData();
         }
+
+        private async Task FetchAndStore(String tableID) 
+        {
+            int iteration = dsp.GetFetchIterationsLength();
+            for (int i = 0; i < iteration; i++)
+            {
+            HttpResponseMessage response = await client.GetAsync(GetEuroStatURL(tableID, i));
+            String jsonString = response.Content.ReadAsStringAsync().Result;
+
+            List<NaceRegionData> EurostatNRData = JSONConverter.convert(jsonString, tableID);
+            databaseStore.addNaceRegionData(EurostatNRData);
+            }
+
+        }
+        /*
+        List<filter> filterlist
+        for filter in filters
+        add filter to filterlist
+        if(filterlist >= 50)
+
+
+        */
     }
 }
