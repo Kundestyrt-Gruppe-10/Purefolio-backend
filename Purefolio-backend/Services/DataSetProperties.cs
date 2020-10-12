@@ -28,17 +28,26 @@ namespace Purefolio_backend
 
 
 
-        public String getFilters(String tableID){
-            return "" + filters[tableID][1] + '&' + getTimeFilters() + '&' + getNaceFilters();
+        public String getFilters(String tableID, int index){
+
+            return "" + filters[tableID][1] + '&' + getTimeFilters() + '&' + getNaceFilters(index);
         }
 
         private String getTimeFilters(){
             return "time=" + string.Join("&time=", years);
         }
 
-        private String getNaceFilters()
+        private String getNaceFilters(int index)
         {
-            return "nace_r2=" + string.Join("&nace_r2=", naces);
+            int start = index * 50;
+            int end = (index + 1) * 50;
+
+            if (naces.Count < end) {
+                end = naces.Count;
+            }
+            
+            List<String> queryNaces = naces.GetRange(start, end);
+            return "nace_r2=" + string.Join("&nace_r2=", queryNaces);
         }
 
         public String getTableCode(string tableID){
@@ -48,6 +57,13 @@ namespace Purefolio_backend
 
         public Dictionary<string, List<string>>.KeyCollection GetTableIDs(){
             return filters.Keys;
+        }
+
+        public int GetFetchIterationsLength() 
+        {
+            int iterations = (int)Math.Ceiling((decimal)naces.Count / (decimal)50);
+            Console.WriteLine("iterations: " + iterations + " naces: " + naces.Count);
+            return iterations;
         }
         
     }
