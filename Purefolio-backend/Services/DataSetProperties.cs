@@ -51,9 +51,6 @@ namespace Purefolio_backend
             if (naces.Count < end * (index + 1)) {
                 end = naces.Count - (index * 50);
             }
-            if (start != 0) {
-                start--;
-            }
 
             List<String> queryNaces = naces.GetRange(start, end);
             return "nace_r2=" + string.Join("&nace_r2=", queryNaces);
@@ -68,10 +65,10 @@ namespace Purefolio_backend
             return filters.Keys;
         }
 
-        public int GetFetchIterationsLength() 
+        public int GetFetchIterationsCount() 
         {
             int iterations = (int)Math.Ceiling((decimal)naces.Count / (decimal)50);
-            Console.WriteLine("iterations: " + iterations + " naces: " + naces.Count);
+            
             return iterations;
         }
         

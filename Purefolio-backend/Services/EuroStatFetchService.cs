@@ -58,16 +58,25 @@ namespace Purefolio_backend
 
         private async Task FetchAndStore(String tableID) 
         {
-            int iteration = dsp.GetFetchIterationsLength();
+            int iteration = dsp.GetFetchIterationsCount();
             for (int i = 0; i < iteration; i++)
             {
-            HttpResponseMessage response = await client.GetAsync(GetEuroStatURL(tableID, i));
-            String jsonString = response.Content.ReadAsStringAsync().Result;
+                //Console.WriteLine("URL: " + GetEuroStatURL(tableID, i));
+                HttpResponseMessage response = await client.GetAsync(GetEuroStatURL(tableID, i));
+                //Console.WriteLine("response code: " + (int)response.StatusCode);
 
-            List<NaceRegionData> EurostatNRData = JSONConverter.convert(jsonString, tableID);
-            databaseStore.addNaceRegionData(EurostatNRData);
+                //TODO add a timeout timer, if time reached print error message: "service unavailable
+                while((int)response.StatusCode == 503) {
+                    response = await client.GetAsync(GetEuroStatURL(tableID, i));
+                    Console.Write("Hello");
+                }
+                if ((int)response.StatusCode != 400) {
+                    String jsonString = response.Content.ReadAsStringAsync().Result;
+                    List<NaceRegionData> EurostatNRData = JSONConverter.convert(jsonString, tableID);
+                    databaseStore.addNaceRegionData(EurostatNRData);
             }
 
+            }
         }
         /*
         List<filter> filterlist
