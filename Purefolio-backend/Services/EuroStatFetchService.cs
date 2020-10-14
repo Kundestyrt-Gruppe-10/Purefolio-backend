@@ -79,17 +79,25 @@ namespace Purefolio_backend
             {
                 string url = GetEuroStatURL(table, i);
                 //Console.WriteLine("URL: " + url);
-                HttpResponseMessage response = await client.GetAsync(url);
+                try
+                {
+                    HttpResponseMessage response = await client.GetAsync(url);
             
-                if (response.IsSuccessStatusCode){
-                    String jsonString = response.Content.ReadAsStringAsync().Result;
-                    List<NaceRegionData> EurostatNRData = JSONConverter.convert(jsonString, table.attributeName);
-                    databaseStore.addNaceRegionData(EurostatNRData);
-                }  
-
-                else{
-                    await handleStatusCodeNotSuccess((int)response.StatusCode, response, table, i, url);
+                    if (response.IsSuccessStatusCode){
+                        String jsonString = response.Content.ReadAsStringAsync().Result;
+                        List<NaceRegionData> EurostatNRData = JSONConverter.convert(jsonString, table.attributeName);
+                        databaseStore.addNaceRegionData(EurostatNRData);
+                    }  
+                    else{
+                        await handleStatusCodeNotSuccess((int)response.StatusCode, response, table, i, url);
+                    }
                 }
+                catch (System.Net.Http.HttpRequestException e)
+                {
+                    _logger.LogWarning("No internet connection, check your network configuration and try again" + "\nError trace: " + e);
+                    break;
+                }
+
             
             }  
         }
