@@ -23,21 +23,35 @@ namespace Purefolio_backend
     public void ConfigureServices(IServiceCollection services)
     {
       services.AddControllers();
-      services.AddDbContext<DatabaseContext>(options =>
-        options.UseNpgsql(Configuration.GetConnectionString("Development"))
-      );
-      services.AddScoped<BaseDataService>();
+      services
+        .AddDbContext<DatabaseContext>(options =>
+          options.UseNpgsql(Configuration.GetConnectionString("Development")));
       services.AddScoped<DatabaseStore>();
       services.AddScoped<EuroStatFetchService>();
       services.AddScoped<BaseData>();
       services.AddScoped<JSONConverter>();
       services.AddHttpClient();
-      services.AddCors(options => options.AddPolicy("AllowAnyPolicy", builder =>
-      {
-        builder.AllowAnyOrigin()
-               .AllowAnyMethod()
-               .AllowAnyHeader();
-      }));
+
+      // Cors policy for development
+      services
+        .AddCors(options =>
+          options
+            .AddPolicy("AllowAnyPolicy",
+            builder =>
+            {
+              builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+            }));
+      services
+        .// Cors policy for staging. TODO: Remove localhost before release
+        AddCors(options =>
+          options
+            .AddPolicy("AllowLocalhostAndStaging",
+            builder =>
+            {
+              builder
+                .WithOrigins("localhost:3000",
+                "https://happy-tree-00028ca03.azurestaticapps.net");
+            }));
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,7 +62,7 @@ namespace Purefolio_backend
     )
     {
       app.UseRouting();
-      
+
       if (env.IsDevelopment())
       {
         app.UseCors("AllowAnyPolicy");
@@ -63,6 +77,7 @@ namespace Purefolio_backend
       // Deleting and recreating Database on each boot
       if (env.IsProduction() || env.IsStaging())
       {
+        app.UseCors("AllowLocalhostAndStaging");
         using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope()) {
           var context = serviceScope.ServiceProvider.GetRequiredService<DatabaseContext>();
           context.Database.EnsureDeleted();
