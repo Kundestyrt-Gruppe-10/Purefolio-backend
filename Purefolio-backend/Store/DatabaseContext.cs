@@ -14,6 +14,8 @@ namespace Purefolio.DatabaseContext
     public DbSet<RegionData> RegionData { get; set; }
 
     public DbSet<NaceRegionData> NaceRegionData { get; set; }
+
+    public DbSet<EuroStatTable> EuroStatTable { get; set; }
     public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
 
     protected override void OnConfiguring(
@@ -33,6 +35,7 @@ namespace Purefolio.DatabaseContext
       modelBuilder.Entity<Nace>().ToTable("Nace");
       modelBuilder.Entity<RegionData>().ToTable("RegionData");
       modelBuilder.Entity<NaceRegionData>().ToTable("NaceRegionData");
+      modelBuilder.Entity<EuroStatTable>().ToTable("EuroStatTable");
     }
   }
 }

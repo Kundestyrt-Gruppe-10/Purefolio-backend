@@ -9,12 +9,10 @@ using System.Threading.Tasks;
 
 namespace Purefolio_backend
 {
-    public class MockData
+    public class BaseData
 
     {
-        private readonly ILogger<MockData> _logger;
-
-        private List<Nace> naces = new List<Nace>() {
+        protected List<Nace> naces = new List<Nace>() {
                 new Nace() {  naceCode = "A", naceName = "Agriculture, forestry and fishing" },
                 new Nace() {  naceCode = "A01", naceName = "Crop and animal production, hunting and related service activities" },
                 new Nace() {  naceCode = "A02", naceName = "Forestry and logging" },
@@ -121,7 +119,7 @@ namespace Purefolio_backend
                 new Nace() {  naceCode = "U", naceName = "Activities of extraterritorial organisations and bodies" },
             };
         
-        private List<Region> regions = new List<Region>() 
+        protected List<Region> regions = new List<Region>() 
             { 
                 new Region() { regionCode = "AT", regionName = "Austria", area = 83858 },
                 new Region() { regionCode = "BE", regionName = "Belgium", area = 30510 },
@@ -157,8 +155,41 @@ namespace Purefolio_backend
                 new Region() { regionCode = "SK", regionName = "Slovakia", area = 49036 },
                 new Region() { regionCode = "TR", regionName = "Turkey", area = 783562 },
                 new Region() { regionCode = "UK", regionName = "United Kingdom", area = 242495 },
-            };
+            };  
 
+        protected List<EuroStatTable> euroStatTables = new List<EuroStatTable>()
+        {
+            new EuroStatTable(){tableCode = "env_ac_ainah_r2", attributeName = "emissionPerYear", dataType="NaceRegionData", unit="unit=KG_HAB&airpol=GHG"},
+            new EuroStatTable(){tableCode = "hsw_n2_03", attributeName = "workAccidentsIncidentRate", dataType="NaceRegionData", unit="unit=RT_INC&age=TOTAL"},
+            new EuroStatTable(){tableCode = "earn_gr_gpgr2", attributeName = "genderPayGap", dataType="NaceRegionData", unit="unit=PC"},
+            new EuroStatTable(){tableCode = "env_ac_taxind2", attributeName = "environmentTaxes", dataType="NaceRegionData", unit="tax=ENV&unit=MIO_EUR"},
+            new EuroStatTable(){tableCode = "hsw_n2_02", attributeName = "fatalAccidentsAtWork", dataType="NaceRegionData", unit="unit=RT_INC"},
+            new EuroStatTable(){tableCode = "lfsa_etgan2", attributeName = "temporaryemployment", dataType="NaceRegionData", unit="sex=T&unit=THS&age=Y15-74"},
+            new EuroStatTable(){tableCode = "edat_lfs_9910", attributeName = "employeesPrimaryEducation", dataType="NaceRegionData", unit="sex=T&unit=PC&isced11=ED0-2&age=Y15-74"},
+            new EuroStatTable(){tableCode = "edat_lfs_9910", attributeName = "employeesSecondaryEducation", dataType="NaceRegionData", unit="sex=T&unit=PC&isced11=ED3_4&age=Y15-74"},
+            new EuroStatTable(){tableCode = "edat_lfs_9910", attributeName = "employeesTertiaryEducation", dataType="NaceRegionData", unit="sex=T&unit=PC&isced11=ED5-8&age=Y15-74"}
+
+
+        };
+
+        public List<Nace> getAllNaces()
+        {
+            return naces;
+        }  
+
+        public List<Region> getAllRegions()
+        {
+            return regions;
+        }  
+
+        public List<EuroStatTable> getAllEuroStatTables()
+        {
+            return euroStatTables;
+        }
+    }
+
+    public class MockData : BaseData
+    {
         private List<NaceRegionData> naceRegionData = new List<NaceRegionData>() 
             { 
                 new NaceRegionData() { regionId = 1, naceId =15,  year = 2018, genderPayGap = 14 },   
@@ -179,31 +210,27 @@ namespace Purefolio_backend
                 new RegionData() { regionId = 5, year = 2018 },
                 
 
-            };
+            };   
+    
 
-        public MockData(ILogger<MockData> _logger)
+        public new List<Nace> getAllNaces()
         {
-            this._logger = _logger;
-        }      
+            return this.naces.Take(5).ToList();
+        }
 
-        public List<Nace> getAllNaces()
+        public new List<Region> getAllRegions()
         {
-            return naces;
-        }  
+            return this.regions.Take(5).ToList();
+        }
 
-        public List<Region> getAllRegions()
+        public List<NaceRegionData> getNaceRegionData()
         {
-            return regions;
-        }  
+            return this.naceRegionData;
+        }
 
-        public List<RegionData> getAllRegionData()
+        public List<RegionData> getRegionData()
         {
-            return regionData;
-        }  
-
-        public List<NaceRegionData> getAllNaceRegionData()
-        {
-            return naceRegionData;
-        }  
+            return this.regionData;
+        }
     }
 }

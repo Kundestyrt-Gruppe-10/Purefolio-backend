@@ -5,6 +5,7 @@ using Purefolio_backend.Models;
 using Purefolio.DatabaseContext;
 using Purefolio_backend.Services;
 using System;
+using System.Threading.Tasks;
 
 namespace Purefolio_backend.Controllers
 {
@@ -12,24 +13,45 @@ namespace Purefolio_backend.Controllers
     [Route("/populate")]
     public class PopulateDatabaseController : ControllerBase
     {
-
         private readonly ILogger<PopulateDatabaseController> _logger;
+        private BaseDataService baseDataService;
+
+        private EuroStatFetchService euroStatFetchService;
 
 
-        private MockDataService mockDataService;
-
-
-        public PopulateDatabaseController(ILogger<PopulateDatabaseController> logger, MockData mockData,
-            MockDataService mockDataService)
+        public PopulateDatabaseController(
+            ILogger<PopulateDatabaseController> logger,
+            BaseDataService baseDataService, 
+            EuroStatFetchService euroStatFetchService
+            )
         {
             _logger = logger;
-            this.mockDataService = mockDataService;
+            this.baseDataService = baseDataService;
+            this.euroStatFetchService = euroStatFetchService;
         }
 
         [HttpGet]
-        public Boolean PopulateDatabase()
+        public async Task<string> PopulateDatabaseWithBaseAndEurostatData()
         {
-            return mockDataService.PopulateDatabase();
+            baseDataService.PopulateDatabase();
+            await euroStatFetchService.PopulateDB();
+            return "Data is added";
+        }
+
+        [HttpGet]
+        [Route("base")]
+        public string PopulateDatabaseWithBaseData()
+        {
+            baseDataService.PopulateDatabase();
+            return "Data is added";
+        }
+
+        [HttpGet]
+        [Route("eurostat")]
+        public async Task<string> PopulateDatabaseWithEurostatData()
+        {
+            await euroStatFetchService.PopulateDB();
+            return "Data is added";
         }
     }
 }

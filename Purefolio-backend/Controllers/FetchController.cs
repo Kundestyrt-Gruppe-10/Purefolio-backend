@@ -23,13 +23,6 @@ namespace Purefolio_backend.Controllers
       _euroStatFetchService = euroStatFetchService;
     }
 
-       /* [HttpGet]
-        [Route("output-url")]
-        public void GetOutputUrl()
-        {
-            _euroStatFetchService.GetEuroStatURL("env_ac_taxind2");
-        }*/
-
         [HttpGet]
         [Route("populate-db")]
         public async Task<List<NaceRegionData>> PopulateDB()

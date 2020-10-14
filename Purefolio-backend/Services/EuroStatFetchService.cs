@@ -32,25 +32,28 @@ namespace Purefolio_backend
             this.JSONConverter = JSONConverter;
         }
 
-        public String GetEuroStatURL(string tableID, int index)
+        public String GetEuroStatURL(EuroStatTable table, int index)
         {
-            return euroStatApiEndpoint + dsp.getTableCode(tableID) + '?' + StaticFilters + '&' + dsp.getFilters(tableID, index);
+            return euroStatApiEndpoint + table.tableCode 
+            + '?' + StaticFilters 
+            + '&' + dsp.getNaceFilters(index) 
+            + '&' + dsp.getTimeFilters()
+            + '&' + table.unit;
         }
 
         public async Task<List<NaceRegionData>> PopulateDB()
         {
-            Dictionary<string, List<string>>.KeyCollection tableIDs = dsp.GetTableIDs();
+            List<EuroStatTable> tables = databaseStore.getAllEuroStatTables();
             int i = 0;
             int infoMaxLength = 70;
             string info;
-            foreach (var tableID in tableIDs)
+            foreach (EuroStatTable table in tables)
             {
                 // TODO: Handle no internet connection with proper error message.
-                info = $"Saving data in database: {(double)i++ * 100 / tableIDs.Count:0.0}% - {tableID}";
+                info = $"Saving data in database: {(double)i++ * 100 / tables.Count:0.0}% - {table.attributeName}";
                 Console.Write($"\r{info}{Strings.Space(infoMaxLength - info.Length)}");
 
-                await FetchAndStore(tableID);
-
+                await FetchAndStore(table);
             }
             info = "Done saving data in database";
             Console.Write($"\r{info}{Strings.Space(infoMaxLength - info.Length)}");
@@ -58,21 +61,21 @@ namespace Purefolio_backend
             return databaseStore.getAllNaceRegionData();
         }
 
-        private async Task FetchAndStore(String tableID) 
+        private async Task FetchAndStore(EuroStatTable table) 
         {
             int timeoutCounter = 0;
             int iteration = dsp.GetFetchIterationsCount();
             for (int i = 0; i < iteration; i++)
             {
-                Console.WriteLine("URL: " + GetEuroStatURL(tableID, i));
-                HttpResponseMessage response = await client.GetAsync(GetEuroStatURL(tableID, i));
+                Console.WriteLine("URL: " + GetEuroStatURL(table, i));
+                HttpResponseMessage response = await client.GetAsync(GetEuroStatURL(table, i));
                 
                 while ((int)response.StatusCode == 503 && timeoutCounter < 10) {
-                    response = await client.GetAsync(GetEuroStatURL(tableID, i));
+                    response = await client.GetAsync(GetEuroStatURL(table, i));
                     System.Threading.Thread.Sleep(100);
                     timeoutCounter++;
                     if (timeoutCounter >= 10) {
-                        _logger.LogWarning("Warning: Service unavailable for fetching data from eurostat on URL: " + GetEuroStatURL(tableID, i));
+                        _logger.LogWarning("Warning: Service unavailable for fetching data from eurostat on URL: " + GetEuroStatURL(table, i));
                     }
                 }
                 timeoutCounter = 0;
@@ -81,13 +84,13 @@ namespace Purefolio_backend
                     var ErrMsg = JsonConvert.DeserializeObject<dynamic>(response.Content.ReadAsStringAsync().Result);
                     var ERRMsg = JsonConvert.DeserializeObject<Dictionary<string, Object>>(response.Content.ReadAsStringAsync().Result);
                     var ERRORMsg = JsonConvert.DeserializeObject<Dictionary<string, Object>>(ERRMsg["error"].ToString());
-                    _logger.LogWarning("For dataset: " + tableID + ". ERROR: " + ERRORMsg["label"]);
+                    _logger.LogWarning("For dataset: " + table.attributeName + ". ERROR: " + ERRORMsg["label"]);
 
                 }
 
                 if (response.IsSuccessStatusCode){
                     String jsonString = response.Content.ReadAsStringAsync().Result;
-                    List<NaceRegionData> EurostatNRData = JSONConverter.convert(jsonString, tableID);
+                    List<NaceRegionData> EurostatNRData = JSONConverter.convert(jsonString, table.attributeName);
                     databaseStore.addNaceRegionData(EurostatNRData);
                 }  
             
