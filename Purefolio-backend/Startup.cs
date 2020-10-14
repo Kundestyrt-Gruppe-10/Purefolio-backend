@@ -50,7 +50,8 @@ namespace Purefolio_backend
             {
               builder
                 .WithOrigins("localhost:3000",
-                "https://happy-tree-00028ca03.azurestaticapps.net");
+                "https://happy-tree-00028ca03.azurestaticapps.net")
+                .AllowAnyMethod().AllowAnyHeader();
             }));
     }
 
