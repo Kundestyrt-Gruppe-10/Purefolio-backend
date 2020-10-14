@@ -82,7 +82,6 @@ namespace Purefolio_backend
                     nrdList.Add(nrd);
                 }                
             }
-            Console.WriteLine("Did give data.");
             return nrdList;
         }
 

@@ -117,6 +117,7 @@ namespace Purefolio_backend
                 new Nace() {  naceCode = "T97", naceName = "Activities of households as employers of domestic personnel" },
                 new Nace() {  naceCode = "T98", naceName = "Undifferentiated goods- and services-producing activities of private households for own use" },
                 new Nace() {  naceCode = "U", naceName = "Activities of extraterritorial organisations and bodies" },
+                new Nace() {  naceCode = "TOTAL", naceName = "Total - All NACE activities" },
             };
         
         protected List<Region> regions = new List<Region>() 

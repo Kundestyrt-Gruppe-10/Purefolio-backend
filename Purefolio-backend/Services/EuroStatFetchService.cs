@@ -23,6 +23,9 @@ namespace Purefolio_backend
         private static String StaticFilters = "precision=1";
 
         private DatabaseStore databaseStore;
+        private List<Nace> naces;
+        private int max_elements_from_fetch = 50;
+
 
         public EuroStatFetchService(ILogger<EuroStatFetchService> _logger, IHttpClientFactory clientFactory, DatabaseStore databaseStore, JSONConverter JSONConverter)
 
@@ -38,7 +41,7 @@ namespace Purefolio_backend
         {
             return euroStatApiEndpoint + table.tableCode 
             + '?' + StaticFilters 
-            + '&' + dsp.getNaceFilters(index) 
+            + '&' + getNaceFilters(index)
             + '&' + dsp.getTimeFilters()
             + '&' + table.unit;
         }
@@ -47,6 +50,7 @@ namespace Purefolio_backend
 
         public async Task<List<NaceRegionData>> PopulateDB()
         {
+            this.naces = databaseStore.getAllNaces();
             List<EuroStatTable> tables = databaseStore.getAllEuroStatTables();
             int i = 0;
             int infoMaxLength = 70;
@@ -70,11 +74,11 @@ namespace Purefolio_backend
         private async Task FetchAndStore(EuroStatTable table) 
         {
             
-            int iteration = dsp.GetFetchIterationsCount();
+            int iteration = GetFetchIterationsCount();
             for (int i = 0; i < iteration; i++)
             {
                 string url = GetEuroStatURL(table, i);
-                Console.WriteLine("URL: " + url);
+                //Console.WriteLine("URL: " + url);
                 HttpResponseMessage response = await client.GetAsync(url);
             
                 if (response.IsSuccessStatusCode){
@@ -115,6 +119,38 @@ namespace Purefolio_backend
 
         private string getErrorMessage(HttpResponseMessage response){
             return (string)(JsonConvert.DeserializeObject<Dictionary<string, Object>>((JsonConvert.DeserializeObject<Dictionary<string, Object>>(response.Content.ReadAsStringAsync().Result))["error"].ToString()))["label"];
+        }
+
+        private String getNaceFilters(int index)
+        {
+            int start = index * max_elements_from_fetch;
+            int end = max_elements_from_fetch;
+
+            if (naces.Count < end * (index + 1)) {
+                end = naces.Count - (index * max_elements_from_fetch);
+            }
+            List<Nace> queryNaces = naces.GetRange(start, end);
+            string naceFilters = "nace_r2=";
+            for (int i = 0; i < queryNaces.Count; i++)
+            {
+                if (i == queryNaces.Count-1)
+                {
+                    naceFilters += queryNaces[i].naceCode;
+                }
+                else
+                {
+                    naceFilters += queryNaces[i].naceCode + "&nace_r2=";
+                }
+            }
+            
+            return naceFilters;
+        }
+
+
+        private int GetFetchIterationsCount() 
+        {
+            int iterations = (int)Math.Ceiling((decimal)naces.Count / (decimal)max_elements_from_fetch);
+            return iterations;
         }
     }
 }
