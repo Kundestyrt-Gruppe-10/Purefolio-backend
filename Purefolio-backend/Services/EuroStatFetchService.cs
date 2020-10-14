@@ -32,6 +32,8 @@ namespace Purefolio_backend
             this.JSONConverter = JSONConverter;
         }
 
+
+
         public String GetEuroStatURL(EuroStatTable table, int index)
         {
             return euroStatApiEndpoint + table.tableCode 
@@ -40,6 +42,8 @@ namespace Purefolio_backend
             + '&' + dsp.getTimeFilters()
             + '&' + table.unit;
         }
+
+
 
         public async Task<List<NaceRegionData>> PopulateDB()
         {
@@ -61,40 +65,56 @@ namespace Purefolio_backend
             return databaseStore.getAllNaceRegionData();
         }
 
+
+
         private async Task FetchAndStore(EuroStatTable table) 
         {
-            int timeoutCounter = 0;
+            
             int iteration = dsp.GetFetchIterationsCount();
             for (int i = 0; i < iteration; i++)
             {
-                Console.WriteLine("URL: " + GetEuroStatURL(table, i));
-                HttpResponseMessage response = await client.GetAsync(GetEuroStatURL(table, i));
-                
-                while ((int)response.StatusCode == 503 && timeoutCounter < 10) {
-                    response = await client.GetAsync(GetEuroStatURL(table, i));
+                string url = GetEuroStatURL(table, i);
+                Console.WriteLine("URL: " + url);
+                HttpResponseMessage response = await client.GetAsync(url);
+            
+                if (response.IsSuccessStatusCode){
+                    String jsonString = response.Content.ReadAsStringAsync().Result;
+                    List<NaceRegionData> EurostatNRData = JSONConverter.convert(jsonString, table.attributeName);
+                    databaseStore.addNaceRegionData(EurostatNRData);
+                }  
+
+                else{
+                    await handleStatusCodeNotSuccess((int)response.StatusCode, response, table, i, url);
+                }
+            
+            }  
+        }
+
+
+        private async Task handleStatusCodeNotSuccess(int statusCode, HttpResponseMessage response, EuroStatTable table, int i, string url){
+            int timeoutCounter = 0;
+                while (statusCode == 503 && timeoutCounter < 10) {
+                    response = await client.GetAsync(url);
                     System.Threading.Thread.Sleep(100);
                     timeoutCounter++;
                     if (timeoutCounter >= 10) {
                         _logger.LogWarning("Warning: Service unavailable for fetching data from eurostat on URL: " + GetEuroStatURL(table, i));
                     }
                 }
-                timeoutCounter = 0;
 
-                if ((int)response.StatusCode >= 400){
-                    var ErrMsg = JsonConvert.DeserializeObject<dynamic>(response.Content.ReadAsStringAsync().Result);
-                    var ERRMsg = JsonConvert.DeserializeObject<Dictionary<string, Object>>(response.Content.ReadAsStringAsync().Result);
-                    var ERRORMsg = JsonConvert.DeserializeObject<Dictionary<string, Object>>(ERRMsg["error"].ToString());
-                    _logger.LogWarning("For dataset: " + table.attributeName + ". ERROR: " + ERRORMsg["label"]);
-
+                if (getErrorMessage(response).Equals("Dataset contains no data. One or more filtering elements (query parameters) are probably invalid.")){
+                    _logger.LogInformation(message:"Dataset contains no data. Nothing from the fetch to: " + url + " was stored.");
                 }
 
-                if (response.IsSuccessStatusCode){
-                    String jsonString = response.Content.ReadAsStringAsync().Result;
-                    List<NaceRegionData> EurostatNRData = JSONConverter.convert(jsonString, table.attributeName);
-                    databaseStore.addNaceRegionData(EurostatNRData);
-                }  
-            
-            }  
+                else if (statusCode >= 400 && !(statusCode == 503 && timeoutCounter >= 10)){
+                    
+                    _logger.LogWarning("For dataset: " + table.attributeName + ". ERROR: " + getErrorMessage(response));
+
+                }
+        }
+
+        private string getErrorMessage(HttpResponseMessage response){
+            return (string)(JsonConvert.DeserializeObject<Dictionary<string, Object>>((JsonConvert.DeserializeObject<Dictionary<string, Object>>(response.Content.ReadAsStringAsync().Result))["error"].ToString()))["label"];
         }
     }
 }
