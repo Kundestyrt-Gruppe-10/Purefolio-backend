@@ -58,6 +58,7 @@ namespace Purefolio_backend
 
         private async Task FetchAndStore(String tableID) 
         {
+            int timeoutCounter = 0;
             int iteration = dsp.GetFetchIterationsCount();
             for (int i = 0; i < iteration; i++)
             {
@@ -66,11 +67,17 @@ namespace Purefolio_backend
                 //Console.WriteLine("response code: " + (int)response.StatusCode);
 
                 //TODO add a timeout timer, if time reached print error message: "service unavailable
-                while((int)response.StatusCode == 503) {
+                while ((int)response.StatusCode == 503 && timeoutCounter < 10) {
                     response = await client.GetAsync(GetEuroStatURL(tableID, i));
-                    Console.Write("Hello");
+                    System.Threading.Thread.Sleep(100);
+                    timeoutCounter++;
+                    if (timeoutCounter >= 10) {
+                        Console.WriteLine("warning service unavailable for fetching data from eurostat on url: " + GetEuroStatURL(tableID, i));
+                    }
                 }
-                if ((int)response.StatusCode != 400) {
+                timeoutCounter = 0;
+
+                if ((int)response.StatusCode != 400 && (int)response.StatusCode != 503 ) {
                     String jsonString = response.Content.ReadAsStringAsync().Result;
                     List<NaceRegionData> EurostatNRData = JSONConverter.convert(jsonString, tableID);
                     databaseStore.addNaceRegionData(EurostatNRData);
