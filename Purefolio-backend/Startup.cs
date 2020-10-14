@@ -34,25 +34,21 @@ namespace Purefolio_backend
 
       // Cors policy for development
       services
-        .AddCors(options =>
-          options
-            .AddPolicy("AllowAnyPolicy",
+        .AddCors(options => {
+          options.AddPolicy("AllowAnyPolicy",
             builder =>
             {
               builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
-            }));
-      services
-        .// Cors policy for staging. TODO: Remove localhost before release
-        AddCors(options =>
-          options
-            .AddPolicy("AllowLocalhostAndStaging",
+            });
+          options.AddPolicy("AllowLocalhostAndStaging",
             builder =>
             {
               builder
-                .WithOrigins("localhost:3000",
+                .WithOrigins("http://localhost:3000",
                 "https://happy-tree-00028ca03.azurestaticapps.net")
                 .AllowAnyMethod().AllowAnyHeader();
-            }));
+            });
+        });
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -91,8 +87,6 @@ namespace Purefolio_backend
           //service.PopulateDatabase();
         }
       }
-
-      app.UseRouting();
 
       app.UseAuthorization();
 
