@@ -66,15 +66,13 @@ namespace Purefolio_backend
             {
                 Console.WriteLine("URL: " + GetEuroStatURL(tableID, i));
                 HttpResponseMessage response = await client.GetAsync(GetEuroStatURL(tableID, i));
-                //Console.WriteLine("response code: " + (int)response.StatusCode);
-
-                //TODO add a timeout timer, if time reached print error message: "service unavailable
+                
                 while ((int)response.StatusCode == 503 && timeoutCounter < 10) {
                     response = await client.GetAsync(GetEuroStatURL(tableID, i));
                     System.Threading.Thread.Sleep(100);
                     timeoutCounter++;
                     if (timeoutCounter >= 10) {
-                        Console.WriteLine("warning service unavailable for fetching data from eurostat on url: " + GetEuroStatURL(tableID, i));
+                        _logger.LogWarning("Warning: Service unavailable for fetching data from eurostat on URL: " + GetEuroStatURL(tableID, i));
                     }
                 }
                 timeoutCounter = 0;
