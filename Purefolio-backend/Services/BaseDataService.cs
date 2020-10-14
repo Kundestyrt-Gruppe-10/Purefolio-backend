@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
+﻿﻿using Microsoft.Extensions.Logging;
 using Purefolio_backend.Models;
 using System;
 using System.Collections.Generic;
@@ -24,6 +24,7 @@ namespace Purefolio_backend.Services
         {
             List<Nace> savedNaces = ds.getAllNaces();
             List<Region> savedRegions = ds.getAllRegions();
+            List<EuroStatTable> savedTables = ds.getAllEuroStatTables();
             foreach(Nace nace in baseData.getAllNaces())
             {
                 try
@@ -44,6 +45,19 @@ namespace Purefolio_backend.Services
                 { 
                     if(!savedRegions.Contains(region)){
                         ds.createRegion(region);
+                    }
+                } catch(Exception exception)
+                {
+                    _logger.LogError(exception.ToString());
+                    return exception.ToString();
+                }
+            }
+            foreach(EuroStatTable table in baseData.getAllEuroStatTables())
+            {
+                try
+                { 
+                    if(!savedTables.Contains(table)){
+                        ds.createEuroStatTable(table);
                     }
                 } catch(Exception exception)
                 {

@@ -30,27 +30,31 @@ namespace Purefolio_backend
             this.JSONConverter = JSONConverter;
         }
 
-        public String GetEuroStatURL(string tableID)
+        public String GetEuroStatURL(EuroStatTable table)
         {
-            return euroStatApiEndpoint + dsp.getTableCode(tableID) + '?' + StaticFilters + '&' + dsp.getFilters(tableID);
+            return euroStatApiEndpoint + table.tableCode 
+            + '?' + StaticFilters 
+            + '&' + dsp.getNaceFilters() 
+            + '&' + dsp.getTimeFilters()
+            + '&' + table.unit;
         }
 
         public async Task<List<NaceRegionData>> PopulateDB()
         {
-            Dictionary<string, List<string>>.KeyCollection tableIDs = dsp.GetTableIDs();
+            List<EuroStatTable> tables = databaseStore.getAllEuroStatTables();
             int i = 0;
             int infoMaxLength = 70;
             string info;
-            foreach (var tableID in tableIDs)
+            foreach (EuroStatTable table in tables)
             {
                 // TODO: Handle no internet connection with proper error message.
-                info = $"Saving data in database: {(double)i++ * 100 / tableIDs.Count:0.0}% - {tableID}";
+                info = $"Saving data in database: {(double)i++ * 100 / tables.Count:0.0}% - {table.attributeName}";
                 Console.Write($"\r{info}{Strings.Space(infoMaxLength - info.Length)}");
 
-                HttpResponseMessage response = await client.GetAsync(GetEuroStatURL(tableID));
+                HttpResponseMessage response = await client.GetAsync(GetEuroStatURL(table));
                 String jsonString = response.Content.ReadAsStringAsync().Result;
 
-                List<NaceRegionData> EurostatNRData = JSONConverter.convert(jsonString, tableID);
+                List<NaceRegionData> EurostatNRData = JSONConverter.convert(jsonString, table.attributeName);
                 databaseStore.addNaceRegionData(EurostatNRData);
             }
             info = "Done saving data in database";
