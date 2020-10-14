@@ -13,11 +13,11 @@ using System.Text;
 namespace Purefolio_backend.Controllers.Tests
 {
     [TestClass()]
-    public class ControllerTestBase : PurefolioTestBase
+    public class ControllerIntegrationTestBase : IntegrationTestBase
     {
         protected DatabaseStore _databaseStore;
         
-        public ControllerTestBase() : base()
+        public ControllerIntegrationTestBase() : base()
         {
             var databaseStoreLogger = new Mock<ILogger<DatabaseStore>>();
             _databaseStore = new DatabaseStore(databaseStoreLogger.Object, this._context);

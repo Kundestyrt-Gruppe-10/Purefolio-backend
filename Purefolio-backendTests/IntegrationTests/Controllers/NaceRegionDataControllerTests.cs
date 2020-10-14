@@ -13,7 +13,7 @@ using System.Text;
 namespace Purefolio_backend.Controllers.Tests
 {
     [TestClass()]
-    public class NaceRegionDataControllerTests : ControllerTestBase
+    public class NaceRegionDataControllerTests : ControllerIntegrationTestBase
     {
         public NaceRegionDataController naceRegionDataController;
         public NaceRegionDataControllerTests() : base()

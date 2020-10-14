@@ -5,11 +5,11 @@ using Purefolio.DatabaseContext;
 using Purefolio_backend.Models;
 namespace Purefolio_backend
 {
-    public class PurefolioTestBase: IDisposable{
+    public class IntegrationTestBase: IDisposable{
 
         protected readonly DatabaseContext _context; 
 
-        public PurefolioTestBase()
+        public IntegrationTestBase()
         {
             var options = new DbContextOptionsBuilder<DatabaseContext>()
             .UseInMemoryDatabase(databaseName:Guid.NewGuid().ToString())
