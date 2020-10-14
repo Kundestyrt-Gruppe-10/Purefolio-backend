@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+
 
 namespace Purefolio_backend
 {
@@ -62,7 +64,7 @@ namespace Purefolio_backend
             int iteration = dsp.GetFetchIterationsCount();
             for (int i = 0; i < iteration; i++)
             {
-                //Console.WriteLine("URL: " + GetEuroStatURL(tableID, i));
+                Console.WriteLine("URL: " + GetEuroStatURL(tableID, i));
                 HttpResponseMessage response = await client.GetAsync(GetEuroStatURL(tableID, i));
                 //Console.WriteLine("response code: " + (int)response.StatusCode);
 
@@ -77,21 +79,21 @@ namespace Purefolio_backend
                 }
                 timeoutCounter = 0;
 
-                if ((int)response.StatusCode != 400 && (int)response.StatusCode != 503 ) {
+                if ((int)response.StatusCode >= 400){
+                    var ErrMsg = JsonConvert.DeserializeObject<dynamic>(response.Content.ReadAsStringAsync().Result);
+                    var ERRMsg = JsonConvert.DeserializeObject<Dictionary<string, Object>>(response.Content.ReadAsStringAsync().Result);
+                    var ERRORMsg = JsonConvert.DeserializeObject<Dictionary<string, Object>>(ERRMsg["error"].ToString());
+                    _logger.LogWarning("For dataset: " + tableID + ". ERROR: " + ERRORMsg["label"]);
+
+                }
+
+                if (response.IsSuccessStatusCode){
                     String jsonString = response.Content.ReadAsStringAsync().Result;
                     List<NaceRegionData> EurostatNRData = JSONConverter.convert(jsonString, tableID);
                     databaseStore.addNaceRegionData(EurostatNRData);
-            }
-
-            }
+                }  
+            
+            }  
         }
-        /*
-        List<filter> filterlist
-        for filter in filters
-        add filter to filterlist
-        if(filterlist >= 50)
-
-
-        */
     }
 }

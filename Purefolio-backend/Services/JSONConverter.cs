@@ -72,6 +72,9 @@ namespace Purefolio_backend
                 Region region = regions.Find(region => region.regionCode == regionCode);
 
                 if (nace != null && region != null){
+                    // Console.WriteLine("Nace name: " + nace1.naceName);
+                    // Console.WriteLine("Nace ID: " + nace1.naceId);
+                    // Console.WriteLine("Region name: " + region.regionName);
                     NaceRegionData nrd = new NaceRegionData(){naceId=nace1.naceId, regionId=region.regionId, year=year};
                     Type type = nrd.GetType();
 
@@ -81,6 +84,7 @@ namespace Purefolio_backend
                     nrdList.Add(nrd);
                 }                
             }
+            Console.WriteLine("Did give data.");
             return nrdList;
         }
 

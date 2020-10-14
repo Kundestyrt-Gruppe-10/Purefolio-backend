@@ -7,6 +7,7 @@ namespace Purefolio_backend
     {    
 
         private Dictionary<string, List<string>> filters;
+        private int max_elements = 50;
 
         private List<String> naces = new List<string> {"A","A01","A02","A03","B","B05","B06","B07","B08","B09","C","C10","C11","C12","C13","C14","C15",
         "C16","C17","C18","C19","C20","C21","C22","C23","C24","C25","C26","C27","C28","C29","C30","C31","C32","C33","D","E","E36","E37","E38","E39","F",
@@ -45,13 +46,12 @@ namespace Purefolio_backend
 
         private String getNaceFilters(int index)
         {
-            int start = index * 50;
-            int end = 50;
+            int start = index * max_elements;
+            int end = max_elements;
 
             if (naces.Count < end * (index + 1)) {
-                end = naces.Count - (index * 50);
+                end = naces.Count - (index * max_elements);
             }
-
             List<String> queryNaces = naces.GetRange(start, end);
             return "nace_r2=" + string.Join("&nace_r2=", queryNaces);
         }
@@ -67,8 +67,7 @@ namespace Purefolio_backend
 
         public int GetFetchIterationsCount() 
         {
-            int iterations = (int)Math.Ceiling((decimal)naces.Count / (decimal)50);
-            
+            int iterations = (int)Math.Ceiling((decimal)naces.Count / (decimal)max_elements);
             return iterations;
         }
         
