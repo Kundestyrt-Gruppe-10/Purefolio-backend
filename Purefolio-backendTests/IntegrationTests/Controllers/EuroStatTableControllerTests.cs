@@ -22,7 +22,8 @@ namespace Purefolio_backend.Controllers.Tests
             euroStatTableController = new EuroStatTableController(controllerLogger.Object, this._databaseStore);
         }
 
-        public void GetTest(int naceId, int regionId, int year)
+        [TestMethod()]
+        public void GetTest()
         {   List<string> expected =  new List<string>(){
                 "emissionPerYear",
                 "workAccidentsIncidentRate",
@@ -33,7 +34,7 @@ namespace Purefolio_backend.Controllers.Tests
                 "employeesPrimaryEducation",
                 "employeesSecondaryEducation",
                 "employeesTertiaryEducation"
-            }; 
+            };
             Assert.IsTrue(expected.SequenceEqual(euroStatTableController.getESGFactors()));
         }
     }
