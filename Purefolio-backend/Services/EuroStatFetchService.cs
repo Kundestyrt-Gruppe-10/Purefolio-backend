@@ -56,7 +56,7 @@ namespace Purefolio_backend
                 try
                 {
                     HttpResponseMessage response = await client.GetAsync(url);
-                    Console.WriteLine("URL: " + url);
+                    //Console.WriteLine("URL: " + url);
                     if (response.IsSuccessStatusCode) 
                     {
                         string jsonString = response.Content.ReadAsStringAsync().Result;
