@@ -74,7 +74,7 @@ namespace Purefolio_backend
       // Deleting and recreating Database on each boot
       if (env.IsProduction() || env.IsStaging())
       {
-        app.UseCors("AllowLocalhostAndStaging");
+        app.UseCors("AllowAnyPolicy");
         using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope()) {
           var context = serviceScope.ServiceProvider.GetRequiredService<DatabaseContext>();
           context.Database.EnsureDeleted();
