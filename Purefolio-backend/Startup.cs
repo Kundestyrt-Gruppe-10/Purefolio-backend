@@ -28,25 +28,30 @@ namespace Purefolio_backend
           options.UseNpgsql(Configuration.GetConnectionString("Development")));
       services.AddScoped<DatabaseStore>();
       services.AddScoped<EuroStatFetchService>();
+      services.AddScoped<BaseDataService>();
       services.AddScoped<BaseData>();
       services.AddScoped<JSONConverter>();
       services.AddHttpClient();
 
       // Cors policy for development
       services
-        .AddCors(options => {
-          options.AddPolicy("AllowAnyPolicy",
+        .AddCors(options =>
+        {
+          options
+            .AddPolicy("AllowAnyPolicy",
             builder =>
             {
               builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
             });
-          options.AddPolicy("AllowLocalhostAndStaging",
+          options
+            .AddPolicy("AllowLocalhostAndStaging",
             builder =>
             {
               builder
                 .WithOrigins("http://localhost:3000",
                 "https://happy-tree-00028ca03.azurestaticapps.net")
-                .AllowAnyMethod().AllowAnyHeader();
+                .AllowAnyMethod()
+                .AllowAnyHeader();
             });
         });
     }
@@ -75,15 +80,31 @@ namespace Purefolio_backend
       if (env.IsProduction() || env.IsStaging())
       {
         app.UseCors("AllowAnyPolicy");
-        using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope()) {
-          var context = serviceScope.ServiceProvider.GetRequiredService<DatabaseContext>();
+        using (
+          var serviceScope =
+            app
+              .ApplicationServices
+              .GetService<IServiceScopeFactory>()
+              .CreateScope()
+        )
+        {
+          var context =
+            serviceScope.ServiceProvider.GetRequiredService<DatabaseContext>();
           context.Database.EnsureDeleted();
           context.Database.EnsureCreated();
-          }
+        }
+
         // Populate database on startup
-        using (var serviceScrope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+        using (
+          var serviceScrope =
+            app
+              .ApplicationServices
+              .GetService<IServiceScopeFactory>()
+              .CreateScope()
+        )
         {
-          var service = serviceScrope.ServiceProvider.GetRequiredService<BaseDataService>();
+          var service =
+            serviceScrope.ServiceProvider.GetRequiredService<BaseDataService>();
           //service.PopulateDatabase();
         }
       }
