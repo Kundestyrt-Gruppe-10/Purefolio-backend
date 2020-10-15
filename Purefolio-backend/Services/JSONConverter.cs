@@ -63,7 +63,6 @@ namespace Purefolio_backend
 
                 string naceCode = nace[indexes[IDinOrder.IndexOf("nace_r2")]];
                 string regionCode = geo[indexes[IDinOrder.IndexOf("geo")]];
-
                 int year = int.Parse(time[indexes[IDinOrder.IndexOf("time")]]);
                 double propValue = double.Parse(entry.Value, CultureInfo.InvariantCulture);
 
@@ -71,6 +70,7 @@ namespace Purefolio_backend
                 Nace nace1 = naces.Find(nace => nace.naceCode == naceCode);
                 Region region = regions.Find(region => region.regionCode == regionCode);
 
+                // TODO: Denne ser rar ut. Snakker om listen nace og feltet region ??
                 if (nace != null && region != null){
             
                     NaceRegionData nrd = new NaceRegionData(){naceId=nace1.naceId, regionId=region.regionId, year=year};
