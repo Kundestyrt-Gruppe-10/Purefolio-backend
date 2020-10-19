@@ -35,8 +35,7 @@ namespace Purefolio_backend.Controllers
       {
         return data.Select(nrd => 
         {
-          nrd.emissionPerYear = 10; 
-          return nrd;
+          return nrd.comparedByArea();
         }).ToList();
       }
       else

@@ -34,6 +34,19 @@ namespace Purefolio_backend.Models
 
     public static List<string> absolutelyMeasuredFields = new List<string>(){"emissionPerYear", "workAccidentsIncidentRate", "environmentTaxes", "fatalAccidentsAtWork","temporaryemployment"};
 
+    public NaceRegionData comparedByArea()
+    {
+      foreach (string absoluteAttribute in NaceRegionData.absolutelyMeasuredFields)
+      {
+          System.Reflection.PropertyInfo prop = this.GetType().GetProperty(absoluteAttribute);
+          if (prop.GetValue(this) != null && this.region.area != 0) {
+            double value = (double) prop.GetValue(this) / (double) this.region.area;
+            prop.SetValue(this, value);
+          }
+      }
+      return this;
+    }
+
     public List<System.Reflection.PropertyInfo> getDataProperties()
     {
       return this.GetType().GetProperties().Where(prop => !essentialFields.Contains(prop.Name)).ToList();
