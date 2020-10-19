@@ -60,7 +60,7 @@ namespace Purefolio_backend
                     if (response.IsSuccessStatusCode) 
                     {
                         string jsonString = response.Content.ReadAsStringAsync().Result;
-                        List<NaceRegionData> EurostatNRData = JSONConverter.convert(jsonString, table.attributeName);
+                        List<NaceRegionData> EurostatNRData = JSONConverter.Convert(jsonString, table.attributeName);
                         databaseStore.addNaceRegionData(EurostatNRData);
                     }  
                     else 
