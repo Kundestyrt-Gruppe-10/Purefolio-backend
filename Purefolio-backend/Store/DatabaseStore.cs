@@ -10,8 +10,6 @@ namespace Purefolio_backend
     {
         public List<Nace> getAllNaces();
         public List<NaceRegionData> getNaceRegionData(int? regionId, int? naceId, int? year);
-        public List<NaceRegionData> getNaceRegionData(int? regionId, int? naceId);
-        public List<NaceRegionData> getNaceRegionData();
         public List<Region> getAllRegions();
         public List<RegionData> getAllRegionData();
         public List<EuroStatTable> getAllEuroStatTables();
@@ -180,19 +178,6 @@ namespace Purefolio_backend
             }
             db.SaveChanges();
             return db.NaceRegionData.ToList();
-        }
-
-        public List<NaceRegionData> getNaceRegionData(int? regionId, int? naceId)
-        {
-             return db.NaceRegionData.Where(row => 
-                (regionId == null || row.regionId == regionId) &&
-                (naceId == null || row.naceId == naceId))
-                .ToList();
-        }
-        public List<NaceRegionData> getNaceRegionData()
-        {
-             return db.NaceRegionData
-                .ToList();
         }
     }
 }
