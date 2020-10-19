@@ -33,14 +33,14 @@ namespace Purefolio_backend.Controllers
     [HttpGet]
     public IEnumerable<NaceRegionData> Get()
     {
-      return databaseStore.getNaceRegionData();
+      return databaseStore.getNaceRegionData(null, null, null);
     }
 
     [HttpGet("{regionId}/{naceId}")]
     public IEnumerable<NaceRegionData> Get(int? regionId, int? naceId)
     {
       return databaseStore
-        .getNaceRegionData(regionId: regionId, naceId: naceId);
+        .getNaceRegionData(regionId: regionId, naceId: naceId, null);
     }
   }
 }
