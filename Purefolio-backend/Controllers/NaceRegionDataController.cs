@@ -22,25 +22,14 @@ namespace Purefolio_backend.Controllers
       this.databaseStore = databaseStore;
     }
 
+    [HttpGet]
+    [HttpGet("{regionId}/{naceId}")]
     [HttpGet("{regionId}/{naceId}/{year}")]
     public IEnumerable<NaceRegionData>
     Get(int? regionId, int? naceId, int? year)
     {
       return databaseStore
         .getNaceRegionData(regionId: regionId, naceId: naceId, year: year);
-    }
-
-    [HttpGet]
-    public IEnumerable<NaceRegionData> Get()
-    {
-      return databaseStore.getNaceRegionData(null, null, null);
-    }
-
-    [HttpGet("{regionId}/{naceId}")]
-    public IEnumerable<NaceRegionData> Get(int? regionId, int? naceId)
-    {
-      return databaseStore
-        .getNaceRegionData(regionId: regionId, naceId: naceId, null);
     }
   }
 }
