@@ -32,6 +32,8 @@ namespace Purefolio_backend.Models
 
     public static List<string> essentialFields = new List<string>(){"naceRegionDataId", "region", "regionId", "nace", "naceId", "year"};
 
+    public static List<string> absolutelyMeasuredFields = new List<string>(){"emissionPerYear", "workAccidentsIncidentRate", "environmentTaxes", "fatalAccidentsAtWork","temporaryemployment"};
+
     public List<System.Reflection.PropertyInfo> getDataProperties()
     {
       return this.GetType().GetProperties().Where(prop => !essentialFields.Contains(prop.Name)).ToList();
