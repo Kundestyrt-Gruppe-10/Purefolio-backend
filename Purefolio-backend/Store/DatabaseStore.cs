@@ -32,15 +32,6 @@ namespace Purefolio_backend
             return db.Nace.ToList();
         }
 
-        public Nace AddOrUpdateNace(Nace nace)
-        {
-            _logger.LogInformation($"AdOrUpdateNace {nace}");
-            db.Nace.Add(nace);
-            db.SaveChanges();
-            return nace;
-        }
-
-
         public List<Region> getAllRegions()
         {
             return db.Region.ToList();
@@ -71,45 +62,6 @@ namespace Purefolio_backend
             return db.EuroStatTable.ToList();
         }
 
-        public int getRegionIdByRegionCode(string regionCode)
-        {
-            return db.Region
-                .Where(row =>
-                    row.regionCode == regionCode
-                ).Single().regionId;
-        }
-
-        public int getNaceIdByNaceCode(string naceCode)
-        {
-            return db.Nace
-                .Where(row =>
-                    row.naceCode == naceCode
-                ).Single().naceId;
-        }
-        public Region getRegionById(int regionId)
-        {
-            return db.Region
-                .Where(row =>
-                    row.regionId == regionId
-                ).Single();
-        }
-
-        public Nace getNaceById(int naceId)
-        {
-            return db.Nace
-                .Where(row =>
-                    row.naceId == naceId
-                ).Single();
-        }
-        public NaceRegionData
-        getNaceRegionDataByNaceRegionId(string regionCode, string naceCode)
-        {
-            return db
-              .NaceRegionData
-              .Where(row =>
-                row.nace.naceCode == naceCode && row.region.regionCode == regionCode)
-              .Single();
-        }
         public Nace createNace(Nace nace)
         {
             db.Nace.Add(nace);
@@ -123,25 +75,12 @@ namespace Purefolio_backend
             db.SaveChanges();
             return table;
         }
-        public NaceRegionData createNaceRegionData(NaceRegionData naceRegionData)
-        {
-            db.NaceRegionData.Add(naceRegionData);
-            db.SaveChanges();
-            return naceRegionData;
-        }
         public Region createRegion(Region region)
         {
             db.Region.Add(region);
             db.SaveChanges();
             return region;
         }
-        public RegionData createRegionData(RegionData regionData)
-        {
-            db.RegionData.Add(regionData);
-            db.SaveChanges();
-            return regionData;
-        }
-
 
         public List<RegionData> addRegionData(List<RegionData> newRegionData)
         {
