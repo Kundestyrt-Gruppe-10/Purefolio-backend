@@ -27,7 +27,7 @@ namespace Purefolio_backend.Controllers
     [HttpGet("{regionId}/{naceId}")]
     [HttpGet("{regionId}/{naceId}/{year}")]
     public IEnumerable<NaceRegionData>
-    Get(int? regionId, int? naceId, int? year, [FromQuery] string comparedBy)
+    Get(int? regionId, int? naceId, int? year, [FromQuery] string comparedBy="")
     {
       List<NaceRegionData> data = databaseStore.getNaceRegionData(regionId: regionId, naceId: naceId, year: year);
       if (comparedBy == "area")
