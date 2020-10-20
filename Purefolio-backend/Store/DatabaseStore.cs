@@ -57,6 +57,7 @@ namespace Purefolio_backend
                 (regionId == null || row.regionId == regionId) &&
                 (naceId == null || row.naceId == naceId) &&
                 (year == null || row.year == year))
+                .OrderBy(nrd => nrd.year)
                 .ToList();
         }
 
