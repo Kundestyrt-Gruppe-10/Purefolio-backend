@@ -27,20 +27,16 @@ namespace Purefolio_backend.Controllers
     [HttpGet("{regionId}/{naceId}")]
     [HttpGet("{regionId}/{naceId}/{year}")]
     public IEnumerable<NaceRegionData>
-    Get(int? regionId, int? naceId, int? year, string? combaredBy)
+    Get(int? regionId, int? naceId, int? year, [FromQuery] string comparedBy)
     {
       List<NaceRegionData> data = databaseStore.getNaceRegionData(regionId: regionId, naceId: naceId, year: year);
-      _logger.LogInformation(combaredBy);
-      if (combaredBy != "area")
+      if (comparedBy == "area")
       {
-        return data.Select(nrd => 
-        {
-          return nrd.comparedByArea();
-        }).ToList();
+        return data.Select(nrd => nrd.comparedByArea()).ToList();
       }
       else
       {
-        return  data;
+        return data;
       }
     }
   }
