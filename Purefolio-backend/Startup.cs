@@ -28,6 +28,7 @@ namespace Purefolio_backend
       );
       services.AddScoped<BaseDataService>();
       services.AddScoped<DatabaseStore>();
+      services.AddTransient<IDatabaseStore, DatabaseStore>();
       services.AddScoped<EuroStatFetchService>();
       services.AddScoped<BaseData>();
       services.AddScoped<JSONConverter>();

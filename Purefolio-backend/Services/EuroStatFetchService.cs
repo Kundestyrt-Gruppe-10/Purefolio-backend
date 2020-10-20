@@ -14,7 +14,7 @@ namespace Purefolio_backend
         private readonly ILogger<EuroStatFetchService> _logger;
         static HttpClient client = new HttpClient();
         private JSONConverter JSONConverter;
-        private DatabaseStore databaseStore;  
+        private IDatabaseStore databaseStore;  
 
         private static string euroStatApiEndpoint = "http://ec.europa.eu/eurostat/wdds/rest/data/v2.1/json/en/";
         private static string StaticFilters = "precision=1";
@@ -22,7 +22,7 @@ namespace Purefolio_backend
         private static int StartYear = 2015;
         private static int EndYear = 2018;
 
-        public EuroStatFetchService(ILogger<EuroStatFetchService> _logger, IHttpClientFactory clientFactory, DatabaseStore databaseStore, JSONConverter JSONConverter)
+        public EuroStatFetchService(ILogger<EuroStatFetchService> _logger, IHttpClientFactory clientFactory, IDatabaseStore databaseStore, JSONConverter JSONConverter)
         {
             this._logger = _logger;
             this.databaseStore = databaseStore;
