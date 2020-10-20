@@ -32,6 +32,16 @@ namespace Purefolio_backend
       services.AddScoped<BaseData>();
       services.AddScoped<JSONConverter>();
       services.AddHttpClient();
+      services.AddSwaggerGen(options => {
+        options.SwaggerDoc("v1", 
+          new Microsoft.OpenApi.Models.OpenApiInfo
+          {
+            Title = "Purefolio API",
+            Description = "Showing all the endpoints of the Purefolio backend",
+            Version = "v1"
+          }
+        );
+      });
 
       // Cors policy for development
       services
@@ -110,6 +120,15 @@ namespace Purefolio_backend
       }
 
       app.UseAuthorization();
+
+      app.UseSwagger();
+
+      app.UseSwaggerUI(
+        options => {
+          options.SwaggerEndpoint("/swagger/v1/swagger.json","Swagger Api");
+          options.RoutePrefix = string.Empty;
+        }
+      );
 
       app
         .UseEndpoints(endpoints =>
