@@ -84,9 +84,17 @@ namespace Purefolio_backend
 
         public List<Field> GetFields()
         {
-            List<String> id = GetID();
-            fields = new List<Field>();
-            return fields;
+            List<String> ids = GetID();
+            List<int> sizes = GetSize()
+            
+            int naceIndex = ids.IndexOf("nace_r2");
+            int regionIndex = ids.IndexOf("geo");
+            int yearIndex = ids.IndexOf("time");            
+            return new List<Field>(){
+                new Field(name:"nace", jsonIndex:naceIndex, totalElements:sizes[naceIndex]),
+                new Field(name:"region", jsonIndex:regionIndex, totalElements:sizes[regionIndex]),
+                new Field(name:"year", jsonIndex:yearIndex, totalElements:sizes[yearIndex])
+            };
             
         }
 
