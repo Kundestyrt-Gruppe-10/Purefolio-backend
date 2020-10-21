@@ -40,7 +40,7 @@ namespace Purefolio_backend
             List<Nace> naces = databaseStore.getAllNaces();
 
             
-            foreach (KeyValuePair<String, String> entry in un.GetValue())
+            foreach (KeyValuePair<String, String> entry in un.GetValues())
             {   
                 List<int> indexes = findIndexesOfFields(int.Parse(entry.Key), numberOfItemsInFields);
 
