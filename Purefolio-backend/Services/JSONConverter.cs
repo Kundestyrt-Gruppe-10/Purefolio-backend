@@ -34,8 +34,6 @@ namespace Purefolio_backend
                 return nrdList;
             }
 
-            (naceRegionYearFields, numberOfItemsInFields) = un.MakeOrderedLists();
-
             List<Region> regions = databaseStore.getAllRegions();
             List<Nace> naces = databaseStore.getAllNaces();
 

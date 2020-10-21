@@ -113,25 +113,6 @@ namespace Purefolio_backend
                 new Field(name:"region", jsonIndex:regionIndex, totalElements:sizes[regionIndex]),
                 new Field(name:"year", jsonIndex:yearIndex, totalElements:sizes[yearIndex])
             }.OrderBy(field => field.jsonIndex).ToList();
-            
-        }
-
-        public (List<String>, List<int>) MakeOrderedLists()
-        {
-            List<String> naceRegionYearFields = new List<String>();
-            List<int> numberOfItemsInFields = new List<int>();
-
-            List<String> id = GetID();
-
-            for (int i = 0; i < id.Count; i++)
-            {   
-                if(id[i].Equals("nace_r2") || id[i].Equals("geo") || id[i].Equals("time"))
-                {
-                    naceRegionYearFields.Add(id[i]);
-                    numberOfItemsInFields.Add(GetSize()[i]);
-                }
-            }
-            return (naceRegionYearFields, numberOfItemsInFields);
         }
     }
 }
