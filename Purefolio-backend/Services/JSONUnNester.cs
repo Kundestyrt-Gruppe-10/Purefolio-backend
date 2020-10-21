@@ -29,12 +29,15 @@ namespace Purefolio_backend
         private Dictionary<int, string> years;
         private List<Field> fields;
 
+        private Dictionary<String, String> values;
+
         public JSONUnNester(string jsonString){
             this.jsonString = jsonString;
             this.jsonDict = GetJsonDict();
             this.naces = GetNestedField("nace_r2");
             this.regions = GetNestedField("geo");
             this.years = GetNestedField("time");
+            this.values = DeserializeValues();
             this.fields = GetFields();
         }
 
@@ -67,7 +70,12 @@ namespace Purefolio_backend
             return JsonConvert.DeserializeObject<Dictionary<String, Object>>(jsonString);
         }
 
-        public Dictionary<String, String> GetValue()
+        public Dictionary<String, String> GetValues()
+        {
+            return values;
+        }
+
+        public Dictionary<String, String> DeserializeValues()
         {
             return JsonConvert.DeserializeObject<Dictionary<String, String>>(GetJsonDict()["value"].ToString());
         }

@@ -98,7 +98,7 @@ namespace Purefolio_backend.Services.Tests
 
         [TestMethod()]
         public void GetValueShouldReturnExpectedList(){
-            Dictionary<String, String> valueDict1 = jun1.GetValue();
+            Dictionary<String, String> valueDict1 = jun1.GetValues();
             string valuesString1 = "{";
             foreach (KeyValuePair<String, String> entry in valueDict1)
             {
@@ -107,7 +107,7 @@ namespace Purefolio_backend.Services.Tests
             valuesString1 = valuesString1.Remove(valuesString1.Length - 1, 1) + "}";
             Assert.AreEqual(values1, valuesString1);
 
-            Dictionary<String, String> valueDict2 = jun2.GetValue();
+            Dictionary<String, String> valueDict2 = jun2.GetValues();
             string valuesString2 = "{";
             foreach (KeyValuePair<String, String> entry in valueDict2)
             {

@@ -40,7 +40,7 @@ namespace Purefolio_backend
             List<Nace> naces = databaseStore.getAllNaces();
 
             
-            foreach (KeyValuePair<String, String> entry in un.GetValue())
+            foreach (KeyValuePair<String, String> entry in un.GetValues())
             {   
                 List<int> indexes = findIndexesOfFields(int.Parse(entry.Key), numberOfItemsInFields);
 
@@ -70,6 +70,10 @@ namespace Purefolio_backend
             // TODO: Actually handle when datasets are wrong.
             for (int i = 0; i < id.Count; i++)
             {   
+                if (!(id.Contains("nace_r2") && id.Contains("geo") && id.Contains("time"))){
+                    _logger.LogError(message:"Dataset invalid. It did not have all necessary fields.");
+                    return false;
+                }
                 if (!(id[i].Equals("nace_r2") || id[i].Equals("geo") || id[i].Equals("time")) && !size[i].Equals(1))
                 {
                     _logger.LogError(message:"Dataset invalid. " + id[i] + " did not have exactly 1 field.");
