@@ -7,16 +7,27 @@ using System.Linq;
 
 namespace Purefolio_backend
 {
+    public class Field
+    {
+        public string name;
+        public int jsonIndex; 
+        public int totalElements;
+
+        public Field(string name, int jsonIndex, int totalElements)
+        {
+            this.name = name;
+            this.jsonIndex = jsonIndex;
+            this.totalElements = totalElements;
+        }
+    }
     public class JSONUnNester
     {    
         private string jsonString;
         private Dictionary<String, Object> jsonDict;
-
         private Dictionary<int, String> naces;
-
         private Dictionary<int, string> regions;
-
         private Dictionary<int, string> years;
+        private List<Field> fields;
 
         public JSONUnNester(string jsonString){
             this.jsonString = jsonString;
@@ -24,6 +35,7 @@ namespace Purefolio_backend
             this.naces = GetNestedField("nace_r2");
             this.regions = GetNestedField("geo");
             this.years = GetNestedField("time");
+            this.fields = GetFields();
         }
 
         public Dictionary<int, String> GetNestedField(string field_name)
@@ -68,6 +80,14 @@ namespace Purefolio_backend
         public List<int> GetSize()
         {
             return JsonConvert.DeserializeObject<List<int>>(GetJsonDict()["size"].ToString());
+        }
+
+        public List<Field> GetFields()
+        {
+            List<String> id = GetID();
+            fields = new List<Field>();
+            return fields;
+            
         }
 
         public (List<String>, List<int>) MakeOrderedLists()
