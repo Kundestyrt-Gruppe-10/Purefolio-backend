@@ -12,9 +12,18 @@ namespace Purefolio_backend
         private string jsonString;
         private Dictionary<String, Object> jsonDict;
 
+        private Dictionary<int, String> naces;
+
+        private Dictionary<int, string> regions;
+
+        private Dictionary<int, string> years;
+
         public JSONUnNester(string jsonString){
             this.jsonString = jsonString;
             this.jsonDict = GetJsonDict();
+            this.naces = GetNestedField("nace_r2");
+            this.regions = GetNestedField("geo");
+            this.years = GetNestedField("time");
         }
 
         public Dictionary<int, String> GetNestedField(string field_name)
@@ -26,23 +35,19 @@ namespace Purefolio_backend
             (jsonDict["dimension"].ToString()))[field_name].ToString()))
             ["category"].ToString()))["index"].ToString()).ToDictionary(x => x.Value, x => x.Key);
         }
-
         public String GetNaceCode(List<int> indexes, List<String> naceRegionYearFields)
         {
-            var nace = GetNestedField("nace_r2");
-            return nace[indexes[naceRegionYearFields.IndexOf("nace_r2")]];
+            return naces[indexes[naceRegionYearFields.IndexOf("nace_r2")]];
         }
 
         public String GetRegionCode(List<int> indexes, List<String> naceRegionYearFields)
         {
-            var geo = GetNestedField("geo");
-            return geo[indexes[naceRegionYearFields.IndexOf("geo")]];
+            return regions[indexes[naceRegionYearFields.IndexOf("geo")]];
         }
 
         public int GetYear(List<int> indexes, List<String> naceRegionYearFields)
         {
-            var time = GetNestedField("time");
-            return int.Parse(time[indexes[naceRegionYearFields.IndexOf("time")]]);
+            return int.Parse(years[indexes[naceRegionYearFields.IndexOf("time")]]);
         }
 
         public Dictionary<String, Object> GetJsonDict()
