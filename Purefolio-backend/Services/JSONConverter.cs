@@ -42,11 +42,17 @@ namespace Purefolio_backend
             
             foreach (KeyValuePair<String, String> entry in un.GetValues())
             {   
-                List<int> indexes = findIndexesOfFields(int.Parse(entry.Key), numberOfItemsInFields);
+                List<int> totalElementsList = un.GetFields().ConvertAll(field => field.totalElements);
+                List<int> indexes = findIndexesOfFields(int.Parse(entry.Key), totalElementsList);
 
-                string naceCode = un.GetNaceCode(indexes, naceRegionYearFields);
-                string regionCode = un.GetRegionCode(indexes, naceRegionYearFields);
-                int year = un.GetYear(indexes, naceRegionYearFields);
+                int naceId = indexes[un.GetFieldIndex("nace")];
+                int regionId = indexes[un.GetFieldIndex("region")];
+                int yearId = indexes[un.GetFieldIndex("year")];
+
+                string naceCode = un.GetNaceCode(naceId:naceId);
+                string regionCode = un.GetRegionCode(regionId:regionId);
+                int year = un.GetYear(yearId:yearId);
+
                 double propValue = double.Parse(entry.Value, CultureInfo.InvariantCulture);
 
                 Nace nace = naces.Find(nace => nace.naceCode == naceCode);

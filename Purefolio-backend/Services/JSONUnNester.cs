@@ -50,19 +50,19 @@ namespace Purefolio_backend
             (jsonDict["dimension"].ToString()))[field_name].ToString()))
             ["category"].ToString()))["index"].ToString()).ToDictionary(x => x.Value, x => x.Key);
         }
-        public String GetNaceCode(List<int> indexes, List<String> naceRegionYearFields)
+        public String GetNaceCode(int naceId)
         {
-            return naces[indexes[naceRegionYearFields.IndexOf("nace_r2")]];
+            return naces[naceId];
         }
 
-        public String GetRegionCode(List<int> indexes, List<String> naceRegionYearFields)
+        public String GetRegionCode(int regionId)
         {
-            return regions[indexes[naceRegionYearFields.IndexOf("geo")]];
+            return regions[regionId];
         }
 
-        public int GetYear(List<int> indexes, List<String> naceRegionYearFields)
+        public int GetYear(int yearId)
         {
-            return int.Parse(years[indexes[naceRegionYearFields.IndexOf("time")]]);
+            return int.Parse(years[yearId]);
         }
 
         public Dictionary<String, Object> GetJsonDict()
@@ -88,6 +88,16 @@ namespace Purefolio_backend
         public List<int> GetSize()
         {
             return JsonConvert.DeserializeObject<List<int>>(GetJsonDict()["size"].ToString());
+        }
+
+        public List<Field> GetFields()
+        {
+            return fields;
+        }
+
+        public int GetFieldIndex(string name)
+        {
+            return fields.FindIndex(match:field => field.name == name);
         }
 
         public List<Field> CreateFields()
