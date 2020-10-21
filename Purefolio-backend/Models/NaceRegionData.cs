@@ -9,11 +9,11 @@ namespace Purefolio_backend.Models
     [Key]
     public int naceRegionDataId { get; set; } // Primary key
     [Required]
-    public Nace nace { get; set; }
+    public virtual Nace nace { get; set; }
     [Required]
     public int naceId { get; set; } // Foreign key. Primary key
     [Required]
-    public Region region { get; set; } // Navigation property
+    public virtual Region region { get; set; } // Navigation property
     [Required]
     public int regionId { get; set; } // Foreign key. Primary key
     [Required]
@@ -31,6 +31,21 @@ namespace Purefolio_backend.Models
     
 
     public static List<string> essentialFields = new List<string>(){"naceRegionDataId", "region", "regionId", "nace", "naceId", "year"};
+
+    public static List<string> absolutelyMeasuredFields = new List<string>(){"emissionPerYear", "workAccidentsIncidentRate", "environmentTaxes", "fatalAccidentsAtWork","temporaryemployment"};
+
+    public NaceRegionData comparedByArea()
+    {
+      foreach (string absoluteAttribute in NaceRegionData.absolutelyMeasuredFields)
+      {
+          System.Reflection.PropertyInfo prop = this.GetType().GetProperty(absoluteAttribute);
+          if (prop.GetValue(this) != null && this.region.area != 0) {
+            double value = (double) prop.GetValue(this) / (double) this.region.area;
+            prop.SetValue(this, value);
+          }
+      }
+      return this;
+    }
 
     public List<System.Reflection.PropertyInfo> getDataProperties()
     {

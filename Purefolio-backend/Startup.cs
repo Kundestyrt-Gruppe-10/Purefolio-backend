@@ -23,22 +23,48 @@ namespace Purefolio_backend
     public void ConfigureServices(IServiceCollection services)
     {
       services.AddControllers();
-      services.AddDbContext<DatabaseContext>(options =>
-        options.UseNpgsql(Configuration.GetConnectionString("Development"))
-      );
-      services.AddScoped<BaseDataService>();
+      services
+        .AddDbContext<DatabaseContext>(options =>
+          options.UseLazyLoadingProxies().UseNpgsql(Configuration.GetConnectionString("Development")));
       services.AddScoped<DatabaseStore>();
       services.AddTransient<IDatabaseStore, DatabaseStore>();
       services.AddScoped<EuroStatFetchService>();
+      services.AddScoped<BaseDataService>();
       services.AddScoped<BaseData>();
       services.AddScoped<JSONConverter>();
       services.AddHttpClient();
-      services.AddCors(options => options.AddPolicy("AllowAnyPolicy", builder =>
-      {
-        builder.AllowAnyOrigin()
-               .AllowAnyMethod()
-               .AllowAnyHeader();
-      }));
+      services.AddSwaggerGen(options => {
+        options.SwaggerDoc("v1", 
+          new Microsoft.OpenApi.Models.OpenApiInfo
+          {
+            Title = "Purefolio API",
+            Description = "Showing all the endpoints of the Purefolio backend",
+            Version = "v1"
+          }
+        );
+      });
+
+      // Cors policy for development
+      services
+        .AddCors(options =>
+        {
+          options
+            .AddPolicy("AllowAnyPolicy",
+            builder =>
+            {
+              builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+            });
+          options
+            .AddPolicy("AllowLocalhostAndStaging",
+            builder =>
+            {
+              builder
+                .WithOrigins("http://localhost:3000",
+                "https://happy-tree-00028ca03.azurestaticapps.net")
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+            });
+        });
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,7 +75,7 @@ namespace Purefolio_backend
     )
     {
       app.UseRouting();
-      
+
       if (env.IsDevelopment())
       {
         app.UseCors("AllowAnyPolicy");
@@ -64,22 +90,46 @@ namespace Purefolio_backend
       // Deleting and recreating Database on each boot
       if (env.IsProduction() || env.IsStaging())
       {
-        using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope()) {
-          var context = serviceScope.ServiceProvider.GetRequiredService<DatabaseContext>();
+        app.UseCors("AllowAnyPolicy");
+        using (
+          var serviceScope =
+            app
+              .ApplicationServices
+              .GetService<IServiceScopeFactory>()
+              .CreateScope()
+        )
+        {
+          var context =
+            serviceScope.ServiceProvider.GetRequiredService<DatabaseContext>();
           context.Database.EnsureDeleted();
           context.Database.EnsureCreated();
-          }
+        }
+
         // Populate database on startup
-        using (var serviceScrope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+        using (
+          var serviceScrope =
+            app
+              .ApplicationServices
+              .GetService<IServiceScopeFactory>()
+              .CreateScope()
+        )
         {
-          var service = serviceScrope.ServiceProvider.GetRequiredService<BaseDataService>();
+          var service =
+            serviceScrope.ServiceProvider.GetRequiredService<BaseDataService>();
           //service.PopulateDatabase();
         }
       }
 
-      app.UseRouting();
-
       app.UseAuthorization();
+
+      app.UseSwagger();
+
+      app.UseSwaggerUI(
+        options => {
+          options.SwaggerEndpoint("/swagger/v1/swagger.json","Swagger Api");
+          options.RoutePrefix = string.Empty;
+        }
+      );
 
       app
         .UseEndpoints(endpoints =>

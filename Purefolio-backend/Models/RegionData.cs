@@ -12,7 +12,7 @@ namespace Purefolio_backend.Models
         [Required]
         public int regionId { get; set; } // Foreign key
         [Required]
-        public Region region { get; set; }
+        public virtual Region region { get; set; }
         [Required]
         public int year { get; set; }
         public int? population { get; set; }
