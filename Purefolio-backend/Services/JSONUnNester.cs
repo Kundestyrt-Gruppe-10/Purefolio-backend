@@ -102,7 +102,7 @@ namespace Purefolio_backend
                 new Field(name:"nace", jsonIndex:naceIndex, totalElements:sizes[naceIndex]),
                 new Field(name:"region", jsonIndex:regionIndex, totalElements:sizes[regionIndex]),
                 new Field(name:"year", jsonIndex:yearIndex, totalElements:sizes[yearIndex])
-            };
+            }.OrderBy(field => field.jsonIndex).ToList();
             
         }
 
