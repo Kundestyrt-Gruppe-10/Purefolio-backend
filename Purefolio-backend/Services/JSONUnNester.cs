@@ -38,7 +38,7 @@ namespace Purefolio_backend
             this.regions = GetNestedField("geo");
             this.years = GetNestedField("time");
             this.values = DeserializeValues();
-            this.fields = GetFields();
+            this.fields = CreateFields();
         }
 
         public Dictionary<int, String> GetNestedField(string field_name)
@@ -90,10 +90,10 @@ namespace Purefolio_backend
             return JsonConvert.DeserializeObject<List<int>>(GetJsonDict()["size"].ToString());
         }
 
-        public List<Field> GetFields()
+        public List<Field> CreateFields()
         {
             List<String> ids = GetID();
-            List<int> sizes = GetSize()
+            List<int> sizes = GetSize();
             
             int naceIndex = ids.IndexOf("nace_r2");
             int regionIndex = ids.IndexOf("geo");
