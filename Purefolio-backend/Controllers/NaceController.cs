@@ -20,16 +20,17 @@ namespace Purefolio_backend.Controllers
         }
 
         [HttpGet]
-        [HttpGet("{id:int}")]
-        public ActionResult<IEnumerable<Nace>> Get(int? id)
+        public ActionResult<IEnumerable<Nace>> GetAll()
         {
-            if (id != null)
-            {
-                Nace nace= databaseStore.getNaceById(id);
-                if (nace== null) return NotFound();
-                return new List<Nace>(){nace};
-            }
             return databaseStore.getAllNaces();
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult<Nace> GetSingle(int id)
+        {
+            Nace nace = databaseStore.getNaceById(id);
+            if (nace == null) return NotFound();
+            return nace;
         }
     }
   }

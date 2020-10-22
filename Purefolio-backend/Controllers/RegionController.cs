@@ -20,16 +20,18 @@ namespace Purefolio_backend.Controllers
         }
 
         [HttpGet]
-        [HttpGet("{id:int}")]
-        public ActionResult<IEnumerable<Region>> Get(int? id)
+
+        public ActionResult<List<Region>> GetAll()
         {
-            if (id.HasValue)
-            {
-                Region region= databaseStore.getRegionById(id);
-                if (region== null) return NotFound();
-                return new List<Region>(){region};
-            }
             return databaseStore.getAllRegions();
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult<Region> Get(int id)
+        {
+            Region region = databaseStore.getRegionById(id);
+            if (region == null) return NotFound();
+            return region;
         }
     }
   }
