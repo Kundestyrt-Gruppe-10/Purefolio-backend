@@ -12,10 +12,10 @@ namespace Purefolio_backend.Controllers
   {
     private readonly ILogger<EuroStatTableController> _logger;
 
-    private DatabaseStore _databaseStore;
+    private IDatabaseStore _databaseStore;
 
     public EuroStatTableController(
-      ILogger<EuroStatTableController> logger, DatabaseStore databaseStore
+      ILogger<EuroStatTableController> logger, IDatabaseStore databaseStore
     )
     {
       _logger = logger;

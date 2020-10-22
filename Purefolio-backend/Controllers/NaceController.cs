@@ -13,7 +13,7 @@ namespace Purefolio_backend.Controllers
 
       private IDatabaseStore databaseStore;
 
-      public NaceController(ILogger<NaceController> logger, DatabaseStore databaseStore)
+      public NaceController(ILogger<NaceController> logger, IDatabaseStore databaseStore)
         {
             _logger = logger;
             this.databaseStore = databaseStore;

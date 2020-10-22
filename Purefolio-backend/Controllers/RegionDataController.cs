@@ -13,7 +13,7 @@ namespace Purefolio_backend.Controllers
 
         private IDatabaseStore databaseStore;
 
-        public RegionDataController(ILogger<RegionDataController> logger, DatabaseStore databaseStore)
+        public RegionDataController(ILogger<RegionDataController> logger, IDatabaseStore databaseStore)
         {
             _logger = logger;
             this.databaseStore = databaseStore;

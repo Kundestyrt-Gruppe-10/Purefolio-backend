@@ -16,7 +16,7 @@ namespace Purefolio_backend.Controllers
 
     public NaceRegionDataController(
       ILogger<NaceRegionDataController> logger,
-      DatabaseStore databaseStore
+      IDatabaseStore databaseStore
     )
     {
       _logger = logger;
