@@ -97,31 +97,34 @@ namespace Purefolio_backend.Utils.Tests
         }
 
         [TestMethod()]
-        public void GetNestedFieldShouldReturnNaceDict(){
+        public void GetNestedFieldWithNaceShouldReturnNaceDict(){
             Dictionary<int, String> naceDict = jun1.GetNestedField("nace_r2");
-            Dictionary<int, String> expectedDict = new Dictionary<int, string>();
-            expectedDict.Add(0, "A");
-            expectedDict.Add(1, "B");
+            Dictionary<int, String> expectedDict = new Dictionary<int, string>(){
+                {0, "A"},
+                {1, "B"}
+            };
             CollectionAssert.AreEqual(expectedDict, naceDict);
         }
 
         [TestMethod()]
-        public void GetNestedFieldShouldReturnRegionDict(){
+        public void GetNestedFieldWithGeoShouldReturnRegionDict(){
             Dictionary<int, String> regionDict = jun1.GetNestedField("geo");
-            Dictionary<int, String> expectedDict = new Dictionary<int, string>();
-            expectedDict.Add(0, "AT");
-            expectedDict.Add(1, "BE");
+            Dictionary<int, String> expectedDict = new Dictionary<int, string>(){
+                {0, "AT"},
+                {1, "BE"}
+            };
             CollectionAssert.AreEqual(expectedDict, regionDict);
         }
 
         [TestMethod()]
-        public void GetNestedFieldShouldReturnYearDict(){
+        public void GetNestedFieldWithTimeShouldReturnYearDict(){
             Dictionary<int, String> yearDict = jun1.GetNestedField("time");
-            Dictionary<int, String> expectedDict = new Dictionary<int, string>();
-            expectedDict.Add(0, "2015");
-            expectedDict.Add(1, "2016");
-            expectedDict.Add(2, "2017");
-            expectedDict.Add(3, "2018");
+            Dictionary<int, String> expectedDict = new Dictionary<int, string>(){
+                {0, "2015"},
+                {1, "2016"},
+                {2, "2017"},
+                {3, "2018"}
+            };
             CollectionAssert.AreEqual(expectedDict, yearDict);
         }
 
