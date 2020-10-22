@@ -41,8 +41,7 @@ namespace Purefolio_backend
         {
           var env = hostingContext.HostingEnvironment;
           config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-          config.AddJsonFile($"appsettings.{env.EnvironmentName}.json",
-            optional: true, reloadOnChange: true);
+          config.AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json");
         })
         .ConfigureWebHostDefaults(webBuilder =>
         {
