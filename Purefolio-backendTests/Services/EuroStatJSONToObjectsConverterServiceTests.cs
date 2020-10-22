@@ -40,41 +40,29 @@ namespace Purefolio_backend.Services.Tests
             mockDBS = new Mock<IDatabaseStore>();
 
             jsc = new EuroStatJSONToObjectsConverterService(mockLogger.Object, mockDBS.Object);
+
+            allRegions = new List<Region>(){austria, belgium};
+            allNaces = new List<Nace>(){a,b};
+            
+            mockDBS.Setup(x => x.getAllRegions()).Returns(allRegions);
+            mockDBS.Setup(x => x.getAllNaces()).Returns(allNaces);
+            mockDBS.Setup(x => x.getAllNaceRegionData()).Returns(new List<NaceRegionData>());
+            mockDBS.Setup(x => x.addNaceRegionData(new List<NaceRegionData>())).Returns(new List<NaceRegionData>());
         }
         
         [TestMethod()]
         public void ShouldReturnEmptyListForInvalidDataset()
         {
-            Console.WriteLine("Elements:");
-            allRegions = new List<Region>();
-            allRegions.Add(austria);
-            allRegions.Add(belgium);
-            allNaces = new List<Nace>();
-            allNaces.Add(a);
-            allNaces.Add(b);
-            mockDBS.Setup(x => x.getAllRegions()).Returns(allRegions);
-            mockDBS.Setup(x => x.getAllNaces()).Returns(allNaces);
-            mockDBS.Setup(x => x.getAllNaceRegionData()).Returns(new List<NaceRegionData>());
-            mockDBS.Setup(x => x.addNaceRegionData(new List<NaceRegionData>())).Returns(new List<NaceRegionData>());
-
-
             List<NaceRegionData> result = jsc.Convert(tooManyFields, "workAccidentsIncidentRate");
             Assert.AreEqual(result.Count, 0);
-
         }
 
-        // Får ikke til denne. Den finner ikke elementer i allNaces tror jeg, men gir opp og går videre for nå.
-        /*[TestMethod()]
+        [TestMethod()]
         public void ShouldReturnNaceRegionListForValidDataset()
         {
-            Console.WriteLine("Elements:");
-            foreach (var element in allNaces)
-            {
-                Console.WriteLine("Element in all naces: " + element.naceId);
-            }
             List<NaceRegionData> result = jsc.Convert(validJSON, "workAccidentsIncidentRate");
             CollectionAssert.AreNotEqual(result, new List<NaceRegionData>());
-        }*/
+        }
 
 
         [TestMethod()]
