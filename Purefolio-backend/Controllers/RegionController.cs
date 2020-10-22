@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Purefolio_backend.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Purefolio_backend.Controllers
 {
@@ -21,7 +22,7 @@ namespace Purefolio_backend.Controllers
 
         [HttpGet]
 
-        public ActionResult<List<Region>> GetAll()
+        public ActionResult<IEnumerable<Region>> GetAll()
         {
             return databaseStore.getAllRegions();
         }
@@ -31,7 +32,7 @@ namespace Purefolio_backend.Controllers
         {
             Region region = databaseStore.getRegionById(id);
             if (region == null) return NotFound();
-            return region;
+            return Ok(region);
         }
     }
   }
