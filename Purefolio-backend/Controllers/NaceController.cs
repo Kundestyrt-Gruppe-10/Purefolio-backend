@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Purefolio_backend.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Purefolio_backend.Controllers
 {
@@ -20,9 +21,17 @@ namespace Purefolio_backend.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Nace> Get()
+        public ActionResult<IEnumerable<Nace>> GetAll()
         {
-          return databaseStore.getAllNaces();
+            return databaseStore.getAllNaces();
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult<Nace> GetSingle(int id)
+        {
+            Nace nace = databaseStore.getNaceById(id);
+            if (nace == null) return NotFound();
+            return Ok(nace);
         }
     }
   }
