@@ -7,13 +7,13 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace Purefolio_backend
+namespace Purefolio_backend.Services
 {
     public class EuroStatFetchService
     {
         private readonly ILogger<EuroStatFetchService> _logger;
         static HttpClient client = new HttpClient();
-        private JSONConverter JSONConverter;
+        private EuroStatJSONToObjectsConverterService JSONConverter;
         private IDatabaseStore databaseStore;  
 
         private static string euroStatApiEndpoint = "http://ec.europa.eu/eurostat/wdds/rest/data/v2.1/json/en/";
@@ -22,7 +22,7 @@ namespace Purefolio_backend
         private static int StartYear = 2015;
         private static int EndYear = 2018;
 
-        public EuroStatFetchService(ILogger<EuroStatFetchService> _logger, IHttpClientFactory clientFactory, IDatabaseStore databaseStore, JSONConverter JSONConverter)
+        public EuroStatFetchService(ILogger<EuroStatFetchService> _logger, IHttpClientFactory clientFactory, IDatabaseStore databaseStore, EuroStatJSONToObjectsConverterService JSONConverter)
         {
             this._logger = _logger;
             this.databaseStore = databaseStore;

@@ -6,16 +6,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Globalization;
 using System.Reflection;
+using Purefolio_backend.utils;
 
-namespace Purefolio_backend
+namespace Purefolio_backend.Services
 {
-    public class JSONConverter
+    public class EuroStatJSONToObjectsConverterService
     {    
         private readonly ILogger<JsonConverter> _logger;
         private IDatabaseStore databaseStore;
-        private JSONUnNester un;
+        private EuroStatJSONUnNester un;
         
-        public JSONConverter(ILogger<JsonConverter> _logger, IDatabaseStore databaseStore)
+        public EuroStatJSONToObjectsConverterService(ILogger<JsonConverter> _logger, IDatabaseStore databaseStore)
         {
             this._logger = _logger;
             this.databaseStore = databaseStore;
@@ -23,7 +24,7 @@ namespace Purefolio_backend
         
         public List<NaceRegionData> Convert(string jsonString, string attributeName)
         {
-            un = new JSONUnNester(jsonString);
+            un = new EuroStatJSONUnNester(jsonString);
             List<NaceRegionData> nrdList = new List<NaceRegionData>();
             List<String> naceRegionYearFields = new List<String>();
             List<int> numberOfItemsInFields = new List<int>();

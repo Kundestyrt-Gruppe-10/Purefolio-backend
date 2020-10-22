@@ -5,7 +5,7 @@ using System.Linq;
 
 
 
-namespace Purefolio_backend
+namespace Purefolio_backend.utils
 {
     public class Field
     {
@@ -20,7 +20,7 @@ namespace Purefolio_backend
             this.totalElements = totalElements;
         }
     }
-    public class JSONUnNester
+    public class EuroStatJSONUnNester
     {    
         private string jsonString;
         private Dictionary<String, Object> jsonDict;
@@ -31,7 +31,7 @@ namespace Purefolio_backend
 
         private Dictionary<String, String> values;
 
-        public JSONUnNester(string jsonString){
+        public EuroStatJSONUnNester(string jsonString){
             this.jsonString = jsonString;
             this.jsonDict = GetJsonDict();
             this.naces = GetNestedField("nace_r2");
