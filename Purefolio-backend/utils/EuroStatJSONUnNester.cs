@@ -114,5 +114,26 @@ namespace Purefolio_backend.utils
                 new Field(name:"year", jsonIndex:yearIndex, totalElements:sizes[yearIndex])
             }.OrderBy(field => field.jsonIndex).ToList();
         }
+
+        public Boolean IsValidDataset()
+        {
+            //checks for valid dataset (not more than 1 element in categories except for nace, geo, and time)
+            // TODO: Actually handle when datasets are wrong.
+            List<String> id = GetID();
+            List<int> size = GetSize();
+            for (int i = 0; i < id.Count; i++)
+            {   
+                if (!(id.Contains("nace_r2") && id.Contains("geo") && id.Contains("time"))){
+                    Console.WriteLine("Dataset invalid. It did not have all necessary fields.");
+                    return false;
+                }
+                if (!(id[i].Equals("nace_r2") || id[i].Equals("geo") || id[i].Equals("time")) && !size[i].Equals(1))
+                {
+                    Console.WriteLine("Dataset invalid. " + id[i] + " did not have exactly 1 field.");
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }

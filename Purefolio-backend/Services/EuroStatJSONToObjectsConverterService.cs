@@ -30,7 +30,7 @@ namespace Purefolio_backend.Services
             List<int> numberOfItemsInFields = new List<int>();
             
             
-            if (!IsValidDataset(un.GetID(), un.GetSize()))
+            if (!un.IsValidDataset())
             {
                 return nrdList;
             }
@@ -68,26 +68,6 @@ namespace Purefolio_backend.Services
             }
             return nrdList;
         }
-
-        private Boolean IsValidDataset(List<String> id, List<int> size)
-        {
-            //checks for valid dataset (not more than 1 element in categories except for nace, geo, and time)
-            // TODO: Actually handle when datasets are wrong.
-            for (int i = 0; i < id.Count; i++)
-            {   
-                if (!(id.Contains("nace_r2") && id.Contains("geo") && id.Contains("time"))){
-                    _logger.LogError(message:"Dataset invalid. It did not have all necessary fields.");
-                    return false;
-                }
-                if (!(id[i].Equals("nace_r2") || id[i].Equals("geo") || id[i].Equals("time")) && !size[i].Equals(1))
-                {
-                    _logger.LogError(message:"Dataset invalid. " + id[i] + " did not have exactly 1 field.");
-                    return false;
-                }
-            }
-            return true;
-        }
-
         public List<int> findIndexesOfFields(int indexOfData, List<int> numberOfItemsInFields)
         {
             List<int> indexes = new List<int>();
