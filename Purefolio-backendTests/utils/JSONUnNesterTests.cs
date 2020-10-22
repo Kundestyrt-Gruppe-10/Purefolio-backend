@@ -150,5 +150,21 @@ namespace Purefolio_backend.Utils.Tests
         public void GetNaceShouldFindCorrectYearForJsonUnNester2(int yearId, int expected){
             Assert.AreEqual(expected, jun1.GetYear(yearId));
         }
+
+        [TestMethod()]
+        [DataRow("nace",0)]
+        [DataRow("region",1)]
+        [DataRow("year",2)]
+        public void GetFieldIndexShouldReturnCorrectIndexForJSONUnNester1(string fieldName, int expected){
+            Assert.AreEqual(expected, jun1.GetFieldIndex(fieldName));
+        }
+
+        [TestMethod()]
+        [DataRow("region",0)]
+        [DataRow("year",1)]
+        [DataRow("nace",2)]
+        public void GetFieldIndexShouldReturnCorrectIndexForJSONUnNester2(string fieldName, int expected){
+            Assert.AreEqual(expected, jun2.GetFieldIndex(fieldName));
+        }
     }
 }
