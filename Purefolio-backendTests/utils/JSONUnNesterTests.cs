@@ -6,14 +6,15 @@ using System.Text;
 using Newtonsoft.Json;
 using Microsoft.Extensions.Logging;
 using Moq;
+using Purefolio_backend.Utils;
 
-namespace Purefolio_backend.Services.Tests
+namespace Purefolio_backend.Utils.Tests
 {
     [TestClass()]
     public class JSONUnNesterTests
     {
-        private JSONUnNester jun2;
-        private JSONUnNester jun1;
+        private EuroStatJSONUnNester jun2;
+        private EuroStatJSONUnNester jun1;
         private string json1 = "{\"version\":\"2.0\",\"label\":\"Non-fatal accidents at work by NACE Rev. 2 activity and age\",\"href\":\"http://ec.europa.eu/eurostat/wdds/rest/data/v2.1/json/en/hsw_n2_03?precision=1&geo=AT&geo=BE&unit=RT_INC&time=2015&time=2016&time=2017&time=2018&age=TOTAL&age=Y_LT18&nace_r2=A&nace_r2=B\",\"source\":\"Eurostat\",\"updated\":\"2020-08-18\",\"extension\":{\"datasetId\":\"hsw_n2_03\",\"lang\":\"EN\",\"description\":null,\"subTitle\":null},\"class\":\"dataset\",\"value\":{\"0\":2099.4,\"1\":4846.39,\"2\":5324.84,\"3\":2770.94,\"4\":625.57,\"5\":1786.03,\"6\":1765.78,\"7\":1668.13,\"8\":1125.35,\"9\":1174,\"10\":1339.59,\"11\":2262.16,\"12\":1390.07,\"13\":0,\"14\":3660.34,\"15\":0,\"16\":2221.57,\"17\":1678.7,\"18\":2479.12,\"19\":2579.59,\"20\":2225.37,\"21\":3725.66,\"22\":3480.08,\"23\":3212.52,\"24\":0,\"25\":0,\"26\":1629.73,\"27\":0,\"28\":0,\"29\":0,\"30\":0,\"31\":0},\"dimension\":{\"unit\":{\"label\":\"unit\",\"category\":{\"index\":{\"RT_INC\":0},\"label\":{\"RT_INC\":\"Incidence rate\"}}},\"nace_r2\":{\"label\":\"nace_r2\",\"category\":{\"index\":{\"A\":0,\"B\":1},\"label\":{\"A\":\"Agriculture, forestry and fishing\",\"B\":\"Mining and quarrying\"}}},\"age\":{\"label\":\"age\",\"category\":{\"index\":{\"TOTAL\":0,\"Y_LT18\":1},\"label\":{\"TOTAL\":\"Total\",\"Y_LT18\":\"Less than 18 years\"}}},\"geo\":{\"label\":\"geo\",\"category\":{\"index\":{\"AT\":0,\"BE\":1},\"label\":{\"AT\":\"Austria\",\"BE\":\"Belgium\"}}},\"time\":{\"label\":\"time\",\"category\":{\"index\":{\"2015\":0,\"2016\":1,\"2017\":2,\"2018\":3},\"label\":{\"2015\":\"2015\",\"2016\":\"2016\",\"2017\":\"2017\",\"2018\":\"2018\"}}}},\"id\":[\"unit\",\"nace_r2\",\"age\",\"geo\",\"time\"],\"size\":[1,2,2,2,4]}";
         private string json2 = "{\"version\":\"2.0\",\"label\":\"Non-fatal accidents at work by NACE Rev. 2 activity and age\",\"href\":\"http://ec.europa.eu/eurostat/wdds/rest/data/v2.1/json/en/hsw_n2_03?precision=1&geo=AT&geo=BE&unit=RT_INC&time=2015&time=2016&time=2017&time=2018&age=TOTAL&nace_r2=A&nace_r2=B\",\"source\":\"Eurostat\",\"updated\":\"2020-08-18\",\"extension\":{\"datasetId\":\"hsw_n2_03\",\"lang\":\"EN\",\"description\":null,\"subTitle\":null},\"class\":\"dataset\",\"value\":{\"0\":2099.4,\"1\":4846.39,\"2\":5324.84,\"3\":2770.94,\"4\":625.57,\"5\":1786.03,\"6\":1765.78,\"7\":1668.13,\"8\":2221.57,\"9\":1678.7,\"10\":2479.12,\"11\":2579.59,\"12\":2225.37,\"13\":3725.66,\"14\":3480.08,\"15\":3212.52},\"dimension\":{\"unit\":{\"label\":\"unit\",\"category\":{\"index\":{\"RT_INC\":0},\"label\":{\"RT_INC\":\"Incidence rate\"}}},\"nace_r2\":{\"label\":\"nace_r2\",\"category\":{\"index\":{\"A\":0,\"B\":1},\"label\":{\"A\":\"Agriculture, forestry and fishing\",\"B\":\"Mining and quarrying\"}}},\"age\":{\"label\":\"age\",\"category\":{\"index\":{\"TOTAL\":0},\"label\":{\"TOTAL\":\"Total\"}}},\"geo\":{\"label\":\"geo\",\"category\":{\"index\":{\"AT\":0,\"BE\":1},\"label\":{\"AT\":\"Austria\",\"BE\":\"Belgium\"}}},\"time\":{\"label\":\"time\",\"category\":{\"index\":{\"2015\":0,\"2016\":1,\"2017\":2,\"2018\":3},\"label\":{\"2015\":\"2015\",\"2016\":\"2016\",\"2017\":\"2017\",\"2018\":\"2018\"}}}},\"id\":[\"unit\",\"age\",\"geo\",\"time\",\"nace_r2\"],\"size\":[1,1,2,4,2]}";
         private string values1 = "{\"0\":2099.4,\"1\":4846.39,\"2\":5324.84,\"3\":2770.94,\"4\":625.57,\"5\":1786.03,\"6\":1765.78,\"7\":1668.13,\"8\":1125.35,\"9\":1174,\"10\":1339.59,\"11\":2262.16,\"12\":1390.07,\"13\":0,\"14\":3660.34,\"15\":0,\"16\":2221.57,\"17\":1678.7,\"18\":2479.12,\"19\":2579.59,\"20\":2225.37,\"21\":3725.66,\"22\":3480.08,\"23\":3212.52,\"24\":0,\"25\":0,\"26\":1629.73,\"27\":0,\"28\":0,\"29\":0,\"30\":0,\"31\":0}";
@@ -51,30 +52,8 @@ namespace Purefolio_backend.Services.Tests
             subsize1 = new List<int>(){2, 2, 4};
             subsize2 = new List<int>(){2, 4, 2};
 
-            jun1 = new JSONUnNester(json1);
-            jun2 = new JSONUnNester(json2);
-        }
-
-        [TestMethod()]
-        public void MakeOrderedListShouldMakeCorrectSubListWhenExpectedOrder()
-        {
-            List<String> naceRegionYearFields;
-            List<int> numberOfItemsInFields;
-
-            (naceRegionYearFields, numberOfItemsInFields) = jun1.MakeOrderedLists();
-            CollectionAssert.AreEqual(naceRegionYearFields, subids1);
-            CollectionAssert.AreEqual(numberOfItemsInFields, subsize1);
-        }
-
-        [TestMethod()]
-        public void MakeOrderedListShouldMakeCorrectSubListWhenUnexpectedOrder()
-        {
-            List<String> naceRegionYearFields;
-            List<int> numberOfItemsInFields;
-
-            (naceRegionYearFields, numberOfItemsInFields) = jun2.MakeOrderedLists();
-            CollectionAssert.AreEqual(naceRegionYearFields, subids2);
-            CollectionAssert.AreEqual(numberOfItemsInFields, subsize2);            
+            jun1 = new EuroStatJSONUnNester(json1);
+            jun2 = new EuroStatJSONUnNester(json2);
         }
 
         [TestMethod()]
@@ -147,33 +126,26 @@ namespace Purefolio_backend.Services.Tests
         }
 
         [TestMethod()]
-        public void GetNaceShouldFindCorrectNace(){
-            string nacecode1 = jun1.GetNaceCode(indexes1, subids1);
-            string nacecode2 = jun2.GetNaceCode(indexes2_1, subids2);
-            string nacecode3 = jun2.GetNaceCode(indexes2_2, subids2);
-            Assert.AreEqual(nace1, nacecode1);
-            Assert.AreEqual(nace2_1, nacecode2);
-            Assert.AreEqual(nace2_2, nacecode3);
+        [DataRow(0,"A")]
+        [DataRow(1,"B")]
+        public void GetNaceShouldFindCorrectNaceForJsonUnNester(int naceId, string expected){
+            Assert.AreEqual(expected, jun1.GetNaceCode(naceId));
         }
 
         [TestMethod()]
-        public void GetRegionShouldFindCorrectRegion(){
-            string regioncode1 = jun1.GetRegionCode(indexes1, subids1);
-            string regioncode2 = jun2.GetRegionCode(indexes2_1, subids2);
-            string regioncode3 = jun2.GetRegionCode(indexes2_2, subids2);
-            Assert.AreEqual(region1, regioncode1);
-            Assert.AreEqual(region2_1, regioncode2);
-            Assert.AreEqual(region2_2, regioncode3);
+        [DataRow(0,"AT")]
+        [DataRow(1,"BE")]
+        public void GetNaceShouldFindCorrectRegionForJsonUnNester2(int regionId, string expected){
+            Assert.AreEqual(expected, jun1.GetRegionCode(regionId));
         }
 
         [TestMethod()]
-        public void GetYearShouldFindCorrectYear(){
-            int yearcode1 = jun1.GetYear(indexes1, subids1);
-            int yearcode2 = jun2.GetYear(indexes2_1, subids2);
-            int yearcode3 = jun2.GetYear(indexes2_2, subids2);
-            Assert.AreEqual(year1, yearcode1);
-            Assert.AreEqual(year2_1, yearcode2);
-            Assert.AreEqual(year2_2, yearcode3);
+        [DataRow(0,2015)]
+        [DataRow(1,2016)]
+        [DataRow(2,2017)]
+        [DataRow(3,2018)]
+        public void GetNaceShouldFindCorrectYearForJsonUnNester2(int yearId, int expected){
+            Assert.AreEqual(expected, jun1.GetYear(yearId));
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Linq;
 
 
 
-namespace Purefolio_backend.utils
+namespace Purefolio_backend.Utils
 {
     public class Field
     {

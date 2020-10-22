@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Globalization;
 using System.Reflection;
-using Purefolio_backend.utils;
+using Purefolio_backend.Utils;
 
 namespace Purefolio_backend.Services
 {
