@@ -11,6 +11,8 @@ namespace Purefolio_backend
         public List<Nace> getAllNaces();
         public List<NaceRegionData> getNaceRegionData(int? regionId, int? naceId, int? year);
         public List<Region> getAllRegions();
+        public Nace getNaceById(int? id);
+        public Region getRegionById(int? id);
         public List<RegionData> getAllRegionData();
         public List<EuroStatTable> getAllEuroStatTables();
     }
@@ -26,6 +28,13 @@ namespace Purefolio_backend
             // this.db = new DatabaseContext();
             this.db = db;
             this._logger = _logger;
+        }
+        public Nace getNaceById(int? id){
+            return db.Nace.Find(id);
+        }
+        public Region getRegionById(int? id)
+        {
+            return db.Region.Find(id);
         }
         public List<Nace> getAllNaces()
         {
