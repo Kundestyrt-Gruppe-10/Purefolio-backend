@@ -42,7 +42,9 @@ namespace Purefolio_backend
           var env = hostingContext.HostingEnvironment;
           Console.WriteLine("Environment Used:");
           Console.WriteLine(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"));
+          Console.WriteLine("Is production?");
           Console.WriteLine(env.IsProduction());
+          Console.WriteLine("Is development?");
           Console.WriteLine(env.IsDevelopment());
           config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
           config.AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json");
