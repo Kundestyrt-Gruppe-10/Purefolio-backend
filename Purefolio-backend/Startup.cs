@@ -87,7 +87,7 @@ namespace Purefolio_backend
 
       // TODO: Remove before release
       // Deleting and recreating Database on each boot
-      if (env.IsProduction() || env.IsStaging())
+    if (!env.IsDevelopment() ||env.IsProduction() || env.IsStaging())
       {
         app.UseCors("AllowAnyPolicy");
         using (
