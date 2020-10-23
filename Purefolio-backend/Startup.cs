@@ -25,7 +25,9 @@ namespace Purefolio_backend
       services.AddControllers();
       services
         .AddDbContext<DatabaseContext>(options =>
-          options.UseLazyLoadingProxies().UseNpgsql(Configuration.GetConnectionString("Development")));
+          options.UseLazyLoadingProxies()
+          .UseNpgsql(Configuration.GetConnectionString("Development"),
+          psqlServerOptions => psqlServerOptions.CommandTimeout(180)));
       services.AddScoped<DatabaseStore>();
       services.AddScoped<EuroStatFetchService>();
       services.AddScoped<BaseDataService>();

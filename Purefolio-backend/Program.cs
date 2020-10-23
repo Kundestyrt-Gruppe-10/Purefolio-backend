@@ -47,9 +47,7 @@ namespace Purefolio_backend
           Console.WriteLine("Is development?");
           Console.WriteLine(env.IsDevelopment());
           config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-          // config.AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json");
-          // TODO: YOLO!! Håper ikke Bjørn Are ser dette!
-          config.AddJsonFile($"appsettings.Production.json");
+          config.AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json");
           // config.AddJsonFile($"appsettings.Production.json");
         })
         .ConfigureWebHostDefaults(webBuilder =>
