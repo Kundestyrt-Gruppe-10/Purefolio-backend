@@ -22,6 +22,12 @@ namespace Purefolio_backend.Services
             this.databaseStore = databaseStore;
         }
         
+        /// <summary>
+        /// Converts a JSON-file on string format to a list of corresponding NaceRegionData objects.
+        /// </summary>
+        /// <param name="jsonString">A JSON object represented as a string</param>
+        /// <param name="attributeName">The name of the datafield. Used to find and set the correct property in NaceRegionObjects</param>
+        /// <returns></returns>
         public List<NaceRegionData> Convert(string jsonString, string attributeName)
         {
             un = new EuroStatJSONUnNester(jsonString);
@@ -64,10 +70,18 @@ namespace Purefolio_backend.Services
                     PropertyInfo prop = type.GetProperty(attributeName);
                     prop.SetValue (nrd, propValue, null);
                     nrdList.Add(nrd);
-                }                
-            }
+                }
+             }
             return nrdList;
         }
+
+
+        /// <summary>
+        ///  Computes and returns a list of indexes of nace_r2, geo, and time in the order they appear in the JSON-file.
+        /// </summary>
+        /// <param name="indexOfData">Integer index of a single value in the Eurostat JSON file</param>
+        /// <param name="numberOfItemsInFields">list of how many elements is in each of nace_r2, geo, and time, in the order they appear in the JSON-file</param>
+        /// <returns></returns>
         public List<int> findIndexesOfFields(int indexOfData, List<int> numberOfItemsInFields)
         {
             List<int> indexes = new List<int>();
@@ -78,6 +92,5 @@ namespace Purefolio_backend.Services
             indexes.Add((indexOfData % (numberOfItemsInFields[1]*numberOfItemsInFields[2])) % numberOfItemsInFields[2]);
             return indexes;
         }
-        
     }
 }

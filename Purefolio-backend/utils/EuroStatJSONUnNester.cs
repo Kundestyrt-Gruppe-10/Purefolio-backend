@@ -41,6 +41,11 @@ namespace Purefolio_backend.Utils
             this.fields = CreateFields();
         }
 
+        /// <summary>
+        /// Deserializes and returns a field in the JSON object under dimension -> NAME_OF_THE_FIELD -> category -> index
+        /// </summary>
+        /// <param name="field_name">Name of the field in dimension to fetch information about.</param>
+        /// <returns></returns>
         public Dictionary<int, String> GetNestedField(string field_name)
         {
             return JsonConvert.DeserializeObject<Dictionary<String, int>>
@@ -80,11 +85,21 @@ namespace Purefolio_backend.Utils
             return JsonConvert.DeserializeObject<Dictionary<String, String>>(GetJsonDict()["value"].ToString());
         }
 
+        /// <summary>
+        /// Returns a list of the names of the categories present in the JSON object.
+        /// It is returned in the order they appear in the JSON object.
+        /// </summary>
+        /// <returns></returns>
         public List<String> GetID()
         {
             return JsonConvert.DeserializeObject<List<String>>(GetJsonDict()["id"].ToString());
         }
 
+        /// <summary>
+        /// Returns a list of sizes, that is how many elements there are in each category present in the JSON object. 
+        /// It is returned in the order they appear in the JSON object.
+        /// </summary>
+        /// <returns></returns>
         public List<int> GetSize()
         {
             return JsonConvert.DeserializeObject<List<int>>(GetJsonDict()["size"].ToString());
@@ -100,6 +115,11 @@ namespace Purefolio_backend.Utils
             return fields.FindIndex(match:field => field.name == name);
         }
 
+        /// <summary>
+        /// Creates a list of fields to be used to find the order of nace, geo, and time in the JSON object returned from Eurostat.
+        /// It also stores how many elements there are in each category in the dataset.
+        /// </summary>
+        /// <returns></returns>
         public List<Field> CreateFields()
         {
             List<String> ids = GetID();
@@ -115,10 +135,14 @@ namespace Purefolio_backend.Utils
             }.OrderBy(field => field.jsonIndex).ToList();
         }
 
+        /// <summary>
+        /// Checks for valid dataset:
+        /// * Not more than 1 element in categories except for nace, geo, and time.
+        /// * Contains all three categories that are necessary.
+        /// </summary>
+        /// <returns></returns>
         public Boolean IsValidDataset()
         {
-            //checks for valid dataset (not more than 1 element in categories except for nace, geo, and time)
-            // TODO: Actually handle when datasets are wrong.
             List<String> id = GetID();
             List<int> size = GetSize();
             for (int i = 0; i < id.Count; i++)

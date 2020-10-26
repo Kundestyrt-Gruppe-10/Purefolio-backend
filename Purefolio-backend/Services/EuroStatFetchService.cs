@@ -46,6 +46,12 @@ namespace Purefolio_backend.Services
             return databaseStore.getAllNaceRegionData();
         }
         // TODO: Change no internet connection handling
+        
+        /// <summary>
+        /// Fetches and stores all data from a specific Eurostat dataset.
+        /// </summary>
+        /// <param name="table">Representation of the dataset. Has information needed to fetch.</param>
+        /// <returns></returns>
         private async Task FetchAndStore(EuroStatTable table) 
         {
             List<Nace> naces = databaseStore.getAllNaces();
@@ -64,8 +70,8 @@ namespace Purefolio_backend.Services
                         databaseStore.addNaceRegionData(EurostatNRData);
                     }  
                     else 
-                    {
-                        await handleStatusCodeNotSuccess((int)response.StatusCode, response, table, i, url, naces);
+                     {
+                        await handleStatusCodeNotSuccess((int)response.StatusCode, response, table, url);
                     }
                 }
                 catch (System.Net.Http.HttpRequestException e)
@@ -78,15 +84,28 @@ namespace Purefolio_backend.Services
             }  
         }
 
+        /// <summary>
+        /// Generates an Eurostat URL for fetching.
+        /// </summary>
+        /// <param name="table">Representation of the dataset. Has information needed to fetch.</param>
+        /// <param name="index">Index to find the first nace to ask for in this fetch.</param>
+        /// <param name="naces">All naces to fetch information on from Eurostat.</param>
+        /// <returns></returns>
         public String GetEuroStatURL(EuroStatTable table, int index, List<Nace> naces)
         {
             return euroStatApiEndpoint + table.tableCode 
             + '?' + StaticFilters 
             + '&' + GetNaceFilters(index, naces)
             + '&' + GetTimeFilters(StartYear, EndYear)
-            + '&' + table.unit;
+            + '&' + table.filters;
         }
 
+        /// <summary>
+        /// Generates the filters for the fetch URL for the next MaxElementsFromFetch naces starting from i * MaxElementsFromFetch
+        /// </summary>
+        /// <param name="index">Index to find the first nace to ask for in this fetch.</param>
+        /// <param name="naces">All naces to fetch information on from Eurostat.</param>
+        /// <returns></returns>
         private String GetNaceFilters(int index, List<Nace> naces)
         {
             int start = index * MaxElementsFromFetch;
@@ -105,13 +124,19 @@ namespace Purefolio_backend.Services
             return naceFilters;
         }
 
+        /// <summary>
+        /// Returns the number of fetches to make with MaxElementsFromFetch nace codes in each fetch.
+        /// </summary>
+        /// <param name="naces">All naces to fetch information on from Eurostat.</param>
+        /// <returns></returns>
         private int GetFetchIterationsCount(List<Nace> naces) 
         {
             int iterations = (int)Math.Ceiling((decimal)naces.Count / (decimal)MaxElementsFromFetch);
             return iterations;
         }
 
-        public String GetTimeFilters(int startYear, int endYear){
+        public String GetTimeFilters(int startYear, int endYear)
+        {
             List<int> years = new List<int>();
             for (int i = startYear; i <= endYear; i++)
             {
@@ -120,13 +145,31 @@ namespace Purefolio_backend.Services
             return "time=" + string.Join("&time=", years);
         }
 
-        private String GetErrorMessage(HttpResponseMessage response){
+        /// <summary>
+        /// Deserialzes the response message from Eurostat. Will not work if it is called with a successfull response.
+        /// </summary>
+        /// <param name="response">Response message from Eurostat.</param>
+        /// <returns></returns>
+        private String GetErrorMessage(HttpResponseMessage response)
+        {
             return (String)(JsonConvert.DeserializeObject<Dictionary<String, Object>>
                 ((JsonConvert.DeserializeObject<Dictionary<String, Object>>
                 (response.Content.ReadAsStringAsync().Result))["error"].ToString()))["label"];
         }
 
-        private async Task handleStatusCodeNotSuccess(int statusCode, HttpResponseMessage response, EuroStatTable table, int i, string url, List<Nace> naces){
+        /// <summary>
+        /// Based on status code and response message the following cases of unsuccessfull fetches are handled:
+        /// * Eurostat API is unavailable
+        /// * Asking for data that does not exist
+        /// * Other error responses are handled collectively by logging the error message
+        /// </summary>
+        /// <param name="statusCode">Status Code received from Eurostat</param>
+        /// <param name="response">Object fetched from Eurostat</param>
+        /// <param name="table">Representation of the dataset. Has information needed to fetch.</param>
+        /// <param name="url">The URL for which the fetch was made.</param>
+        /// <returns></returns>
+        private async Task handleStatusCodeNotSuccess(int statusCode, HttpResponseMessage response, EuroStatTable table, string url)
+        {
             int timeoutCounter = 0;
             while (statusCode == 503 && timeoutCounter < 10) 
             {
@@ -135,7 +178,7 @@ namespace Purefolio_backend.Services
                 timeoutCounter++;
                 if (timeoutCounter >= 10) 
                 {
-                    _logger.LogWarning("Warning: Service unavailable for fetching data from eurostat on URL: " + GetEuroStatURL(table, i, naces));
+                    _logger.LogWarning("Warning: Service unavailable for fetching data from eurostat on URL: " + url);
                 }
             }
             if (GetErrorMessage(response).Equals("Dataset contains no data. One or more filtering elements (query parameters) are probably invalid."))
