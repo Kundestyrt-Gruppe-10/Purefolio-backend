@@ -25,7 +25,9 @@ namespace Purefolio_backend
       services.AddControllers();
       services
         .AddDbContext<DatabaseContext>(options =>
-          options.UseLazyLoadingProxies().UseNpgsql(Configuration.GetConnectionString("Development")));
+          options.UseLazyLoadingProxies()
+          .UseNpgsql(Configuration.GetConnectionString("Development"),
+          psqlServerOptions => psqlServerOptions.CommandTimeout(180)));
       services.AddScoped<IDatabaseStore, DatabaseStore>();
       services.AddScoped<EuroStatFetchService>();
       services.AddScoped<BaseDataService>();
@@ -87,7 +89,7 @@ namespace Purefolio_backend
 
       // TODO: Remove before release
       // Deleting and recreating Database on each boot
-      if (env.IsProduction() || env.IsStaging())
+    if (!env.IsDevelopment() ||env.IsProduction() || env.IsStaging())
       {
         app.UseCors("AllowAnyPolicy");
         using (
