@@ -18,8 +18,14 @@ namespace Purefolio.DatabaseContext
     public DbSet<EuroStatTable> EuroStatTable { get; set; }
     public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { 
       // Set connection timeOut to 3 min. It takes a long time to intialize the database
-      this.Database.SetCommandTimeout(180);
+      if (!isTestDatabase())
+      {
+          this.Database.SetCommandTimeout(180);
+      }
+      
     }
+
+    protected bool isTestDatabase () => this.Database.ProviderName == "Microsoft.EntityFrameworkCore.InMemory";
 
     protected override void OnConfiguring(
       DbContextOptionsBuilder optionsBuilder)
