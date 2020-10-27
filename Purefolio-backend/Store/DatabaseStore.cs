@@ -15,6 +15,12 @@ namespace Purefolio_backend
         public Region getRegionById(int id);
         public List<RegionData> getAllRegionData();
         public List<EuroStatTable> getAllEuroStatTables();
+        public List<NaceRegionData> getAllNaceRegionData();
+        public List<NaceRegionData> addNaceRegionData(List<NaceRegionData> newNaceRegionData);
+        public Region createRegion(Region region);
+        public Nace createNace(Nace nace);
+        public EuroStatTable createEuroStatTable(EuroStatTable table);
+
     }
     public class DatabaseStore : IDatabaseStore
     {

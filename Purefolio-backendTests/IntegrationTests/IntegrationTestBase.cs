@@ -44,15 +44,15 @@ namespace Purefolio_backend
                 new RegionData() { regionId = 3,  corruptionRate = 87, year = 2019, population = 5806081, gdp = 310002},
             });
             _context.EuroStatTable.AddRange(new EuroStatTable[]{
-                new EuroStatTable(){tableCode = "env_ac_ainah_r2", attributeName = "emissionPerYear", dataType="NaceRegionData", unit="unit=KG_HAB&airpol=GHG"},
-                new EuroStatTable(){tableCode = "hsw_n2_03", attributeName = "workAccidentsIncidentRate", dataType="NaceRegionData", unit="unit=RT_INC&age=TOTAL"},
-                new EuroStatTable(){tableCode = "earn_gr_gpgr2", attributeName = "genderPayGap", dataType="NaceRegionData", unit="unit=PC"},
-                new EuroStatTable(){tableCode = "env_ac_taxind2", attributeName = "environmentTaxes", dataType="NaceRegionData", unit="tax=ENV&unit=MIO_EUR"},
-                new EuroStatTable(){tableCode = "hsw_n2_02", attributeName = "fatalAccidentsAtWork", dataType="NaceRegionData", unit="unit=RT_INC"},
-                new EuroStatTable(){tableCode = "lfsa_etgan2", attributeName = "temporaryemployment", dataType="NaceRegionData", unit="sex=T&unit=THS&age=Y15-74"},
-                new EuroStatTable(){tableCode = "edat_lfs_9910", attributeName = "employeesPrimaryEducation", dataType="NaceRegionData", unit="sex=T&unit=PC&isced11=ED0-2&age=Y15-74"},
-                new EuroStatTable(){tableCode = "edat_lfs_9910", attributeName = "employeesSecondaryEducation", dataType="NaceRegionData", unit="sex=T&unit=PC&isced11=ED3_4&age=Y15-74"},
-                new EuroStatTable(){tableCode = "edat_lfs_9910", attributeName = "employeesTertiaryEducation", dataType="NaceRegionData", unit="sex=T&unit=PC&isced11=ED5-8&age=Y15-74"}
+                new EuroStatTable(){tableCode = "env_ac_ainah_r2", attributeName = "emissionPerYear", dataType="NaceRegionData", filters="unit=KG_HAB&airpol=GHG"},
+                new EuroStatTable(){tableCode = "hsw_n2_03", attributeName = "workAccidentsIncidentRate", dataType="NaceRegionData", filters="unit=RT_INC&age=TOTAL"},
+                new EuroStatTable(){tableCode = "earn_gr_gpgr2", attributeName = "genderPayGap", dataType="NaceRegionData", filters="unit=PC"},
+                new EuroStatTable(){tableCode = "env_ac_taxind2", attributeName = "environmentTaxes", dataType="NaceRegionData", filters="tax=ENV&unit=MIO_EUR"},
+                new EuroStatTable(){tableCode = "hsw_n2_02", attributeName = "fatalAccidentsAtWork", dataType="NaceRegionData", filters="unit=RT_INC"},
+                new EuroStatTable(){tableCode = "lfsa_etgan2", attributeName = "temporaryemployment", dataType="NaceRegionData", filters="sex=T&unit=THS&age=Y15-74"},
+                new EuroStatTable(){tableCode = "edat_lfs_9910", attributeName = "employeesPrimaryEducation", dataType="NaceRegionData", filters="sex=T&unit=PC&isced11=ED0-2&age=Y15-74"},
+                new EuroStatTable(){tableCode = "edat_lfs_9910", attributeName = "employeesSecondaryEducation", dataType="NaceRegionData", filters="sex=T&unit=PC&isced11=ED3_4&age=Y15-74"},
+                new EuroStatTable(){tableCode = "edat_lfs_9910", attributeName = "employeesTertiaryEducation", dataType="NaceRegionData", filters="sex=T&unit=PC&isced11=ED5-8&age=Y15-74"}
             });
             _context.SaveChanges();
         }

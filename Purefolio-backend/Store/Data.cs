@@ -117,6 +117,7 @@ namespace Purefolio_backend
                 new Nace() {  naceCode = "T97", naceName = "Activities of households as employers of domestic personnel" },
                 new Nace() {  naceCode = "T98", naceName = "Undifferentiated goods- and services-producing activities of private households for own use" },
                 new Nace() {  naceCode = "U", naceName = "Activities of extraterritorial organisations and bodies" },
+                new Nace() {  naceCode = "TOTAL", naceName = "Total - All NACE activities" },
             };
         
         protected List<Region> regions = new List<Region>() 
@@ -157,17 +158,21 @@ namespace Purefolio_backend
                 new Region() { regionCode = "UK", regionName = "United Kingdom", area = 242495 },
             };  
 
+/// Environment
+/// Corporate Governance
+/// Social
+        
         protected List<EuroStatTable> euroStatTables = new List<EuroStatTable>()
         {
-            new EuroStatTable(){tableCode = "env_ac_ainah_r2", attributeName = "emissionPerYear", dataType="NaceRegionData", unit="unit=KG_HAB&airpol=GHG"},
-            new EuroStatTable(){tableCode = "hsw_n2_03", attributeName = "workAccidentsIncidentRate", dataType="NaceRegionData", unit="unit=RT_INC&age=TOTAL"},
-            new EuroStatTable(){tableCode = "earn_gr_gpgr2", attributeName = "genderPayGap", dataType="NaceRegionData", unit="unit=PC"},
-            new EuroStatTable(){tableCode = "env_ac_taxind2", attributeName = "environmentTaxes", dataType="NaceRegionData", unit="tax=ENV&unit=MIO_EUR"},
-            new EuroStatTable(){tableCode = "hsw_n2_02", attributeName = "fatalAccidentsAtWork", dataType="NaceRegionData", unit="unit=RT_INC"},
-            new EuroStatTable(){tableCode = "lfsa_etgan2", attributeName = "temporaryemployment", dataType="NaceRegionData", unit="sex=T&unit=THS&age=Y15-74"},
-            new EuroStatTable(){tableCode = "edat_lfs_9910", attributeName = "employeesPrimaryEducation", dataType="NaceRegionData", unit="sex=T&unit=PC&isced11=ED0-2&age=Y15-74"},
-            new EuroStatTable(){tableCode = "edat_lfs_9910", attributeName = "employeesSecondaryEducation", dataType="NaceRegionData", unit="sex=T&unit=PC&isced11=ED3_4&age=Y15-74"},
-            new EuroStatTable(){tableCode = "edat_lfs_9910", attributeName = "employeesTertiaryEducation", dataType="NaceRegionData", unit="sex=T&unit=PC&isced11=ED5-8&age=Y15-74"}
+            new EuroStatTable(){tableCode = "env_ac_ainah_r2", attributeName = "emissionPerYear", dataType="NaceRegionData", filters="unit=KG_HAB&airpol=GHG", unit="kg per capita", datasetName="Emmisions of Greenhouse gases", esgFactor="Environment", description="Air Emissions Accounts record the flows of residual gaseous and particulate materials emitted by resident units and flowing into the atmosphere. Residual gaseous and particulate materials are the physical flows of gaseous or particulate materials (‘air emissions’).", href="https://ec.europa.eu/eurostat/cache/metadata/en/env_ac_ainah_r2_esms.htm"},
+            new EuroStatTable(){tableCode = "hsw_n2_03", attributeName = "workAccidentsIncidentRate", dataType="NaceRegionData", filters="unit=RT_INC&age=TOTAL", unit="Incidence rate", datasetName="Non-fatal accidents at work", esgFactor="Social", description="An accident at work is defined as 'a discrete occurrence in the course of work which leads to physical or mental harm'. The data include non-fatal accidents involving more than 3 calendar days of absence from work. If the accident does not lead to the death of the victim it is called a 'non-fatal' (or 'serious') accident.", href="https://ec.europa.eu/eurostat/cache/metadata/en/hsw_acc_work_esms.htm"},
+            new EuroStatTable(){tableCode = "earn_gr_gpgr2", attributeName = "genderPayGap", dataType="NaceRegionData", filters="unit=PC", unit="Percentage", datasetName="Gender pay gap", esgFactor="Corporate Governance", description="The unadjusted gender pay gap (GPG) represents the difference between average gross hourly earnings of male paid employees and of female paid employees as a percentage of average gross hourly earnings of male paid employees.", href="https://ec.europa.eu/eurostat/cache/metadata/en/earn_grgpg2_esms.htm"},
+            new EuroStatTable(){tableCode = "env_ac_taxind2", attributeName = "environmentTaxes", dataType="NaceRegionData", filters="tax=ENV&unit=MIO_EUR", unit="Million Euros", datasetName="Environmental taxes by economic activity", esgFactor="Environment", description="The environmental tax statistics are based on Eurostat’s 2013 'Environmental taxes - a statistical guide'. Environmental tax statistics are part of the environmental accounts which constitute satellite accounts to national accounts.", href="https://ec.europa.eu/eurostat/cache/metadata/en/env_ac_taxind2_esms.htm"},
+            new EuroStatTable(){tableCode = "hsw_n2_02", attributeName = "fatalAccidentsAtWork", dataType="NaceRegionData", filters="unit=RT_INC", unit="Incidence rate", datasetName="Fatal Accidents at work", esgFactor="Social", description="An accident at work is defined as 'a discrete occurrence in the course of work which leads to physical or mental harm'. A fatal accident at work is defined as an accident which leads to the death of a victim within one year of the accident.", href="https://ec.europa.eu/eurostat/cache/metadata/en/hsw_acc_work_esms.htm"},
+            new EuroStatTable(){tableCode = "lfsa_etgan2", attributeName = "temporaryemployment", dataType="NaceRegionData", filters="sex=T&unit=THS&age=Y15-74", unit="Thousand", datasetName="Temporary employees", esgFactor="Social", description="Temporary employment.", href="https://ec.europa.eu/eurostat/cache/metadata/en/lfsa_esms.htm"},
+            new EuroStatTable(){tableCode = "edat_lfs_9910", attributeName = "employeesPrimaryEducation", dataType="NaceRegionData", filters="sex=T&unit=PC&isced11=ED0-2&age=Y15-74", unit="Percentage", datasetName="Employees with less than secondary education", esgFactor="Corporate Governance", description="Less than primary, primary and lower secondary education: this aggregate refers to levels 0, 1 and 2 of the ISCED 2011 (online code ED0-2). Data up to 2013 refer to ISCED 1997 levels 0, 1 and 2 but also include level 3C short (educational attainment from ISCED level 3 programmes of less than two years).", href="https://ec.europa.eu/eurostat/cache/metadata/en/edat1_esms.htm"},
+            new EuroStatTable(){tableCode = "edat_lfs_9910", attributeName = "employeesSecondaryEducation", dataType="NaceRegionData", filters="sex=T&unit=PC&isced11=ED3_4&age=Y15-74", unit="Percentage", datasetName="Employees with secondary education", esgFactor="Corporate Governance", description="Upper secondary and post-secondary non-tertiary education: this aggregate corresponds to ISCED 2011 levels 3 and 4 (online code ED3_4). ISCED 2011 level 3 programmes of partial level completion are considered within ISCED level 3", href="https://ec.europa.eu/eurostat/cache/metadata/en/edat1_esms.htm"},
+            new EuroStatTable(){tableCode = "edat_lfs_9910", attributeName = "employeesTertiaryEducation", dataType="NaceRegionData", filters="sex=T&unit=PC&isced11=ED5-8&age=Y15-74", unit="Percentage", datasetName="Employees with tertiary education", esgFactor="Corporate Governance", description="Tertiary education: this aggregate covers ISCED 2011 levels 5, 6, 7 and 8 (short-cycle tertiary education, bachelor's or equivalent level, master's or equivalent level, doctoral or equivalent level, online code ED5-8 ‘tertiary education’).", href="https://ec.europa.eu/eurostat/cache/metadata/en/edat1_esms.htm"}
 
 
         };

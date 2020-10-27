@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Purefolio.DatabaseContext;
@@ -9,9 +10,10 @@ using Purefolio.DatabaseContext;
 namespace Purefolio_backend.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20201025230101_V10_Add_Fields_To_EuroStatTable")]
+    partial class V10_Add_Fields_To_EuroStatTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,10 +51,6 @@ namespace Purefolio_backend.Migrations
 
                     b.Property<string>("filters")
                         .HasColumnName("filters")
-                        .HasColumnType("text");
-
-                    b.Property<string>("href")
-                        .HasColumnName("href")
                         .HasColumnType("text");
 
                     b.Property<string>("tableCode")

@@ -12,21 +12,27 @@ namespace Purefolio_backend.Controllers
   {
     private readonly ILogger<EuroStatTableController> _logger;
 
-    private DatabaseStore _databaseStore;
+    private IDatabaseStore _databaseStore;
 
     public EuroStatTableController(
-      ILogger<EuroStatTableController> logger, DatabaseStore databaseStore
+      ILogger<EuroStatTableController> logger, IDatabaseStore databaseStore
     )
     {
       _logger = logger;
       _databaseStore = databaseStore;
     }
 
-        [HttpGet]
-        [Route("esg-factors")]
-        public List<string> getESGFactors()
-        {
-            return _databaseStore.getAllEuroStatTables().ConvertAll((EuroStatTable table) => table.attributeName);
-        }
+    [HttpGet]
+    public List<EuroStatTable> getAllTables()
+    {
+        return _databaseStore.getAllEuroStatTables();
+    }
+    //TODO: Remove this when frontend uses getAllTables-endpoint
+    [HttpGet]
+    [Route("esg-factors")]
+    public List<string> getESGFactors()
+    {
+        return _databaseStore.getAllEuroStatTables().ConvertAll((EuroStatTable table) => table.attributeName);
     }
   }
+}

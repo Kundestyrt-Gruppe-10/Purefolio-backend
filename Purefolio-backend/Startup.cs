@@ -28,11 +28,11 @@ namespace Purefolio_backend
           options.UseLazyLoadingProxies()
           .UseNpgsql(Configuration.GetConnectionString("Development"),
           psqlServerOptions => psqlServerOptions.CommandTimeout(180)));
-      services.AddScoped<DatabaseStore>();
+      services.AddScoped<IDatabaseStore, DatabaseStore>();
       services.AddScoped<EuroStatFetchService>();
       services.AddScoped<BaseDataService>();
       services.AddScoped<BaseData>();
-      services.AddScoped<JSONConverter>();
+      services.AddScoped<EuroStatJSONToObjectsConverterService>();
       services.AddHttpClient();
       services.AddSwaggerGen(options => {
         options.SwaggerDoc("v1", 

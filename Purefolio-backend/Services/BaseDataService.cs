@@ -10,10 +10,10 @@ namespace Purefolio_backend.Services
     public class BaseDataService
     {
         private readonly ILogger<BaseDataService> _logger;
-        private readonly DatabaseStore ds;
+        private readonly IDatabaseStore ds;
         private BaseData baseData;
         public BaseDataService(ILogger<BaseDataService> _logger,
-            DatabaseStore ds,
+            IDatabaseStore ds,
             BaseData baseData)
         {
             this._logger = _logger;
