@@ -32,4 +32,9 @@ namespace Purefolio_backend.Models
             return regionName;
       }
   }
+
+  public class RegionWithHasData : Region
+  {
+    public bool hasData {get; set;}
+  }
 }
