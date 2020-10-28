@@ -28,7 +28,6 @@ namespace Purefolio_backend.Models.Tests
         private IDatabaseStore databaseStore;
         private List<Nace> allNaces;
         private List<Region> allRegions;
-
         private Mock<ILogger<EuroStatFetchService>> mockLogger;
         private Mock<ILogger<JsonConverter>> mockJSONLogger;
         private Mock<IDatabaseStore> mockDBS;
@@ -37,13 +36,13 @@ namespace Purefolio_backend.Models.Tests
 
         [TestInitialize()]
         public void Setup()
-        {//todo init mocks
+        {
             mockDBS = new Mock<IDatabaseStore>();
             mockJSONLogger = new Mock<ILogger<JsonConverter>>();
-            //mockJSON = new Mock<EuroStatJSONToObjectsConverterService>();
             jsc = new EuroStatJSONToObjectsConverterService(mockJSONLogger.Object, mockDBS.Object);
             mockFactory = new Mock<IHttpClientFactory>();
             mockLogger = new Mock<ILogger<EuroStatFetchService>>();
+
             euroStatFetchService = new EuroStatFetchService(mockLogger.Object, mockFactory.Object, mockDBS.Object, jsc);
             EuroStatTable eu1 = new EuroStatTable(){tableCode = "env_ac_ainah_r2", attributeName = "emissionPerYear", dataType="NaceRegionData", unit="unit=KG_HAB&airpol=GHG"};
             EuroStatTable eu2 = new EuroStatTable(){tableCode = "hsw_n2_03", attributeName = "workAccidentsIncidentRate", dataType="NaceRegionData", unit="unit=RT_INC&age=TOTAL"};
@@ -55,6 +54,7 @@ namespace Purefolio_backend.Models.Tests
             EuroStatTable eu8 = new EuroStatTable(){tableCode = "edat_lfs_9910", attributeName = "employeesSecondaryEducation", dataType="NaceRegionData", unit="sex=T&unit=PC&isced11=ED3_4&age=Y15-74"};
             EuroStatTable eu9 = new EuroStatTable(){tableCode = "edat_lfs_9910", attributeName = "employeesTertiaryEducation", dataType="NaceRegionData", unit="sex=T&unit=PC&isced11=ED5-8&age=Y15-74"};
             List<EuroStatTable> listEuro = new List<EuroStatTable>();
+
             listEuro.Add(eu1);
             listEuro.Add(eu2);
             listEuro.Add(eu3);
@@ -74,10 +74,7 @@ namespace Purefolio_backend.Models.Tests
             StaticFilters = euroStatFetchService.GetStaticFilters();
             StartYear = euroStatFetchService.GetStartYear();
             EndYear = euroStatFetchService.GetEndYear();
-            //tables = mockDBS.Object.getAllEuroStatTables();
-            List<Nace> naces = new List<Nace>();
-            naces.Add(a);
-            naces.Add(b);
+
         }
 
         [TestMethod()]
@@ -90,15 +87,15 @@ namespace Purefolio_backend.Models.Tests
             naceFilter2.Add(t97);
             EuroStatTable test_table = null;
             List<EuroStatTable> tables = mockDBS.Object.getAllEuroStatTables();
-            string expceted_url = expected;
+            string expectedUrl = expected;
             foreach (EuroStatTable table in tables)
             {
                 if(table.tableCode == tableCode) {
                     test_table = table;
                 }
             }
-            string actual_url = euroStatFetchService.GetEuroStatURL(test_table, index, naceFilter2, start, end);
-            Assert.AreEqual(expceted_url, actual_url);
+            string actualUrl = euroStatFetchService.GetEuroStatURL(test_table, index, naceFilter2, start, end);
+            Assert.AreEqual(expectedUrl, actualUrl);
         }
 
         [TestMethod()]
@@ -126,8 +123,6 @@ namespace Purefolio_backend.Models.Tests
             Assert.AreEqual(expectedIterations, actualIterations);
         }
 
-
-        //nace_r2=H49&nace_r2=H50&nace_r2=H51&nace_r2=H52&nace_r2=H53&nace_r2=I&nace_r2=I55&nace_r2=I56&nace_r2=J&nace_r2=J58&nace_r2=J59&nace_r2=J60&nace_r2=J61&nace_r2=J62&nace_r2=J63&nace_r2=K&nace_r2=K64&nace_r2=K65&nace_r2=K66&nace_r2=L&nace_r2=M&nace_r2=M69&nace_r2=M70&nace_r2=M71&nace_r2=M72&nace_r2=M73&nace_r2=M74&nace_r2=M75&nace_r2=N&nace_r2=N77&nace_r2=N78&nace_r2=N79&nace_r2=N80&nace_r2=N81&nace_r2=N82&nace_r2=O
         [TestMethod()]
         [DataRow("&nace_r2=H49&nace_r2=H50&nace_r2=H51&nace_r2=H52&nace_r2=H53&nace_r2=I&nace_r2=I55", "H49", "H50", "H51", "H52", "H53", "I", "I55")]
         [DataRow(null)]
@@ -144,7 +139,6 @@ namespace Purefolio_backend.Models.Tests
             string actualNaceFilters = euroStatFetchService.GetNaceFilters(0, naceFilter1);
             Assert.AreEqual(expectedNaceFilters, actualNaceFilters);
         }
-
 
         [TestMethod()]
         [DataRow(2015, 2018, "&time=2015&time=2016&time=2017&time=2018")]
