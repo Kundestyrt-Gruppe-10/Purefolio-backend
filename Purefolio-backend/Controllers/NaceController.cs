@@ -35,9 +35,9 @@ namespace Purefolio_backend.Controllers
         }
 
         [HttpGet("hasdata/{regionId}/{tableId}")]
-        public ActionResult<IEnumerable<NaceHasData>> Get(int regionId, int tableId)
+        public ActionResult<IEnumerable<NaceWithHasData>> Get(int regionId, int tableId)
         {
-            return databaseStore.getAllNacesWithData(regionId:regionId, tableId:tableId);
+            return databaseStore.getAllNacesWithHasData(regionId:regionId, tableId:tableId);
         }
     }
   }

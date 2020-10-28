@@ -34,5 +34,11 @@ namespace Purefolio_backend.Controllers
             if (region == null) return NotFound();
             return Ok(region);
         }
+
+        [HttpGet("hasdata/{naceId}/{tableId}")]
+        public ActionResult<IEnumerable<RegionWithHasData>> Get(int naceId, int tableId)
+        {
+            return databaseStore.getAllRegionsWithHasData(naceId:naceId, tableId:tableId);
+        }
     }
   }

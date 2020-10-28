@@ -10,7 +10,8 @@ namespace Purefolio_backend
     public interface IDatabaseStore
     {
         public List<Nace> getAllNaces();
-        public List<NaceHasData> getAllNacesWithData(int regionId, int tableId);
+        public List<NaceWithHasData> getAllNacesWithHasData(int regionId, int tableId);
+        public List<RegionWithHasData> getAllRegionsWithHasData(int naceId, int tableId);
         public List<NaceRegionData> getNaceRegionData(int? regionId, int? naceId, int? year);
         public List<Region> getAllRegions();
         public Nace getNaceById(int id);
@@ -49,12 +50,29 @@ namespace Purefolio_backend
             return db.Nace.ToList();
         }
 
-        public List<NaceHasData> getAllNacesWithData(int regionId, int tableId)
+        public List<RegionWithHasData> getAllRegionsWithHasData(int naceId, int tableId)
         {
             string tableName = db.EuroStatTable.First( table => table.tableId == tableId).attributeName;
             System.Reflection.PropertyInfo prop = typeof(NaceRegionData).GetProperty(tableName);
             
-            return db.Nace.ToList().Select(nace => new NaceHasData 
+            return db.Region.ToList().Select(region => new RegionWithHasData 
+            {
+                regionId = region.regionId,
+                regionName = region.regionName,
+                regionCode = region.regionCode,
+                hasData = db.NaceRegionData.Where( nrd => nrd.regionId == region.regionId && nrd.naceId == naceId)
+                .ToList()
+                .Find(nrd => prop.GetValue(nrd) != null) != null
+            }
+            ).ToList();
+        }
+
+        public List<NaceWithHasData> getAllNacesWithHasData(int regionId, int tableId)
+        {
+            string tableName = db.EuroStatTable.First( table => table.tableId == tableId).attributeName;
+            System.Reflection.PropertyInfo prop = typeof(NaceRegionData).GetProperty(tableName);
+            
+            return db.Nace.ToList().Select(nace => new NaceWithHasData 
             {
                 naceId = nace.naceId,
                 naceName = nace.naceName,
