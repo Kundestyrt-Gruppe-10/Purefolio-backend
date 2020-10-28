@@ -62,7 +62,7 @@ namespace Purefolio_backend.Services
                 try
                 {
                     HttpResponseMessage response = await client.GetAsync(url);
-                    //Console.WriteLine("URL: " + url);
+                    Console.WriteLine("URL: " + url);
                     if (response.IsSuccessStatusCode) 
                     {
                         string jsonString = response.Content.ReadAsStringAsync().Result;
@@ -82,6 +82,23 @@ namespace Purefolio_backend.Services
 
             
             }  
+        }
+
+
+        public int GetStartYear(){
+            return StartYear;
+        }
+
+        public int GetEndYear(){
+            return EndYear;
+        }
+
+        public String GetStaticFilters(){
+            return StaticFilters;
+        }
+
+        public String GetEuroStatAPIEndpoint(){
+            return euroStatApiEndpoint;
         }
 
         /// <summary>
@@ -106,7 +123,7 @@ namespace Purefolio_backend.Services
         /// <param name="index">Index to find the first nace to ask for in this fetch.</param>
         /// <param name="naces">All naces to fetch information on from Eurostat.</param>
         /// <returns></returns>
-        private String GetNaceFilters(int index, List<Nace> naces)
+        public String GetNaceFilters(int index, List<Nace> naces)
         {
             int start = index * MaxElementsFromFetch;
             int count = MaxElementsFromFetch;
@@ -129,14 +146,19 @@ namespace Purefolio_backend.Services
         /// </summary>
         /// <param name="naces">All naces to fetch information on from Eurostat.</param>
         /// <returns></returns>
-        private int GetFetchIterationsCount(List<Nace> naces) 
+        public int GetFetchIterationsCount(List<Nace> naces) 
         {
             int iterations = (int)Math.Ceiling((decimal)naces.Count / (decimal)MaxElementsFromFetch);
             return iterations;
         }
 
-        public String GetTimeFilters(int startYear, int endYear)
+
+        public int GetMaxElementsFromFetch() 
         {
+            return MaxElementsFromFetch;
+        }
+
+        public String GetTimeFilters(int startYear, int endYear){
             List<int> years = new List<int>();
             for (int i = startYear; i <= endYear; i++)
             {
