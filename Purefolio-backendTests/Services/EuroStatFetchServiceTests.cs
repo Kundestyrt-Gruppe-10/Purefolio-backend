@@ -130,6 +130,8 @@ namespace Purefolio_backend.Models.Tests
         //nace_r2=H49&nace_r2=H50&nace_r2=H51&nace_r2=H52&nace_r2=H53&nace_r2=I&nace_r2=I55&nace_r2=I56&nace_r2=J&nace_r2=J58&nace_r2=J59&nace_r2=J60&nace_r2=J61&nace_r2=J62&nace_r2=J63&nace_r2=K&nace_r2=K64&nace_r2=K65&nace_r2=K66&nace_r2=L&nace_r2=M&nace_r2=M69&nace_r2=M70&nace_r2=M71&nace_r2=M72&nace_r2=M73&nace_r2=M74&nace_r2=M75&nace_r2=N&nace_r2=N77&nace_r2=N78&nace_r2=N79&nace_r2=N80&nace_r2=N81&nace_r2=N82&nace_r2=O
         [TestMethod()]
         [DataRow("&nace_r2=H49&nace_r2=H50&nace_r2=H51&nace_r2=H52&nace_r2=H53&nace_r2=I&nace_r2=I55", "H49", "H50", "H51", "H52", "H53", "I", "I55")]
+        [DataRow(null)]
+        [DataRow("&nace_r2=H49", "H49")]
         public void GetNaceFiltersShouldGiveCorrectNaceFilters(string expected, params string[] naces)
         {
             foreach (string naceString in naces)
