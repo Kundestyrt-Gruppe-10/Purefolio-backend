@@ -17,7 +17,6 @@ namespace Purefolio_backend.Models.Tests
         private EuroStatJSONToObjectsConverterService jsc;
         private Nace a = new Nace() {  naceCode = "A", naceName = "Agriculture, forestry and fishing" };
         private Nace b = new Nace() {  naceCode = "B", naceName = "Mining and quarrying" };
-
         private Nace t97 = new Nace() { naceCode = "T97", naceName = ""};
         private List<Nace> naceFilter1 = new List<Nace>();
         private List<Nace> naceFilter2 = new List<Nace>();
@@ -77,25 +76,30 @@ namespace Purefolio_backend.Models.Tests
             StartYear = euroStatFetchService.GetStartYear();
             EndYear = euroStatFetchService.GetEndYear();
             //tables = mockDBS.Object.getAllEuroStatTables();
+            List<Nace> naces = new List<Nace>();
+            naces.Add(a);
+            naces.Add(b);
         }
 
         [TestMethod()]
-        public void GetEurostatURLShouldGiveCorrectURL()
+        [DataRow("earn_gr_gpgr2", 0 ,2015 , 2018, "http://ec.europa.eu/eurostat/wdds/rest/data/v2.1/json/en/earn_gr_gpgr2?precision=1&nace_r2=A&nace_r2=B&nace_r2=T97&time=2015&time=2016&time=2017&time=2018&")]
+        [DataRow("earn_gr_gpgr2", 0 ,2018 , 2015, "http://ec.europa.eu/eurostat/wdds/rest/data/v2.1/json/en/earn_gr_gpgr2?precision=1&nace_r2=A&nace_r2=B&nace_r2=T97&")]
+        public void GetEurostatURLShouldGiveCorrectURL(string tableCode, int index, int start, int end, string expected)
         {
             naceFilter1.Add(a);
             naceFilter1.Add(b);
             naceFilter1.Add(t97);
             EuroStatTable test_table = null;
             List<EuroStatTable> tables = mockDBS.Object.getAllEuroStatTables();
-            string expected_url = "http://ec.europa.eu/eurostat/wdds/rest/data/v2.1/json/en/earn_gr_gpgr2?precision=1&nace_r2=A&nace_r2=B&nace_r2=T97&time=2015&time=2016&time=2017&time=2018&";
+            string expceted_url = expected;
             foreach (EuroStatTable table in tables)
             {
-                if(table.tableCode == "earn_gr_gpgr2") {
+                if(table.tableCode == tableCode) {
                     test_table = table;
                 }
             }
-            string testing_url = euroStatFetchService.GetEuroStatURL(test_table, 0, naceFilter1);
-            Assert.AreEqual(testing_url, expected_url);
+            string actual_url = euroStatFetchService.GetEuroStatURL(test_table, index, naceFilter1, start, end);
+            Assert.AreEqual(expceted_url, actual_url);
         }
 
         [TestMethod()]
@@ -112,15 +116,15 @@ namespace Purefolio_backend.Models.Tests
             {
                 naceFilter1.Add(a);
             }
-            int iterationsCount = euroStatFetchService.GetFetchIterationsCount(naceFilter1);
-            int iterationTest = 0;
+            int actualIterations = euroStatFetchService.GetFetchIterationsCount(naceFilter1);
+            int expectedIterations = 0;
             int MaxElementsFromFetch = euroStatFetchService.GetMaxElementsFromFetch();
             while (NacefilterLength > 0) 
             {
                 NacefilterLength = NacefilterLength - MaxElementsFromFetch;
-                iterationTest++;
+                expectedIterations++;
             }
-            Assert.AreEqual(iterationTest,iterationsCount);
+            Assert.AreEqual(expectedIterations, actualIterations);
         }
 
 
@@ -128,21 +132,23 @@ namespace Purefolio_backend.Models.Tests
         [TestMethod()]
         public void GetNaceFiltersShouldGiveCorrectNaceFilters()
         {
-            string naceAct = "nace_r2=A&nace_r2=B";
+            string expectedNaceFilters = "&nace_r2=A&nace_r2=B";
             naceFilter1.Add(a);
             naceFilter1.Add(b);
-            string naceTest = euroStatFetchService.GetNaceFilters(0, naceFilter1);
-            Assert.AreEqual(naceTest,naceAct);
+            string actualNaceFilters = euroStatFetchService.GetNaceFilters(0, naceFilter1);
+            Assert.AreEqual(expectedNaceFilters, actualNaceFilters);
         }
 
 
         [TestMethod()]
-        public void GetTimeFiltersShouldGiveCorrectTimeFilters()
+        [DataRow(2015, 2018, "&time=2015&time=2016&time=2017&time=2018")]
+        [DataRow(2018, 2018, "&time=2018")]
+        [DataRow(2018, 2015, null)]
+        public void GetTimeFiltersShouldGiveCorrectTimeFilters(int start, int end, string expected)
         {
-
+            string expectedTimeFilters = expected;
+            string actualTimeFilters = euroStatFetchService.GetTimeFilters(start, end);
+            Assert.AreEqual(expectedTimeFilters, actualTimeFilters);
         }
-
-        
-
     }
 }

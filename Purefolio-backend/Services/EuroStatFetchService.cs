@@ -58,7 +58,7 @@ namespace Purefolio_backend.Services
             int iterationCount = GetFetchIterationsCount(naces);
             for (int i = 0; i < iterationCount; i++)
             {
-                string url = GetEuroStatURL(table, i, naces);
+                string url = GetEuroStatURL(table, i, naces, StartYear, EndYear);
                 try
                 {
                     HttpResponseMessage response = await client.GetAsync(url);
@@ -108,12 +108,12 @@ namespace Purefolio_backend.Services
         /// <param name="index">Index to find the first nace to ask for in this fetch.</param>
         /// <param name="naces">All naces to fetch information on from Eurostat.</param>
         /// <returns></returns>
-        public String GetEuroStatURL(EuroStatTable table, int index, List<Nace> naces)
+        public String GetEuroStatURL(EuroStatTable table, int index, List<Nace> naces, int StartYear, int EndYear)
         {
             return euroStatApiEndpoint + table.tableCode 
             + '?' + StaticFilters 
-            + '&' + GetNaceFilters(index, naces)
-            + '&' + GetTimeFilters(StartYear, EndYear)
+            +       GetNaceFilters(index, naces)
+            +       GetTimeFilters(StartYear, EndYear)
             + '&' + table.filters;
         }
 
@@ -125,6 +125,9 @@ namespace Purefolio_backend.Services
         /// <returns></returns>
         public String GetNaceFilters(int index, List<Nace> naces)
         {
+            if(naces.Count == 0) {
+                return null;
+            }
             int start = index * MaxElementsFromFetch;
             int count = MaxElementsFromFetch;
             if (naces.Count < count * (index + 1)) 
@@ -138,7 +141,7 @@ namespace Purefolio_backend.Services
                 naceFilters += queryNaces[i].naceCode + "&nace_r2=";
             }
             naceFilters += queryNaces[queryNaces.Count - 1].naceCode; 
-            return naceFilters;
+            return '&' + naceFilters;
         }
 
         /// <summary>
@@ -164,7 +167,11 @@ namespace Purefolio_backend.Services
             {
                 years.Add(i);
             }
-            return "time=" + string.Join("&time=", years);
+            if (years.Count == 0) 
+            {
+                return null;
+            }
+            return "&time=" + string.Join("&time=", years);
         }
 
         /// <summary>
