@@ -28,4 +28,9 @@ namespace Purefolio_backend.Models
             return naceCode + " - " + naceName;
       }
   }
+
+  public class NaceHasData : Nace
+  {
+    public bool hasData { get; set; }
+  }
 }
