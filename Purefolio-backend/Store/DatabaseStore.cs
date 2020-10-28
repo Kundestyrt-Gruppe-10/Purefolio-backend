@@ -60,6 +60,7 @@ namespace Purefolio_backend
                 regionId = region.regionId,
                 regionName = region.regionName,
                 regionCode = region.regionCode,
+                area = region.area,
                 hasData = db.NaceRegionData.Where( nrd => nrd.regionId == region.regionId && nrd.naceId == naceId)
                 .ToList()
                 .Find(nrd => prop.GetValue(nrd) != null) != null
