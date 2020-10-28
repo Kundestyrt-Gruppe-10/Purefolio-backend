@@ -20,7 +20,6 @@ namespace Purefolio_backend.Models.Tests
         private Nace t97 = new Nace() { naceCode = "T97", naceName = ""};
         private List<Nace> naceFilter1 = new List<Nace>();
         private List<Nace> naceFilter2 = new List<Nace>();
-        //private List<EuroStatTable> tables = new List<EuroStatTable>();
         private String eurostatApiEndpoint;
         private String StaticFilters;
         private int StartYear;
@@ -86,9 +85,9 @@ namespace Purefolio_backend.Models.Tests
         [DataRow("earn_gr_gpgr2", 0 ,2018 , 2015, "http://ec.europa.eu/eurostat/wdds/rest/data/v2.1/json/en/earn_gr_gpgr2?precision=1&nace_r2=A&nace_r2=B&nace_r2=T97&")]
         public void GetEurostatURLShouldGiveCorrectURL(string tableCode, int index, int start, int end, string expected)
         {
-            naceFilter1.Add(a);
-            naceFilter1.Add(b);
-            naceFilter1.Add(t97);
+            naceFilter2.Add(a);
+            naceFilter2.Add(b);
+            naceFilter2.Add(t97);
             EuroStatTable test_table = null;
             List<EuroStatTable> tables = mockDBS.Object.getAllEuroStatTables();
             string expceted_url = expected;
@@ -98,7 +97,7 @@ namespace Purefolio_backend.Models.Tests
                     test_table = table;
                 }
             }
-            string actual_url = euroStatFetchService.GetEuroStatURL(test_table, index, naceFilter1, start, end);
+            string actual_url = euroStatFetchService.GetEuroStatURL(test_table, index, naceFilter2, start, end);
             Assert.AreEqual(expceted_url, actual_url);
         }
 
@@ -114,9 +113,9 @@ namespace Purefolio_backend.Models.Tests
 
             for (int i = 0; i < NacefilterLength; i++)
             {
-                naceFilter1.Add(a);
+                naceFilter2.Add(a);
             }
-            int actualIterations = euroStatFetchService.GetFetchIterationsCount(naceFilter1);
+            int actualIterations = euroStatFetchService.GetFetchIterationsCount(naceFilter2);
             int expectedIterations = 0;
             int MaxElementsFromFetch = euroStatFetchService.GetMaxElementsFromFetch();
             while (NacefilterLength > 0) 
@@ -130,11 +129,16 @@ namespace Purefolio_backend.Models.Tests
 
         //nace_r2=H49&nace_r2=H50&nace_r2=H51&nace_r2=H52&nace_r2=H53&nace_r2=I&nace_r2=I55&nace_r2=I56&nace_r2=J&nace_r2=J58&nace_r2=J59&nace_r2=J60&nace_r2=J61&nace_r2=J62&nace_r2=J63&nace_r2=K&nace_r2=K64&nace_r2=K65&nace_r2=K66&nace_r2=L&nace_r2=M&nace_r2=M69&nace_r2=M70&nace_r2=M71&nace_r2=M72&nace_r2=M73&nace_r2=M74&nace_r2=M75&nace_r2=N&nace_r2=N77&nace_r2=N78&nace_r2=N79&nace_r2=N80&nace_r2=N81&nace_r2=N82&nace_r2=O
         [TestMethod()]
-        public void GetNaceFiltersShouldGiveCorrectNaceFilters()
+        [DataRow("&nace_r2=H49&nace_r2=H50&nace_r2=H51&nace_r2=H52&nace_r2=H53&nace_r2=I&nace_r2=I55", "H49", "H50", "H51", "H52", "H53", "I", "I55")]
+        public void GetNaceFiltersShouldGiveCorrectNaceFilters(string expected, params string[] naces)
         {
-            string expectedNaceFilters = "&nace_r2=A&nace_r2=B";
-            naceFilter1.Add(a);
-            naceFilter1.Add(b);
+            foreach (string naceString in naces)
+            {
+                Nace nace = new Nace() {naceCode = naceString};
+                naceFilter1.Add(nace);
+            }
+            string expectedNaceFilters = expected;
+
             string actualNaceFilters = euroStatFetchService.GetNaceFilters(0, naceFilter1);
             Assert.AreEqual(expectedNaceFilters, actualNaceFilters);
         }
