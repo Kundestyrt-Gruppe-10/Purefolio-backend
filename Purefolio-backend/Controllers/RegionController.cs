@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Purefolio_backend.Models;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Purefolio_backend.Controllers
 {

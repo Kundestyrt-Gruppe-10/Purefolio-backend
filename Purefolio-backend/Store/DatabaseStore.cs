@@ -12,7 +12,7 @@ namespace Purefolio_backend
         public List<Nace> getAllNaces();
         public List<NaceWithHasData> getAllNacesWithHasData(int regionId, int tableId);
         public List<RegionWithHasData> getAllRegionsWithHasData(int naceId, int tableId);
-        public List<NaceRegionData> getNaceRegionData(int? regionId, int? naceId, int? year);
+        public List<NaceRegionData> getNaceRegionData(int? regionId, int? naceId, int? fromYear, int? toYear);
         public List<Region> getAllRegions();
         public Nace getNaceById(int id);
         public Region getRegionById(int id);
@@ -96,12 +96,13 @@ namespace Purefolio_backend
             return db.NaceRegionData.ToList();
         }
 
-        public List<NaceRegionData> getNaceRegionData(int? regionId, int? naceId, int? year)
+        public List<NaceRegionData> getNaceRegionData(int? regionId, int? naceId, int? fromYear, int? toYear)
         {
             return db.NaceRegionData.Where(row => 
                 (regionId == null || row.regionId == regionId) &&
                 (naceId == null || row.naceId == naceId) &&
-                (year == null || row.year == year))
+                (fromYear == null || row.year >= fromYear) && 
+                (toYear == null || row.year <= toYear))
                 .OrderBy(nrd => nrd.year)
                 .ToList();
         }
