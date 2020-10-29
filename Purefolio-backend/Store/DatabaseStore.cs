@@ -3,6 +3,7 @@ using Purefolio.DatabaseContext;
 using Purefolio_backend.Models;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 using Microsoft.EntityFrameworkCore;
 
 namespace Purefolio_backend
@@ -30,12 +31,15 @@ namespace Purefolio_backend
         // TODO: When project grows, split this up into multiple classes
         private DatabaseContext db;
 
+        private DatabaseContextWithoutProxy db_wp;
+
         private readonly ILogger<DatabaseStore> _logger;
 
-        public DatabaseStore(ILogger<DatabaseStore> _logger, DatabaseContext db)
+        public DatabaseStore(ILogger<DatabaseStore> _logger, DatabaseContext db, DatabaseContextWithoutProxy db_wp)
         {
             // this.db = new DatabaseContext();
             this.db = db;
+            this.db_wp = db_wp;
             this._logger = _logger;
         }
         public Nace getNaceById(int id){
@@ -139,7 +143,7 @@ namespace Purefolio_backend
 
         public List<RegionData> addRegionData(List<RegionData> newRegionData)
         {
-            List<RegionData> existingRegionData = db.RegionData.ToList();
+            List<RegionData> existingRegionData = db_wp.RegionData.ToList();
             foreach (RegionData newRD in newRegionData)
             {
                 RegionData existingElement = existingRegionData.Find((exRD) => exRD.Equals(newRD));
@@ -152,26 +156,26 @@ namespace Purefolio_backend
                     existingElement.merge(newRD);
                 }
             }
-            db.SaveChanges();
+            db_wp.SaveChanges();
             return db.RegionData.ToList();
         }
 
         public List<NaceRegionData> addNaceRegionData(List<NaceRegionData> newNaceRegionData)
         {
-            List<NaceRegionData> existingNaceRegionData = db.NaceRegionData.ToList();
+            List<NaceRegionData> existingNaceRegionData = db_wp.NaceRegionData.ToList();
             foreach (NaceRegionData newNRD in newNaceRegionData)
             {
                 NaceRegionData existingElement = existingNaceRegionData.Find((exNRD) => exNRD.Equals(newNRD));
                 if (existingElement == null)
                 {
-                    db.NaceRegionData.Add(newNRD);
+                    db_wp.NaceRegionData.Add(newNRD);
                 }
                 else
                 {
                     existingElement.merge(newNRD);
                 }
             }
-            db.SaveChanges();
+            db_wp.SaveChanges();
             return db.NaceRegionData.ToList();
         }
     }
