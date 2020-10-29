@@ -19,8 +19,8 @@ namespace Purefolio_backend.Services
         private static string euroStatApiEndpoint = "http://ec.europa.eu/eurostat/wdds/rest/data/v2.1/json/en/";
         private static string StaticFilters = "precision=1";
         private static int MaxElementsFromFetch = 50;
-        private static int StartYear = 2015;
-        private static int EndYear = 2018;
+        private static int StartYear = 2000;
+        private static int EndYear;
 
         public EuroStatFetchService(ILogger<EuroStatFetchService> _logger, IHttpClientFactory clientFactory, IDatabaseStore databaseStore, EuroStatJSONToObjectsConverterService JSONConverter)
         {
@@ -31,18 +31,26 @@ namespace Purefolio_backend.Services
 
         public async Task<List<NaceRegionData>> PopulateDB()
         {
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+            System.DateTime moment = System.DateTime.Now;
+            EndYear = moment.Year;
             List<EuroStatTable> tables = databaseStore.getAllEuroStatTables();
             int i = 0;
             int infoMaxLength = 70;
             string info;
             foreach (EuroStatTable table in tables)
             {
-                info = $"Saving data in database: {(double)i++ * 100 / tables.Count:0.0}% - {table.attributeName}";
+                info = $"Saving data in database: {(double)i++ * 100 / tables.Count:0.0}% - {table.attributeName} ";
                 Console.Write($"\r{info}{Strings.Space(infoMaxLength - info.Length)}");
                 await FetchAndStore(table);
             }
             info = "Done saving data in database";
             Console.WriteLine($"\r{info}{Strings.Space(infoMaxLength - info.Length)}");
+            watch.Stop();
+            var elapsedS = watch.ElapsedMilliseconds / 1000;
+            var minutes = elapsedS / 60;
+            var seconds = elapsedS - (minutes * 60);
+            Console.WriteLine("Database populated in: " + minutes + ":" + seconds + " minutes.");
             return databaseStore.getAllNaceRegionData();
         }
         // TODO: Change no internet connection handling
@@ -62,7 +70,6 @@ namespace Purefolio_backend.Services
                 try
                 {
                     HttpResponseMessage response = await client.GetAsync(url);
-                    Console.WriteLine("URL: " + url);
                     if (response.IsSuccessStatusCode) 
                     {
                         string jsonString = response.Content.ReadAsStringAsync().Result;
@@ -212,7 +219,7 @@ namespace Purefolio_backend.Services
             }
             if (GetErrorMessage(response).Equals("Dataset contains no data. One or more filtering elements (query parameters) are probably invalid."))
             {
-                _logger.LogInformation(message:"Dataset contains no data. Nothing from the fetch to: " + url + " was stored.");
+                _logger.LogInformation(message:"Dataset contains no data. Nothing was stored from the fetch to: " + url );
             }
             else if (statusCode >= 400 && !(statusCode == 503 && timeoutCounter >= 10)) 
             {    
