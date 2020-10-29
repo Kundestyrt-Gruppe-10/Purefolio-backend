@@ -60,8 +60,6 @@ namespace Purefolio_backend.Models.Tests
             listEuro.Add(eu8);
             listEuro.Add(eu9);
 
-            mockDBS.Setup(x => x.getAllRegions()).Returns(allRegions);
-            mockDBS.Setup(x => x.getAllNaces()).Returns(allNaces);
             mockDBS.Setup(x => x.getAllNaceRegionData()).Returns(new List<NaceRegionData>());
             mockDBS.Setup(x => x.addNaceRegionData(new List<NaceRegionData>())).Returns(new List<NaceRegionData>());
             mockDBS.Setup(x => x.getAllEuroStatTables()).Returns(listEuro);
