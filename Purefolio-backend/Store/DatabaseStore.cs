@@ -31,11 +31,11 @@ namespace Purefolio_backend
         // TODO: When project grows, split this up into multiple classes
         private DatabaseContext db;
 
-        private DatabaseContextWithoutProxy db_wp;
+        private DatabaseContextWithProxy db_wp;
 
         private readonly ILogger<DatabaseStore> _logger;
 
-        public DatabaseStore(ILogger<DatabaseStore> _logger, DatabaseContext db, DatabaseContextWithoutProxy db_wp)
+        public DatabaseStore(ILogger<DatabaseStore> _logger, DatabaseContext db, DatabaseContextWithProxy db_wp)
         {
             // this.db = new DatabaseContext();
             this.db = db;

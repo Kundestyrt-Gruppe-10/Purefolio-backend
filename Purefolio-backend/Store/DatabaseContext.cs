@@ -47,4 +47,8 @@ namespace Purefolio.DatabaseContext
       modelBuilder.Entity<EuroStatTable>().ToTable("EuroStatTable");
     }
   }
+  public class DatabaseContextWithProxy: DatabaseContext {
+    public DatabaseContextWithProxy(DbContextOptions<DatabaseContext> options) : base(options) {}
+  }
+  
 }
