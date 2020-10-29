@@ -24,14 +24,9 @@ namespace Purefolio_backend.Models.Tests
         private String StaticFilters;
         private int StartYear;
         private int EndYear;
-        private static int index = 0;
-        private IDatabaseStore databaseStore;
-        private List<Nace> allNaces;
-        private List<Region> allRegions;
         private Mock<ILogger<EuroStatFetchService>> mockLogger;
         private Mock<ILogger<JsonConverter>> mockJSONLogger;
         private Mock<IDatabaseStore> mockDBS;
-        private Mock<EuroStatJSONToObjectsConverterService> mockJSON;
         private Mock<IHttpClientFactory> mockFactory;
 
         [TestInitialize()]
@@ -80,14 +75,13 @@ namespace Purefolio_backend.Models.Tests
         [TestMethod()]
         [DataRow("earn_gr_gpgr2", 0 ,2015 , 2018, "http://ec.europa.eu/eurostat/wdds/rest/data/v2.1/json/en/earn_gr_gpgr2?precision=1&nace_r2=A&nace_r2=B&nace_r2=T97&time=2015&time=2016&time=2017&time=2018&")]
         [DataRow("earn_gr_gpgr2", 0 ,2018 , 2015, "http://ec.europa.eu/eurostat/wdds/rest/data/v2.1/json/en/earn_gr_gpgr2?precision=1&nace_r2=A&nace_r2=B&nace_r2=T97&")]
-        public void GetEurostatURLShouldGiveCorrectURL(string tableCode, int index, int start, int end, string expected)
+        public void GetEurostatURLShouldGiveCorrectURL(string tableCode, int index, int start, int end, string expectedUrl)
         {
             naceFilter2.Add(a);
             naceFilter2.Add(b);
             naceFilter2.Add(t97);
             EuroStatTable test_table = null;
             List<EuroStatTable> tables = mockDBS.Object.getAllEuroStatTables();
-            string expectedUrl = expected;
             foreach (EuroStatTable table in tables)
             {
                 if(table.tableCode == tableCode) {
@@ -127,14 +121,13 @@ namespace Purefolio_backend.Models.Tests
         [DataRow("&nace_r2=H49&nace_r2=H50&nace_r2=H51&nace_r2=H52&nace_r2=H53&nace_r2=I&nace_r2=I55", "H49", "H50", "H51", "H52", "H53", "I", "I55")]
         [DataRow(null)]
         [DataRow("&nace_r2=H49", "H49")]
-        public void GetNaceFiltersShouldGiveCorrectNaceFilters(string expected, params string[] naces)
+        public void GetNaceFiltersShouldGiveCorrectNaceFilters(string expectedNaceFilters, params string[] naces)
         {
             foreach (string naceString in naces)
             {
                 Nace nace = new Nace() {naceCode = naceString};
                 naceFilter1.Add(nace);
             }
-            string expectedNaceFilters = expected;
 
             string actualNaceFilters = euroStatFetchService.GetNaceFilters(0, naceFilter1);
             Assert.AreEqual(expectedNaceFilters, actualNaceFilters);
@@ -144,9 +137,8 @@ namespace Purefolio_backend.Models.Tests
         [DataRow(2015, 2018, "&time=2015&time=2016&time=2017&time=2018")]
         [DataRow(2018, 2018, "&time=2018")]
         [DataRow(2018, 2015, null)]
-        public void GetTimeFiltersShouldGiveCorrectTimeFilters(int start, int end, string expected)
+        public void GetTimeFiltersShouldGiveCorrectTimeFilters(int start, int end, string expectedTimeFilters)
         {
-            string expectedTimeFilters = expected;
             string actualTimeFilters = euroStatFetchService.GetTimeFilters(start, end);
             Assert.AreEqual(expectedTimeFilters, actualTimeFilters);
         }
