@@ -23,11 +23,12 @@ namespace Purefolio_backend.Controllers.Tests
         }
 
         [TestMethod()]
-        [DataRow(1,15,2018)]
-        [DataRow(1,15,2019)]
-        public void GetTest(int naceId, int regionId, int year)
+        [DataRow()]
+        [DataRow(1,15)]
+        [DataRow(1,15,2017, 2018)]
+        public void GetTest(int? naceId=null, int? regionId=null, int? fromYear=null, int? toYear=null)
         {            
-            Assert.IsTrue(this._databaseStore.getNaceRegionData(naceId, regionId, year).SequenceEqual(naceRegionDataController.Get(naceId, regionId, year)));
+            Assert.IsTrue(this._databaseStore.getNaceRegionData(naceId, regionId, fromYear, toYear).SequenceEqual(naceRegionDataController.Get(naceId, regionId, fromYear, toYear)));
         }
     }
 }
