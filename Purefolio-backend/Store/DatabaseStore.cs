@@ -59,7 +59,7 @@ namespace Purefolio_backend
             string tableName = db.EuroStatTable.First( table => table.tableId == tableId).attributeName;
             System.Reflection.PropertyInfo prop = typeof(NaceRegionData).GetProperty(tableName);
             
-            return db.Region.ToList().Select(region => new RegionWithHasData 
+            return db_wp.Region.ToList().Select(region => new RegionWithHasData 
             {
                 regionId = region.regionId,
                 regionName = region.regionName,
@@ -77,7 +77,7 @@ namespace Purefolio_backend
             string tableName = db.EuroStatTable.First( table => table.tableId == tableId).attributeName;
             System.Reflection.PropertyInfo prop = typeof(NaceRegionData).GetProperty(tableName);
             
-            return db.Nace.ToList().Select(nace => new NaceWithHasData 
+            return db_wp.Nace.ToList().Select(nace => new NaceWithHasData 
             {
                 naceId = nace.naceId,
                 naceName = nace.naceName,
@@ -97,12 +97,12 @@ namespace Purefolio_backend
 
         public List<NaceRegionData> getAllNaceRegionData()
         {
-            return db.NaceRegionData.ToList();
+            return db_wp.NaceRegionData.ToList();
         }
 
         public List<NaceRegionData> getNaceRegionData(int? regionId, int? naceId, int? fromYear, int? toYear)
         {
-            return db.NaceRegionData.Where(row => 
+            return db_wp.NaceRegionData.Where(row => 
                 (regionId == null || row.regionId == regionId) &&
                 (naceId == null || row.naceId == naceId) &&
                 (fromYear == null || row.year >= fromYear) && 
@@ -113,7 +113,7 @@ namespace Purefolio_backend
 
         public List<RegionData> getAllRegionData()
         {
-            return db.RegionData.ToList();
+            return db_wp.RegionData.ToList();
         }
 
         public List<EuroStatTable> getAllEuroStatTables()
@@ -143,7 +143,7 @@ namespace Purefolio_backend
 
         public List<RegionData> addRegionData(List<RegionData> newRegionData)
         {
-            List<RegionData> existingRegionData = db_wp.RegionData.ToList();
+            List<RegionData> existingRegionData = db.RegionData.ToList();
             foreach (RegionData newRD in newRegionData)
             {
                 RegionData existingElement = existingRegionData.Find((exRD) => exRD.Equals(newRD));
@@ -156,27 +156,27 @@ namespace Purefolio_backend
                     existingElement.merge(newRD);
                 }
             }
-            db_wp.SaveChanges();
-            return db.RegionData.ToList();
+            db.SaveChanges();
+            return db_wp.RegionData.ToList();
         }
 
         public List<NaceRegionData> addNaceRegionData(List<NaceRegionData> newNaceRegionData)
         {
-            List<NaceRegionData> existingNaceRegionData = db_wp.NaceRegionData.ToList();
+            List<NaceRegionData> existingNaceRegionData = db.NaceRegionData.ToList();
             foreach (NaceRegionData newNRD in newNaceRegionData)
             {
                 NaceRegionData existingElement = existingNaceRegionData.Find((exNRD) => exNRD.Equals(newNRD));
                 if (existingElement == null)
                 {
-                    db_wp.NaceRegionData.Add(newNRD);
+                    db.NaceRegionData.Add(newNRD);
                 }
                 else
                 {
                     existingElement.merge(newNRD);
                 }
             }
-            db_wp.SaveChanges();
-            return db.NaceRegionData.ToList();
+            db.SaveChanges();
+            return db_wp.NaceRegionData.ToList();
         }
     }
 }
