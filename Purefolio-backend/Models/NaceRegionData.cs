@@ -62,7 +62,6 @@ namespace Purefolio_backend.Models
     { 
         if (obj == null || GetType() != obj.GetType()) 
         { 
-            Console.WriteLine("GetType: " + GetType().ToString() + ", obj.GetType: " + obj.GetType().ToString());
             return false; 
         } 
         NaceRegionData other = (NaceRegionData) obj;
