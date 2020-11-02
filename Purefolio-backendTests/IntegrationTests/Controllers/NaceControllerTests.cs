@@ -25,10 +25,11 @@ namespace Purefolio_backend.Controllers.Tests
         }
 
         [TestMethod()]
-        public void GetTest()
+        public async void GetTest()
         {
-            ActionResult<IEnumerable<Nace>> response = naceController.GetAll();
-            Assert.IsTrue(this._databaseStore.getAllNaces().SequenceEqual(response.Value));
+            ActionResult<IEnumerable<Nace>> response = await naceController.GetAll();
+            List<Nace> naces = await this._databaseStore.getAllNaces();
+            Assert.IsTrue(naces.SequenceEqual(response.Value));
         }
     }
 }

@@ -25,10 +25,11 @@ namespace Purefolio_backend.Controllers.Tests
         }
 
         [TestMethod()]
-        public void GetTest()
+        public async void GetTest()
         {
-            ActionResult<IEnumerable<Region>> response = regionController.GetAll();
-            Assert.IsTrue(this._databaseStore.getAllRegions().SequenceEqual(response.Value));
+            ActionResult<IEnumerable<Region>> response = await regionController.GetAll();
+            List<Region> regions = await this._databaseStore.getAllRegions();
+            Assert.IsTrue(regions.SequenceEqual(response.Value));
         }
     }
 }

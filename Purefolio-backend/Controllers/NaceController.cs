@@ -2,7 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Purefolio_backend.Models;
-using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+
 
 namespace Purefolio_backend.Controllers
 {
@@ -21,23 +22,23 @@ namespace Purefolio_backend.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Nace>> GetAll()
+        public async Task<ActionResult<IEnumerable<Nace>>> GetAll()
         {
-            return databaseStore.getAllNaces();
+            return await databaseStore.getAllNaces();
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Nace> GetSingle(int id)
+        public async Task<ActionResult<Nace>> GetSingle(int id)
         {
-            Nace nace = databaseStore.getNaceById(id);
+            Nace nace = await databaseStore.getNaceById(id);
             if (nace == null) return NotFound();
             return Ok(nace);
         }
 
         [HttpGet("hasdata/{regionId}/{tableId}")]
-        public ActionResult<IEnumerable<NaceWithHasData>> Get(int regionId, int tableId)
+        public async Task<ActionResult<IEnumerable<NaceWithHasData>>> Get(int regionId, int tableId)
         {
-            return databaseStore.getAllNacesWithHasData(regionId:regionId, tableId:tableId);
+            return await databaseStore.getAllNacesWithHasData(regionId:regionId, tableId:tableId);
         }
     }
   }

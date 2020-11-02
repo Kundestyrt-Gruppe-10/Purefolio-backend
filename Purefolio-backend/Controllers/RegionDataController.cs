@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Purefolio_backend.Models;
+using System.Threading.Tasks;
+
 
 namespace Purefolio_backend.Controllers
 {
@@ -20,9 +22,9 @@ namespace Purefolio_backend.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<RegionData> Get()
+        public async Task<IEnumerable<RegionData>> Get()
         {
-            return databaseStore.getAllRegionData();
+            return await databaseStore.getAllRegionData();
         }
       };
     }

@@ -25,9 +25,10 @@ namespace Purefolio_backend.Controllers.Tests
         [TestMethod()]
         [DataRow(1,15,2018)]
         [DataRow(1,15,2019)]
-        public void GetTest(int naceId, int regionId, int year)
+        public async void GetTest(int naceId, int regionId, int year)
         {            
-            Assert.IsTrue(this._databaseStore.getNaceRegionData(naceId, regionId, year).SequenceEqual(naceRegionDataController.Get(naceId, regionId, year)));
+            List<NaceRegionData> nrd = await this._databaseStore.getNaceRegionData(naceId, regionId, year);
+            Assert.IsTrue(nrd.SequenceEqual(await naceRegionDataController.Get(naceId, regionId, year)));
         }
     }
 }

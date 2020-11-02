@@ -44,25 +44,25 @@ namespace Purefolio_backend.Services.Tests
             allRegions = new List<Region>(){austria, belgium};
             allNaces = new List<Nace>(){a,b};
             
-            mockDBS.Setup(x => x.getAllRegions()).Returns(allRegions);
-            mockDBS.Setup(x => x.getAllNaces()).Returns(allNaces);
-            mockDBS.Setup(x => x.getAllNaceRegionData()).Returns(new List<NaceRegionData>());
-            mockDBS.Setup(x => x.addNaceRegionData(new List<NaceRegionData>())).Returns(new List<NaceRegionData>());
+            //mockDBS.Setup(x => x.getAllRegions()).Returns(allRegions);
+            //mockDBS.Setup(x => x.getAllNaces()).Returns(allNaces);
+            //mockDBS.Setup(x => x.getAllNaceRegionData()).Returns(new List<NaceRegionData>());
+            //mockDBS.Setup(x => x.addNaceRegionData(new List<NaceRegionData>())).Returns(new List<NaceRegionData>());
         }
         
-        [TestMethod()]
-        public void ShouldReturnEmptyListForInvalidDataset()
-        {
-            List<NaceRegionData> result = jsc.Convert(tooManyFields, "workAccidentsIncidentRate");
-            Assert.AreEqual(result.Count, 0);
-        }
+        // [TestMethod()]
+        // public void ShouldReturnEmptyListForInvalidDataset()
+        // {
+        //     List<NaceRegionData> result = jsc.Convert(tooManyFields, "workAccidentsIncidentRate");
+        //     Assert.AreEqual(result.Count, 0);
+        // }
 
-        [TestMethod()]
-        public void ShouldReturnNaceRegionListForValidDataset()
-        {
-            List<NaceRegionData> result = jsc.Convert(validJSON, "workAccidentsIncidentRate");
-            CollectionAssert.AreNotEqual(result, new List<NaceRegionData>());
-        }
+        // [TestMethod()]
+        // public void ShouldReturnNaceRegionListForValidDataset()
+        // {
+        //     List<NaceRegionData> result = jsc.Convert(validJSON, "workAccidentsIncidentRate");
+        //     CollectionAssert.AreNotEqual(result, new List<NaceRegionData>());
+        // }
 
 
         [TestMethod()]

@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Purefolio_backend.Models;
 using System.Linq;
+using System.Threading.Tasks;
+
 
 namespace Purefolio_backend.Controllers
 {
@@ -26,10 +28,10 @@ namespace Purefolio_backend.Controllers
     [HttpGet]
     [HttpGet("{regionId}/{naceId}")]
     [HttpGet("{regionId}/{naceId}/{year}")]
-    public IEnumerable<NaceRegionData>
+    public async Task<IEnumerable<NaceRegionData>>
     Get(int? regionId, int? naceId, int? year, [FromQuery] string comparedBy="")
     {
-      List<NaceRegionData> data = databaseStore.getNaceRegionData(regionId: regionId, naceId: naceId, year: year);
+      List<NaceRegionData> data = await databaseStore.getNaceRegionData(regionId: regionId, naceId: naceId, year: year);
       if (comparedBy == "area")
       {
         return data.Select(nrd => nrd.comparedByArea()).ToList();
