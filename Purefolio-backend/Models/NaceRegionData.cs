@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 using System.Linq; 
+using System;
 
 namespace Purefolio_backend.Models
 {
@@ -63,7 +64,7 @@ namespace Purefolio_backend.Models
         { 
             return false; 
         } 
-        NaceRegionData other = (NaceRegionData) obj; 
+        NaceRegionData other = (NaceRegionData) obj;
         return this.naceId == other.naceId && this.regionId == other.regionId && this.year == other.year; 
     } 
  
