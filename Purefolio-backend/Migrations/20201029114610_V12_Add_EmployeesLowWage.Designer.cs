@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Purefolio.DatabaseContext;
@@ -9,9 +10,10 @@ using Purefolio.DatabaseContext;
 namespace Purefolio_backend.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20201029114610_V12_Add_EmployeesLowWage")]
+    partial class V12_Add_EmployeesLowWage
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -124,32 +126,12 @@ namespace Purefolio_backend.Migrations
                         .HasColumnName("environment_taxes")
                         .HasColumnType("double precision");
 
-                    b.Property<double?>("environmentalProtectionPollution")
-                        .HasColumnName("environmental_protection_pollution")
-                        .HasColumnType("double precision");
-
-                    b.Property<double?>("environmentalProtectionTech")
-                        .HasColumnName("environmental_protection_tech")
-                        .HasColumnType("double precision");
-
                     b.Property<double?>("fatalAccidentsAtWork")
                         .HasColumnName("fatal_accidents_at_work")
                         .HasColumnType("double precision");
 
                     b.Property<double?>("genderPayGap")
                         .HasColumnName("gender_pay_gap")
-                        .HasColumnType("double precision");
-
-                    b.Property<double?>("hoursPaidAndNot")
-                        .HasColumnName("hours_paid_and_not")
-                        .HasColumnType("double precision");
-
-                    b.Property<double?>("hoursWorkWeek")
-                        .HasColumnName("hours_work_week")
-                        .HasColumnType("double precision");
-
-                    b.Property<double?>("jobVacancyRate")
-                        .HasColumnName("job_vacancy_rate")
                         .HasColumnType("double precision");
 
                     b.Property<int>("naceId")
@@ -160,48 +142,8 @@ namespace Purefolio_backend.Migrations
                         .HasColumnName("region_id")
                         .HasColumnType("integer");
 
-                    b.Property<double?>("seasonalWork")
-                        .HasColumnName("seasonal_work")
-                        .HasColumnType("double precision");
-
-                    b.Property<double?>("supplyEnergyProducts")
-                        .HasColumnName("supply_energy_products")
-                        .HasColumnType("double precision");
-
-                    b.Property<double?>("supplyEnergyResiduals")
-                        .HasColumnName("supply_energy_residuals")
-                        .HasColumnType("double precision");
-
                     b.Property<double?>("temporaryemployment")
                         .HasColumnName("temporaryemployment")
-                        .HasColumnType("double precision");
-
-                    b.Property<double?>("totalHazardousWaste")
-                        .HasColumnName("total_hazardous_waste")
-                        .HasColumnType("double precision");
-
-                    b.Property<double?>("totalNonHazardousWaste")
-                        .HasColumnName("total_non_hazardous_waste")
-                        .HasColumnType("double precision");
-
-                    b.Property<double?>("totalWaste")
-                        .HasColumnName("total_waste")
-                        .HasColumnType("double precision");
-
-                    b.Property<double?>("trainingParticipation")
-                        .HasColumnName("training_participation")
-                        .HasColumnType("double precision");
-
-                    b.Property<double?>("useEnergyProducts")
-                        .HasColumnName("use_energy_products")
-                        .HasColumnType("double precision");
-
-                    b.Property<double?>("useEnergyResiduals")
-                        .HasColumnName("use_energy_residuals")
-                        .HasColumnType("double precision");
-
-                    b.Property<double?>("useNaturalEnergyInputs")
-                        .HasColumnName("use_natural_energy_inputs")
                         .HasColumnType("double precision");
 
                     b.Property<double?>("workAccidentsIncidentRate")
