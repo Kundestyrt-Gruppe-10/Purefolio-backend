@@ -91,8 +91,10 @@ namespace Purefolio_backend
       // Deleting and recreating Database on each boot
     if (!env.IsDevelopment() ||env.IsProduction() || env.IsStaging())
       {
+        // TODO: Make more strict
         app.UseCors("AllowAnyPolicy");
-        using (
+        // TODO: Remove comment below
+/*         using (
           var serviceScope =
             app
               .ApplicationServices
@@ -104,10 +106,11 @@ namespace Purefolio_backend
             serviceScope.ServiceProvider.GetRequiredService<DatabaseContext>();
           context.Database.EnsureDeleted();
           context.Database.EnsureCreated();
-        }
+        } */
+        // TODO: REMOVE comment below
 
         // Populate database on startup
-        using (
+/*         using (
           var serviceScrope =
             app
               .ApplicationServices
@@ -118,7 +121,7 @@ namespace Purefolio_backend
           var service =
             serviceScrope.ServiceProvider.GetRequiredService<BaseDataService>();
           //service.PopulateDatabase();
-        }
+        } */
       }
 
       app.UseAuthorization();
