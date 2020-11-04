@@ -15,7 +15,7 @@ namespace Purefolio_backend
         public Task<List<Nace>> getAllNaces();
         public Task<List<NaceWithHasData>> getAllNacesWithHasData(int regionId, int tableId);
         public Task<List<RegionWithHasData>> getAllRegionsWithHasData(int naceId, int tableId);
-        public Task<List<NaceRegionData>> getNaceRegionData(int? regionId, int? naceId, int? year);
+        public Task<List<NaceRegionData>> getNaceRegionData(int? regionId, int? naceId, int? fromYear, int? toYear);
         public Task<List<Region>> getAllRegions();
         public Task<Nace> getNaceById(int id);
         public Task<Region> getRegionById(int id);

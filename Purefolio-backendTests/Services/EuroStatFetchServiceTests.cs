@@ -7,6 +7,8 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using Purefolio_backend.Models;
 using Purefolio_backend.Services;
+using System.Threading.Tasks;
+
 
 namespace Purefolio_backend.Models.Tests
 {
@@ -60,9 +62,9 @@ namespace Purefolio_backend.Models.Tests
             listEuro.Add(eu8);
             listEuro.Add(eu9);
 
-            mockDBS.Setup(x => x.getAllNaceRegionData()).Returns(new List<NaceRegionData>());
-            mockDBS.Setup(x => x.addNaceRegionData(new List<NaceRegionData>())).Returns(new List<NaceRegionData>());
-            mockDBS.Setup(x => x.getAllEuroStatTables()).Returns(listEuro);
+            mockDBS.Setup(x => x.getAllNaceRegionData()).Returns(Task.FromResult(new List<NaceRegionData>()));
+            mockDBS.Setup(x => x.addNaceRegionData(new List<NaceRegionData>())).Returns(Task.FromResult(new List<NaceRegionData>()));
+            mockDBS.Setup(x => x.getAllEuroStatTables()).Returns(Task.FromResult(listEuro));
             eurostatApiEndpoint = euroStatFetchService.GetEuroStatAPIEndpoint();
             StaticFilters = euroStatFetchService.GetStaticFilters();
             StartYear = euroStatFetchService.GetStartYear();
@@ -79,7 +81,7 @@ namespace Purefolio_backend.Models.Tests
             naceFilter2.Add(b);
             naceFilter2.Add(t97);
             EuroStatTable test_table = null;
-            List<EuroStatTable> tables = mockDBS.Object.getAllEuroStatTables();
+            List<EuroStatTable> tables = mockDBS.Object.getAllEuroStatTables().Result;
             foreach (EuroStatTable table in tables)
             {
                 if(table.tableCode == tableCode) {
