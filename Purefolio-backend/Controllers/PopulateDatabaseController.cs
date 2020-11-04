@@ -33,16 +33,16 @@ namespace Purefolio_backend.Controllers
         [HttpGet]
         public async Task<string> PopulateDatabaseWithBaseAndEurostatData()
         {
-            baseDataService.PopulateDatabase();
+            await baseDataService.PopulateDatabase();
             await euroStatFetchService.PopulateDB();
             return "Data is added";
         }
 
         [HttpGet]
         [Route("base")]
-        public string PopulateDatabaseWithBaseData()
+        public async Task<string> PopulateDatabaseWithBaseData()
         {
-            baseDataService.PopulateDatabase();
+            await baseDataService.PopulateDatabase();
             return "Data is added";
         }
 

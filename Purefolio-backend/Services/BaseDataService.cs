@@ -20,17 +20,17 @@ namespace Purefolio_backend.Services
             this.ds = ds;
             this.baseData = baseData;
         }
-        public string PopulateDatabase()
+        public async Task<String> PopulateDatabase()
         {
-            List<Nace> savedNaces = ds.getAllNaces();
-            List<Region> savedRegions = ds.getAllRegions();
-            List<EuroStatTable> savedTables = ds.getAllEuroStatTables();
+            List<Nace> savedNaces = await ds.getAllNaces();
+            List<Region> savedRegions = await ds.getAllRegions();
+            List<EuroStatTable> savedTables = await ds.getAllEuroStatTables();
             foreach(Nace nace in baseData.getAllNaces())
             {
                 try
                 { 
                     if(!savedNaces.Contains(nace)){
-                        ds.createNace(nace);
+                        await ds.createNace(nace);
                     }
                     
                 } catch(Exception exception)
@@ -44,7 +44,7 @@ namespace Purefolio_backend.Services
                 try
                 { 
                     if(!savedRegions.Contains(region)){
-                        ds.createRegion(region);
+                        await ds.createRegion(region);
                     }
                 } catch(Exception exception)
                 {
@@ -57,7 +57,7 @@ namespace Purefolio_backend.Services
                 try
                 { 
                     if(!savedTables.Contains(table)){
-                        ds.createEuroStatTable(table);
+                        await ds.createEuroStatTable(table);
                     }
                 } catch(Exception exception)
                 {

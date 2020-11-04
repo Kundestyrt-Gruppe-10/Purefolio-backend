@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Purefolio_backend.Models;
 using System.Linq;
+using System.Threading.Tasks;
+
 
 namespace Purefolio_backend.Controllers
 {
@@ -25,10 +27,10 @@ namespace Purefolio_backend.Controllers
 
     [HttpGet]
     [HttpGet("{regionId}/{naceId}")]
-    public IEnumerable<NaceRegionData>
+    public async Task<IEnumerable<NaceRegionData>>
     Get(int? regionId, int? naceId, [FromQuery] int? fromYear= null, [FromQuery] int? toYear= null)
     {
-      return  databaseStore.getNaceRegionData(regionId: regionId, naceId: naceId, fromYear:fromYear, toYear:toYear);
+      return await databaseStore.getNaceRegionData(regionId: regionId, naceId: naceId, fromYear:fromYear, toYear:toYear);
     }
   }
 }

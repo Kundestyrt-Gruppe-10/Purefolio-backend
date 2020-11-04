@@ -9,6 +9,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+
 
 namespace Purefolio_backend.Controllers.Tests
 {
@@ -23,7 +25,7 @@ namespace Purefolio_backend.Controllers.Tests
         }
 
         [TestMethod()]
-        public void GetTest()
+        public async Task GetTest()
         {   List<string> expected =  new List<string>(){
                 "emissionPerYear",
                 "workAccidentsIncidentRate",
@@ -35,7 +37,7 @@ namespace Purefolio_backend.Controllers.Tests
                 "employeesSecondaryEducation",
                 "employeesTertiaryEducation"
             };
-            Assert.IsTrue(expected.SequenceEqual(euroStatTableController.getESGFactors()));
+            Assert.IsTrue(expected.SequenceEqual(await euroStatTableController.getESGFactors()));
         }
     }
 }

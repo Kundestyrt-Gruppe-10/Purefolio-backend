@@ -7,6 +7,8 @@ using System.Linq;
 using System.Globalization;
 using System.Reflection;
 using Purefolio_backend.Utils;
+using System.Threading.Tasks;
+
 
 namespace Purefolio_backend.Services
 {
@@ -28,7 +30,7 @@ namespace Purefolio_backend.Services
         /// <param name="jsonString">A JSON object represented as a string</param>
         /// <param name="attributeName">The name of the datafield. Used to find and set the correct property in NaceRegionObjects</param>
         /// <returns></returns>
-        public List<NaceRegionData> Convert(string jsonString, string attributeName)
+        public async Task<List<NaceRegionData>> Convert(string jsonString, string attributeName)
         {
             un = new EuroStatJSONUnNester(jsonString);
             List<NaceRegionData> nrdList = new List<NaceRegionData>();
@@ -41,8 +43,8 @@ namespace Purefolio_backend.Services
                 return nrdList;
             }
 
-            List<Region> regions = databaseStore.getAllRegions();
-            List<Nace> naces = databaseStore.getAllNaces();
+            List<Region> regions = await databaseStore.getAllRegions();
+            List<Nace> naces = await databaseStore.getAllNaces();
 
             
             foreach (KeyValuePair<String, String> entry in un.GetValues())

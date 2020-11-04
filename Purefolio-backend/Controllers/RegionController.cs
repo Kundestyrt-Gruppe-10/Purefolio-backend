@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Purefolio_backend.Models;
+using System.Threading.Tasks;
+
 
 namespace Purefolio_backend.Controllers
 {
@@ -21,23 +23,23 @@ namespace Purefolio_backend.Controllers
 
         [HttpGet]
 
-        public ActionResult<IEnumerable<Region>> GetAll()
+        public async Task<ActionResult<IEnumerable<Region>>> GetAll()
         {
-            return databaseStore.getAllRegions();
+            return await databaseStore.getAllRegions();
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Region> Get(int id)
+        public async Task<ActionResult<Region>> Get(int id)
         {
-            Region region = databaseStore.getRegionById(id);
+            Region region = await databaseStore.getRegionById(id);
             if (region == null) return NotFound();
             return Ok(region);
         }
 
         [HttpGet("hasdata/{naceId}/{tableId}")]
-        public ActionResult<IEnumerable<RegionWithHasData>> Get(int naceId, int tableId)
+        public async Task<ActionResult<IEnumerable<RegionWithHasData>>> Get(int naceId, int tableId)
         {
-            return databaseStore.getAllRegionsWithHasData(naceId:naceId, tableId:tableId);
+            return await databaseStore.getAllRegionsWithHasData(naceId:naceId, tableId:tableId);
         }
     }
   }

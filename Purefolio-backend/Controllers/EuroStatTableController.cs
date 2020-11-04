@@ -23,16 +23,17 @@ namespace Purefolio_backend.Controllers
     }
 
     [HttpGet]
-    public List<EuroStatTable> getAllTables()
+    public async Task<List<EuroStatTable>> getAllTables()
     {
-        return _databaseStore.getAllEuroStatTables();
+        return await _databaseStore.getAllEuroStatTables();
     }
     //TODO: Remove this when frontend uses getAllTables-endpoint
     [HttpGet]
     [Route("esg-factors")]
-    public List<string> getESGFactors()
+    public async Task<List<string>> getESGFactors()
     {
-        return _databaseStore.getAllEuroStatTables().ConvertAll((EuroStatTable table) => table.attributeName);
+        List<EuroStatTable> allEurostatTables = await _databaseStore.getAllEuroStatTables();
+        return allEurostatTables.ConvertAll((EuroStatTable table) => table.attributeName);
     }
   }
 }

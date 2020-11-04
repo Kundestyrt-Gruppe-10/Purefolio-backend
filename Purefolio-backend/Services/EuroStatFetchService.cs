@@ -34,7 +34,7 @@ namespace Purefolio_backend.Services
             var watch = System.Diagnostics.Stopwatch.StartNew();
             System.DateTime moment = System.DateTime.Now;
             EndYear = moment.Year;
-            List<EuroStatTable> tables = databaseStore.getAllEuroStatTables();
+            List<EuroStatTable> tables = await databaseStore.getAllEuroStatTables();
             int i = 0;
             int infoMaxLength = 70;
             string info;
@@ -46,12 +46,13 @@ namespace Purefolio_backend.Services
             }
             info = "Done saving data in database";
             Console.WriteLine($"\r{info}{Strings.Space(infoMaxLength - info.Length)}");
+
             watch.Stop();
             var elapsedS = watch.ElapsedMilliseconds / 1000;
             var minutes = elapsedS / 60;
             var seconds = elapsedS - (minutes * 60);
             Console.WriteLine("Database populated in: " + minutes + ":" + seconds + " minutes.");
-            return databaseStore.getAllNaceRegionData();
+            return await databaseStore.getAllNaceRegionData();
         }
         // TODO: Change no internet connection handling
         
@@ -62,7 +63,7 @@ namespace Purefolio_backend.Services
         /// <returns></returns>
         private async Task FetchAndStore(EuroStatTable table) 
         {
-            List<Nace> naces = databaseStore.getAllNaces();
+            List<Nace> naces = await databaseStore.getAllNaces();
             int iterationCount = GetFetchIterationsCount(naces);
             for (int i = 0; i < iterationCount; i++)
             {
@@ -73,8 +74,8 @@ namespace Purefolio_backend.Services
                     if (response.IsSuccessStatusCode) 
                     {
                         string jsonString = response.Content.ReadAsStringAsync().Result;
-                        List<NaceRegionData> EurostatNRData = JSONConverter.Convert(jsonString, table.attributeName);
-                        databaseStore.addNaceRegionData(EurostatNRData);
+                        List<NaceRegionData> EurostatNRData = await JSONConverter.Convert(jsonString, table.attributeName);
+                        await databaseStore.addNaceRegionData(EurostatNRData);
                     }  
                     else 
                      {

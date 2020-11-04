@@ -5,26 +5,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
+
 
 namespace Purefolio_backend
 {
     public interface IDatabaseStore
     {
-        public List<Nace> getAllNaces();
-        public List<NaceWithHasData> getAllNacesWithHasData(int regionId, int tableId);
-        public List<RegionWithHasData> getAllRegionsWithHasData(int naceId, int tableId);
-        public List<NaceRegionData> getNaceRegionData(int? regionId, int? naceId, int? fromYear, int? toYear);
-        public List<Region> getAllRegions();
-        public Nace getNaceById(int id);
-        public Region getRegionById(int id);
-        public List<RegionData> getAllRegionData();
-        public List<EuroStatTable> getAllEuroStatTables();
-        public List<NaceRegionData> getAllNaceRegionData();
-        public List<NaceRegionData> addNaceRegionData(List<NaceRegionData> newNaceRegionData);
-        public Region createRegion(Region region);
-        public Nace createNace(Nace nace);
-        public EuroStatTable createEuroStatTable(EuroStatTable table);
-
+        public Task<List<Nace>> getAllNaces();
+        public Task<List<NaceWithHasData>> getAllNacesWithHasData(int regionId, int tableId);
+        public Task<List<RegionWithHasData>> getAllRegionsWithHasData(int naceId, int tableId);
+        public Task<List<NaceRegionData>> getNaceRegionData(int? regionId, int? naceId, int? fromYear, int? toYear);
+        public Task<List<Region>> getAllRegions();
+        public Task<Nace> getNaceById(int id);
+        public Task<Region> getRegionById(int id);
+        public Task<List<RegionData>> getAllRegionData();
+        public Task<List<EuroStatTable>> getAllEuroStatTables();
+        public Task<List<NaceRegionData>> getAllNaceRegionData();
+        public Task<List<NaceRegionData>> addNaceRegionData(List<NaceRegionData> newNaceRegionData);
+        public Task<Region> createRegion(Region region);
+        public Task<Nace> createNace(Nace nace);
+        public Task<EuroStatTable> createEuroStatTable(EuroStatTable table);
     }
     public class DatabaseStore : IDatabaseStore
     {
@@ -42,21 +43,22 @@ namespace Purefolio_backend
             this.db_wp = db_wp;
             this._logger = _logger;
         }
-        public Nace getNaceById(int id){
-            return db.Nace.Find(id);
+        public async Task<Nace> getNaceById(int id){
+            return await db.Nace.FirstOrDefaultAsync(w => w.naceId == id);
         }
-        public Region getRegionById(int id)
+        public async Task<Region> getRegionById(int id)
         {
-            return db.Region.Find(id);
+            return await db.Region.FirstOrDefaultAsync(w => w.regionId == id);
         }
-        public List<Nace> getAllNaces()
+        public async Task<List<Nace>> getAllNaces()
         {
-            return db.Nace.ToList();
+            return await db.Nace.ToListAsync();
         }
 
-        public List<RegionWithHasData> getAllRegionsWithHasData(int naceId, int tableId)
+        public async Task<List<RegionWithHasData>> getAllRegionsWithHasData(int naceId, int tableId)
         {
-            string tableName = db.EuroStatTable.First( table => table.tableId == tableId).attributeName;
+            EuroStatTable table = await db.EuroStatTable.FirstAsync( table => table.tableId == tableId);
+            string tableName = table.attributeName;
             System.Reflection.PropertyInfo prop = typeof(NaceRegionData).GetProperty(tableName);
             
             return db_wp.Region.ToList().Select(region => new RegionWithHasData 
@@ -72,9 +74,10 @@ namespace Purefolio_backend
             ).ToList();
         }
 
-        public List<NaceWithHasData> getAllNacesWithHasData(int regionId, int tableId)
+        public async Task<List<NaceWithHasData>> getAllNacesWithHasData(int regionId, int tableId)
         {
-            string tableName = db.EuroStatTable.First( table => table.tableId == tableId).attributeName;
+            EuroStatTable table = await db.EuroStatTable.FirstAsync( table => table.tableId == tableId);
+            string tableName = table.attributeName;
             System.Reflection.PropertyInfo prop = typeof(NaceRegionData).GetProperty(tableName);
             
             return db_wp.Nace.ToList().Select(nace => new NaceWithHasData 
@@ -90,53 +93,53 @@ namespace Purefolio_backend
         }
 
 
-        public List<Region> getAllRegions()
+        public async Task<List<Region>> getAllRegions()
         {
-            return db.Region.ToList();
+            return await db.Region.ToListAsync();
         }
 
-        public List<NaceRegionData> getAllNaceRegionData()
+        public async Task<List<NaceRegionData>> getAllNaceRegionData()
         {
-            return db_wp.NaceRegionData.ToList();
+            return await db_wp.NaceRegionData.ToListAsync();
         }
 
-        public List<NaceRegionData> getNaceRegionData(int? regionId, int? naceId, int? fromYear, int? toYear)
+        public async Task<List<NaceRegionData>> getNaceRegionData(int? regionId, int? naceId, int? fromYear, int? toYear)
         {
-            return db_wp.NaceRegionData.Where(row => 
+            return await db_wp.NaceRegionData.Where(row => 
                 (regionId == null || row.regionId == regionId) &&
                 (naceId == null || row.naceId == naceId) &&
                 (fromYear == null || row.year >= fromYear) && 
                 (toYear == null || row.year <= toYear))
                 .OrderBy(nrd => nrd.year)
-                .ToList();
+                .ToListAsync();
         }
 
-        public List<RegionData> getAllRegionData()
+        public async Task<List<RegionData>> getAllRegionData()
         {
-            return db_wp.RegionData.ToList();
+            return await db_wp.RegionData.ToListAsync();
         }
 
-        public List<EuroStatTable> getAllEuroStatTables()
+        public async Task<List<EuroStatTable>> getAllEuroStatTables()
         {
-            return db.EuroStatTable.ToList();
+            return await db.EuroStatTable.ToListAsync();
         }
 
-        public Nace createNace(Nace nace)
+        public async Task<Nace> createNace(Nace nace)
         {
-            db.Nace.Add(nace);
+            await db.Nace.AddAsync(nace);
             db.SaveChanges();
             return nace;
         }
 
-        public EuroStatTable createEuroStatTable(EuroStatTable table)
+        public async Task<EuroStatTable> createEuroStatTable(EuroStatTable table)
         {
-            db.EuroStatTable.Add(table);
+            await db.EuroStatTable.AddAsync(table);
             db.SaveChanges();
             return table;
         }
-        public Region createRegion(Region region)
+        public async Task<Region> createRegion(Region region)
         {
-            db.Region.Add(region);
+            await db.Region.AddAsync(region);
             db.SaveChanges();
             return region;
         }
@@ -160,15 +163,15 @@ namespace Purefolio_backend
             return db_wp.RegionData.ToList();
         }
 
-        public List<NaceRegionData> addNaceRegionData(List<NaceRegionData> newNaceRegionData)
+        public async Task<List<NaceRegionData>> addNaceRegionData(List<NaceRegionData> newNaceRegionData)
         {
-            List<NaceRegionData> existingNaceRegionData = db.NaceRegionData.ToList();
+            List<NaceRegionData> existingNaceRegionData = await db.NaceRegionData.ToListAsync();
             foreach (NaceRegionData newNRD in newNaceRegionData)
             {
                 NaceRegionData existingElement = existingNaceRegionData.Find((exNRD) => exNRD.Equals(newNRD));
                 if (existingElement == null)
                 {
-                    db.NaceRegionData.Add(newNRD);
+                    await db.NaceRegionData.AddAsync(newNRD);
                 }
                 else
                 {
@@ -176,7 +179,7 @@ namespace Purefolio_backend
                 }
             }
             db.SaveChanges();
-            return db_wp.NaceRegionData.ToList();
+            return await db_wp.NaceRegionData.ToListAsync();
         }
     }
 }
