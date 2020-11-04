@@ -32,5 +32,12 @@ namespace Purefolio_backend.Controllers
     {
       return await databaseStore.getNaceRegionData(regionId: regionId, naceId: naceId, fromYear:fromYear, toYear:toYear);
     }
+
+    [HttpGet("years")]
+    public async Task<IEnumerable<int>>
+    GetYearsWithData()
+    {
+      return  await databaseStore.getYearsWithData();
+    }
   }
 }

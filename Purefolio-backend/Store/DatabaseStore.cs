@@ -23,6 +23,7 @@ namespace Purefolio_backend
         public Task<List<EuroStatTable>> getAllEuroStatTables();
         public Task<List<NaceRegionData>> getAllNaceRegionData();
         public Task<List<NaceRegionData>> addNaceRegionData(List<NaceRegionData> newNaceRegionData);
+        public Task<List<int>> getYearsWithData();
         public Task<Region> createRegion(Region region);
         public Task<Nace> createNace(Nace nace);
         public Task<EuroStatTable> createEuroStatTable(EuroStatTable table);
@@ -112,6 +113,15 @@ namespace Purefolio_backend
                 (toYear == null || row.year <= toYear))
                 .OrderBy(nrd => nrd.year)
                 .ToListAsync();
+        }
+
+        public async Task<List<int>> getYearsWithData()
+        {
+            return await db.NaceRegionData
+            .Select(nrd => nrd.year)
+            .Distinct()
+            .OrderBy(year => year)
+            .ToListAsync();
         }
 
         public async Task<List<RegionData>> getAllRegionData()
