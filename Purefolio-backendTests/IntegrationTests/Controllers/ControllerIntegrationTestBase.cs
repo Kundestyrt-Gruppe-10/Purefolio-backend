@@ -20,7 +20,7 @@ namespace Purefolio_backend.Controllers.Tests
         public ControllerIntegrationTestBase() : base()
         {
             var databaseStoreLogger = new Mock<ILogger<DatabaseStore>>();
-            _databaseStore = new DatabaseStore(databaseStoreLogger.Object, this._context);
+            _databaseStore = new DatabaseStore(databaseStoreLogger.Object, this._context, this._context_wp);
         }
         
     }
