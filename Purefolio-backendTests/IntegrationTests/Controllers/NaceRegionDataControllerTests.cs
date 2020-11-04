@@ -25,12 +25,13 @@ namespace Purefolio_backend.Controllers.Tests
         }
 
         [TestMethod()]
-        [DataRow(1,15,2018)]
-        [DataRow(1,15,2019)]
-        public async Task GetTest(int naceId, int regionId, int year)
-        {            
-            List<NaceRegionData> nrd = await this._databaseStore.getNaceRegionData(naceId, regionId, year);
-            Assert.IsTrue(nrd.SequenceEqual(await naceRegionDataController.Get(naceId, regionId, year)));
+        [DataRow()]
+        [DataRow(1,15)]
+        [DataRow(1,15,2017, 2018)]
+        public async Task GetTest(int? naceId=null, int? regionId=null, int? fromYear=null, int? toYear=null)
+        {    
+            List<NaceRegionData> nrd = await this._databaseStore.getNaceRegionData(naceId, regionId, fromYear, toYear);
+            Assert.IsTrue(nrd.SequenceEqual(await naceRegionDataController.Get(naceId, regionId, fromYear, toYear)));
         }
     }
 }

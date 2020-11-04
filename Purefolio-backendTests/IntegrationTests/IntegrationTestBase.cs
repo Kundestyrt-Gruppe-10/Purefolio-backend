@@ -8,14 +8,23 @@ namespace Purefolio_backend
     public class IntegrationTestBase: IDisposable{
 
         protected readonly DatabaseContext _context; 
+        protected readonly DatabaseContextWithProxy _context_wp; 
 
         public IntegrationTestBase()
         {
+            string databaseName = Guid.NewGuid().ToString();
+
             var options = new DbContextOptionsBuilder<DatabaseContext>()
-            .UseInMemoryDatabase(databaseName:Guid.NewGuid().ToString())
+            .UseInMemoryDatabase(databaseName:databaseName)
             .Options;
 
             _context = new DatabaseContext(options);
+
+            var options_wp = new DbContextOptionsBuilder<DatabaseContextWithProxy>()
+            .UseInMemoryDatabase(databaseName:databaseName)
+            .Options;
+
+            _context_wp = new DatabaseContextWithProxy(options_wp);
 
             _context.Database.EnsureCreated();
 

@@ -27,19 +27,10 @@ namespace Purefolio_backend.Controllers
 
     [HttpGet]
     [HttpGet("{regionId}/{naceId}")]
-    [HttpGet("{regionId}/{naceId}/{year}")]
     public async Task<IEnumerable<NaceRegionData>>
-    Get(int? regionId, int? naceId, int? year, [FromQuery] string comparedBy="")
+    Get(int? regionId, int? naceId, [FromQuery] int? fromYear= null, [FromQuery] int? toYear= null)
     {
-      List<NaceRegionData> data = await databaseStore.getNaceRegionData(regionId: regionId, naceId: naceId, year: year);
-      if (comparedBy == "area")
-      {
-        return data.Select(nrd => nrd.comparedByArea()).ToList();
-      }
-      else
-      {
-        return data;
-      }
+      return await databaseStore.getNaceRegionData(regionId: regionId, naceId: naceId, fromYear:fromYear, toYear:toYear);
     }
   }
 }

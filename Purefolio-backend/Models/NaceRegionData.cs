@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 using System.Linq; 
+using System;
 
 namespace Purefolio_backend.Models
 {
@@ -27,8 +28,24 @@ namespace Purefolio_backend.Models
     public double? employeesPrimaryEducation { get; set; }
     public double? employeesSecondaryEducation { get; set; }
     public double? employeesTertiaryEducation { get; set; }
-
+    public double? employeesLowWage { get; set; }
+    public double? hoursPaidAndNot { get; set; }
+    public double? hoursWorkWeek { get; set; }
+    public double? jobVacancyRate { get; set; }
+    public double? trainingParticipation { get; set; }
+    public double? totalWaste { get; set; }
+    public double? totalHazardousWaste { get; set; }
+    public double? totalNonHazardousWaste { get; set; }
+    public double? environmentalProtectionPollution { get; set; }
+    public double? environmentalProtectionTech { get; set; }
+    public double? seasonalWork { get; set; }
+    public double? supplyEnergyProducts { get; set; }
+    public double? supplyEnergyResiduals { get; set; }
+    public double? useNaturalEnergyInputs { get; set; }
+    public double? useEnergyProducts { get; set; }
+    public double? useEnergyResiduals { get; set; }
     
+
 
     public static List<string> essentialFields = new List<string>(){"naceRegionDataId", "region", "regionId", "nace", "naceId", "year"};
 
@@ -63,7 +80,7 @@ namespace Purefolio_backend.Models
         { 
             return false; 
         } 
-        NaceRegionData other = (NaceRegionData) obj; 
+        NaceRegionData other = (NaceRegionData) obj;
         return this.naceId == other.naceId && this.regionId == other.regionId && this.year == other.year; 
     } 
  
