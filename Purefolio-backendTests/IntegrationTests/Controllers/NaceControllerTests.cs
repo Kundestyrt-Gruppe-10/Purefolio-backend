@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+
 
 namespace Purefolio_backend.Controllers.Tests
 {
@@ -25,7 +27,7 @@ namespace Purefolio_backend.Controllers.Tests
         }
 
         [TestMethod()]
-        public async void GetTest()
+        public async Task GetTest()
         {
             ActionResult<IEnumerable<Nace>> response = await naceController.GetAll();
             List<Nace> naces = await this._databaseStore.getAllNaces();

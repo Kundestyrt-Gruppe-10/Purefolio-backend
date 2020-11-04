@@ -9,6 +9,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+
 
 namespace Purefolio_backend.Controllers.Tests
 {
@@ -25,7 +27,7 @@ namespace Purefolio_backend.Controllers.Tests
         [TestMethod()]
         [DataRow(1,15,2018)]
         [DataRow(1,15,2019)]
-        public async void GetTest(int naceId, int regionId, int year)
+        public async Task GetTest(int naceId, int regionId, int year)
         {            
             List<NaceRegionData> nrd = await this._databaseStore.getNaceRegionData(naceId, regionId, year);
             Assert.IsTrue(nrd.SequenceEqual(await naceRegionDataController.Get(naceId, regionId, year)));

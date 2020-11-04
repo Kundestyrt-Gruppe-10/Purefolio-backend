@@ -9,6 +9,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+
 
 namespace Purefolio_backend.Controllers.Tests
 {
@@ -23,7 +25,7 @@ namespace Purefolio_backend.Controllers.Tests
         }
 
         [TestMethod()]
-        public async void GetTest()
+        public async Task GetTest()
         {   List<string> expected =  new List<string>(){
                 "emissionPerYear",
                 "workAccidentsIncidentRate",
