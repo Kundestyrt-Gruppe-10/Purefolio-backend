@@ -64,8 +64,6 @@ namespace Purefolio.DatabaseContext
     public DbSet<EuroStatTable> EuroStatTable { get; set; }
     public DatabaseContextWithProxy(DbContextOptions<DatabaseContextWithProxy> options) : base(options) {}
 
-    protected bool isTestDatabase () => this.Database.ProviderName == "Microsoft.EntityFrameworkCore.InMemory";
-
     protected override void OnConfiguring(
       DbContextOptionsBuilder optionsBuilder)
     {

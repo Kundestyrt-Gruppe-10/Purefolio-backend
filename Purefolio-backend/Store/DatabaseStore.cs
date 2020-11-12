@@ -154,25 +154,6 @@ namespace Purefolio_backend
             return region;
         }
 
-        public List<RegionData> addRegionData(List<RegionData> newRegionData)
-        {
-            List<RegionData> existingRegionData = db.RegionData.ToList();
-            foreach (RegionData newRD in newRegionData)
-            {
-                RegionData existingElement = existingRegionData.Find((exRD) => exRD.Equals(newRD));
-                if (existingElement == null)
-                {
-                    db.RegionData.Add(newRD);
-                }
-                else
-                {
-                    existingElement.merge(newRD);
-                }
-            }
-            db.SaveChanges();
-            return db_wp.RegionData.ToList();
-        }
-
         public async Task<List<NaceRegionData>> addNaceRegionData(List<NaceRegionData> newNaceRegionData)
         {
             List<NaceRegionData> existingNaceRegionData = await db.NaceRegionData.ToListAsync();
