@@ -1,0 +1,3174 @@
+{
+  "Purefolio-backend.dll": {
+    "C:\\Users\\bathe\\git\\customer-driven-project\\Purefolio-backend\\Purefolio-backend\\Store\\DatabaseContext.cs": {
+      "Purefolio.DatabaseContext.DatabaseContext": {
+        "Microsoft.EntityFrameworkCore.DbSet`1<Purefolio_backend.Models.Region> Purefolio.DatabaseContext.DatabaseContext::get_Region()": {
+          "Lines": {
+            "10": 14
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<Purefolio_backend.Models.Nace> Purefolio.DatabaseContext.DatabaseContext::get_Nace()": {
+          "Lines": {
+            "12": 14
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<Purefolio_backend.Models.RegionData> Purefolio.DatabaseContext.DatabaseContext::get_RegionData()": {
+          "Lines": {
+            "14": 12
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<Purefolio_backend.Models.NaceRegionData> Purefolio.DatabaseContext.DatabaseContext::get_NaceRegionData()": {
+          "Lines": {
+            "16": 12
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<Purefolio_backend.Models.EuroStatTable> Purefolio.DatabaseContext.DatabaseContext::get_EuroStatTable()": {
+          "Lines": {
+            "18": 13
+          },
+          "Branches": []
+        },
+        "System.Boolean Purefolio.DatabaseContext.DatabaseContext::isTestDatabase()": {
+          "Lines": {
+            "28": 6
+          },
+          "Branches": []
+        },
+        "System.Void Purefolio.DatabaseContext.DatabaseContext::OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)": {
+          "Lines": {
+            "32": 6,
+            "33": 6,
+            "34": 6,
+            "35": 6,
+            "36": 6,
+            "37": 6,
+            "39": 6
+          },
+          "Branches": []
+        },
+        "System.Void Purefolio.DatabaseContext.DatabaseContext::OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)": {
+          "Lines": {
+            "42": 1,
+            "43": 1,
+            "44": 1,
+            "45": 1,
+            "46": 1,
+            "47": 1,
+            "48": 1
+          },
+          "Branches": []
+        },
+        "System.Void Purefolio.DatabaseContext.DatabaseContext::.ctor(Microsoft.EntityFrameworkCore.DbContextOptions`1<Purefolio.DatabaseContext.DatabaseContext>)": {
+          "Lines": {
+            "19": 12,
+            "21": 6,
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "26": 6
+          },
+          "Branches": [
+            {
+              "Line": 21,
+              "Offset": 20,
+              "EndOffset": 22,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 21,
+              "Offset": 20,
+              "EndOffset": 46,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 6
+            }
+          ]
+        }
+      },
+      "Purefolio.DatabaseContext.DatabaseContextWithProxy": {
+        "Microsoft.EntityFrameworkCore.DbSet`1<Purefolio_backend.Models.Region> Purefolio.DatabaseContext.DatabaseContextWithProxy::get_Region()": {
+          "Lines": {
+            "56": 0
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<Purefolio_backend.Models.Nace> Purefolio.DatabaseContext.DatabaseContextWithProxy::get_Nace()": {
+          "Lines": {
+            "58": 0
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<Purefolio_backend.Models.RegionData> Purefolio.DatabaseContext.DatabaseContextWithProxy::get_RegionData()": {
+          "Lines": {
+            "60": 0
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<Purefolio_backend.Models.NaceRegionData> Purefolio.DatabaseContext.DatabaseContextWithProxy::get_NaceRegionData()": {
+          "Lines": {
+            "62": 12
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<Purefolio_backend.Models.EuroStatTable> Purefolio.DatabaseContext.DatabaseContextWithProxy::get_EuroStatTable()": {
+          "Lines": {
+            "64": 0
+          },
+          "Branches": []
+        },
+        "System.Boolean Purefolio.DatabaseContext.DatabaseContextWithProxy::isTestDatabase()": {
+          "Lines": {
+            "67": 0
+          },
+          "Branches": []
+        },
+        "System.Void Purefolio.DatabaseContext.DatabaseContextWithProxy::OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)": {
+          "Lines": {
+            "71": 3,
+            "72": 3,
+            "73": 3,
+            "74": 3,
+            "75": 3,
+            "76": 3,
+            "78": 3
+          },
+          "Branches": []
+        },
+        "System.Void Purefolio.DatabaseContext.DatabaseContextWithProxy::OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)": {
+          "Lines": {
+            "81": 1,
+            "82": 1,
+            "83": 1,
+            "84": 1,
+            "85": 1,
+            "86": 1,
+            "87": 1
+          },
+          "Branches": []
+        },
+        "System.Void Purefolio.DatabaseContext.DatabaseContextWithProxy::.ctor(Microsoft.EntityFrameworkCore.DbContextOptions`1<Purefolio.DatabaseContext.DatabaseContextWithProxy>)": {
+          "Lines": {
+            "65": 18
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bathe\\git\\customer-driven-project\\Purefolio-backend\\Purefolio-backend\\Store\\Data.cs": {
+      "Purefolio_backend.BaseData": {
+        "System.Collections.Generic.List`1<Purefolio_backend.Models.Nace> Purefolio_backend.BaseData::getAllNaces()": {
+          "Lines": {
+            "195": 0,
+            "196": 0,
+            "197": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<Purefolio_backend.Models.Region> Purefolio_backend.BaseData::getAllRegions()": {
+          "Lines": {
+            "200": 0,
+            "201": 0,
+            "202": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<Purefolio_backend.Models.EuroStatTable> Purefolio_backend.BaseData::getAllEuroStatTables()": {
+          "Lines": {
+            "205": 0,
+            "206": 0,
+            "207": 0
+          },
+          "Branches": []
+        },
+        "System.Void Purefolio_backend.BaseData::.ctor()": {
+          "Lines": {
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0,
+            "30": 0,
+            "31": 0,
+            "32": 0,
+            "33": 0,
+            "34": 0,
+            "35": 0,
+            "36": 0,
+            "37": 0,
+            "38": 0,
+            "39": 0,
+            "40": 0,
+            "41": 0,
+            "42": 0,
+            "43": 0,
+            "44": 0,
+            "45": 0,
+            "46": 0,
+            "47": 0,
+            "48": 0,
+            "49": 0,
+            "50": 0,
+            "51": 0,
+            "52": 0,
+            "53": 0,
+            "54": 0,
+            "55": 0,
+            "56": 0,
+            "57": 0,
+            "58": 0,
+            "59": 0,
+            "60": 0,
+            "61": 0,
+            "62": 0,
+            "63": 0,
+            "64": 0,
+            "65": 0,
+            "66": 0,
+            "67": 0,
+            "68": 0,
+            "69": 0,
+            "70": 0,
+            "71": 0,
+            "72": 0,
+            "73": 0,
+            "74": 0,
+            "75": 0,
+            "76": 0,
+            "77": 0,
+            "78": 0,
+            "79": 0,
+            "80": 0,
+            "81": 0,
+            "82": 0,
+            "83": 0,
+            "84": 0,
+            "85": 0,
+            "86": 0,
+            "87": 0,
+            "88": 0,
+            "89": 0,
+            "90": 0,
+            "91": 0,
+            "92": 0,
+            "93": 0,
+            "94": 0,
+            "95": 0,
+            "96": 0,
+            "97": 0,
+            "98": 0,
+            "99": 0,
+            "100": 0,
+            "101": 0,
+            "102": 0,
+            "103": 0,
+            "104": 0,
+            "105": 0,
+            "106": 0,
+            "107": 0,
+            "108": 0,
+            "109": 0,
+            "110": 0,
+            "111": 0,
+            "112": 0,
+            "113": 0,
+            "114": 0,
+            "115": 0,
+            "116": 0,
+            "117": 0,
+            "118": 0,
+            "119": 0,
+            "120": 0,
+            "121": 0,
+            "123": 0,
+            "124": 0,
+            "125": 0,
+            "126": 0,
+            "127": 0,
+            "128": 0,
+            "129": 0,
+            "130": 0,
+            "131": 0,
+            "132": 0,
+            "133": 0,
+            "134": 0,
+            "135": 0,
+            "136": 0,
+            "137": 0,
+            "138": 0,
+            "139": 0,
+            "140": 0,
+            "141": 0,
+            "142": 0,
+            "143": 0,
+            "144": 0,
+            "145": 0,
+            "146": 0,
+            "147": 0,
+            "148": 0,
+            "149": 0,
+            "150": 0,
+            "151": 0,
+            "152": 0,
+            "153": 0,
+            "154": 0,
+            "155": 0,
+            "156": 0,
+            "157": 0,
+            "158": 0,
+            "159": 0,
+            "165": 0,
+            "166": 0,
+            "167": 0,
+            "168": 0,
+            "169": 0,
+            "170": 0,
+            "171": 0,
+            "172": 0,
+            "173": 0,
+            "174": 0,
+            "175": 0,
+            "176": 0,
+            "177": 0,
+            "178": 0,
+            "179": 0,
+            "180": 0,
+            "181": 0,
+            "182": 0,
+            "183": 0,
+            "184": 0,
+            "185": 0,
+            "186": 0,
+            "187": 0,
+            "188": 0,
+            "189": 0,
+            "190": 0,
+            "191": 0,
+            "192": 0
+          },
+          "Branches": []
+        }
+      },
+      "Purefolio_backend.MockData": {
+        "System.Collections.Generic.List`1<Purefolio_backend.Models.Nace> Purefolio_backend.MockData::getAllNaces()": {
+          "Lines": {
+            "236": 0,
+            "237": 0,
+            "238": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<Purefolio_backend.Models.Region> Purefolio_backend.MockData::getAllRegions()": {
+          "Lines": {
+            "241": 0,
+            "242": 0,
+            "243": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<Purefolio_backend.Models.NaceRegionData> Purefolio_backend.MockData::getNaceRegionData()": {
+          "Lines": {
+            "246": 0,
+            "247": 0,
+            "248": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<Purefolio_backend.Models.RegionData> Purefolio_backend.MockData::getRegionData()": {
+          "Lines": {
+            "251": 0,
+            "252": 0,
+            "253": 0
+          },
+          "Branches": []
+        },
+        "System.Void Purefolio_backend.MockData::.ctor()": {
+          "Lines": {
+            "212": 0,
+            "213": 0,
+            "214": 0,
+            "215": 0,
+            "216": 0,
+            "218": 0,
+            "219": 0,
+            "220": 0,
+            "221": 0,
+            "222": 0,
+            "223": 0,
+            "224": 0,
+            "225": 0,
+            "226": 0,
+            "227": 0,
+            "228": 0,
+            "229": 0,
+            "230": 0,
+            "231": 0,
+            "232": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bathe\\git\\customer-driven-project\\Purefolio-backend\\Purefolio-backend\\Store\\DatabaseStore.cs": {
+      "Purefolio_backend.DatabaseStore": {
+        "System.Collections.Generic.List`1<Purefolio_backend.Models.RegionData> Purefolio_backend.DatabaseStore::addRegionData(System.Collections.Generic.List`1<Purefolio_backend.Models.RegionData>)": {
+          "Lines": {
+            "158": 0,
+            "159": 0,
+            "160": 0,
+            "161": 0,
+            "162": 0,
+            "163": 0,
+            "164": 0,
+            "165": 0,
+            "166": 0,
+            "168": 0,
+            "169": 0,
+            "170": 0,
+            "171": 0,
+            "172": 0,
+            "173": 0,
+            "174": 0
+          },
+          "Branches": [
+            {
+              "Line": 160,
+              "Offset": 127,
+              "EndOffset": 28,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 163,
+              "Offset": 75,
+              "EndOffset": 77,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 163,
+              "Offset": 75,
+              "EndOffset": 104,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 160,
+              "Offset": 127,
+              "EndOffset": 129,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Void Purefolio_backend.DatabaseStore::.ctor(Microsoft.Extensions.Logging.ILogger`1<Purefolio_backend.DatabaseStore>,Purefolio.DatabaseContext.DatabaseContext,Purefolio.DatabaseContext.DatabaseContextWithProxy)": {
+          "Lines": {
+            "40": 6,
+            "41": 6,
+            "43": 6,
+            "44": 6,
+            "45": 6,
+            "46": 6
+          },
+          "Branches": []
+        }
+      },
+      "Purefolio_backend.DatabaseStore/<getNaceById>d__4": {
+        "System.Void Purefolio_backend.DatabaseStore/<getNaceById>d__4::MoveNext()": {
+          "Lines": {
+            "47": 0,
+            "48": 0,
+            "49": 0
+          },
+          "Branches": []
+        }
+      },
+      "Purefolio_backend.DatabaseStore/<getRegionById>d__5": {
+        "System.Void Purefolio_backend.DatabaseStore/<getRegionById>d__5::MoveNext()": {
+          "Lines": {
+            "51": 0,
+            "52": 0,
+            "53": 0
+          },
+          "Branches": []
+        }
+      },
+      "Purefolio_backend.DatabaseStore/<getAllNaces>d__6": {
+        "System.Void Purefolio_backend.DatabaseStore/<getAllNaces>d__6::MoveNext()": {
+          "Lines": {
+            "55": 2,
+            "56": 2,
+            "57": 2
+          },
+          "Branches": []
+        }
+      },
+      "Purefolio_backend.DatabaseStore/<>c__DisplayClass7_0": {
+        "Purefolio_backend.Models.RegionWithHasData Purefolio_backend.DatabaseStore/<>c__DisplayClass7_0::<getAllRegionsWithHasData>b__0(Purefolio_backend.Models.Region)": {
+          "Lines": {
+            "65": 0,
+            "66": 0,
+            "67": 0,
+            "68": 0,
+            "69": 0,
+            "70": 0,
+            "71": 0,
+            "72": 0,
+            "73": 0,
+            "74": 0
+          },
+          "Branches": [
+            {
+              "Line": 65,
+              "Offset": 307,
+              "EndOffset": 309,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 65,
+              "Offset": 307,
+              "EndOffset": 331,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "Purefolio_backend.DatabaseStore/<getAllRegionsWithHasData>d__7": {
+        "System.Void Purefolio_backend.DatabaseStore/<getAllRegionsWithHasData>d__7::MoveNext()": {
+          "Lines": {
+            "60": 0,
+            "61": 0,
+            "62": 0,
+            "63": 0,
+            "75": 0,
+            "76": 0
+          },
+          "Branches": []
+        }
+      },
+      "Purefolio_backend.DatabaseStore/<>c__DisplayClass8_0": {
+        "Purefolio_backend.Models.NaceWithHasData Purefolio_backend.DatabaseStore/<>c__DisplayClass8_0::<getAllNacesWithHasData>b__0(Purefolio_backend.Models.Nace)": {
+          "Lines": {
+            "84": 0,
+            "85": 0,
+            "86": 0,
+            "87": 0,
+            "88": 0,
+            "89": 0,
+            "90": 0,
+            "91": 0,
+            "92": 0
+          },
+          "Branches": [
+            {
+              "Line": 84,
+              "Offset": 289,
+              "EndOffset": 291,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 84,
+              "Offset": 289,
+              "EndOffset": 313,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "Purefolio_backend.DatabaseStore/<getAllNacesWithHasData>d__8": {
+        "System.Void Purefolio_backend.DatabaseStore/<getAllNacesWithHasData>d__8::MoveNext()": {
+          "Lines": {
+            "79": 0,
+            "80": 0,
+            "81": 0,
+            "82": 0,
+            "93": 0,
+            "94": 0
+          },
+          "Branches": []
+        }
+      },
+      "Purefolio_backend.DatabaseStore/<getAllRegions>d__9": {
+        "System.Void Purefolio_backend.DatabaseStore/<getAllRegions>d__9::MoveNext()": {
+          "Lines": {
+            "98": 2,
+            "99": 2,
+            "100": 2
+          },
+          "Branches": []
+        }
+      },
+      "Purefolio_backend.DatabaseStore/<getAllNaceRegionData>d__10": {
+        "System.Void Purefolio_backend.DatabaseStore/<getAllNaceRegionData>d__10::MoveNext()": {
+          "Lines": {
+            "103": 0,
+            "104": 0,
+            "105": 0
+          },
+          "Branches": []
+        }
+      },
+      "Purefolio_backend.DatabaseStore/<getNaceRegionData>d__11": {
+        "System.Void Purefolio_backend.DatabaseStore/<getNaceRegionData>d__11::MoveNext()": {
+          "Lines": {
+            "108": 6,
+            "109": 6,
+            "110": 6,
+            "111": 6,
+            "112": 6,
+            "113": 6,
+            "114": 6,
+            "115": 6,
+            "116": 6
+          },
+          "Branches": []
+        }
+      },
+      "Purefolio_backend.DatabaseStore/<getYearsWithData>d__12": {
+        "System.Void Purefolio_backend.DatabaseStore/<getYearsWithData>d__12::MoveNext()": {
+          "Lines": {
+            "119": 0,
+            "120": 0,
+            "121": 0,
+            "122": 0,
+            "123": 0,
+            "124": 0,
+            "125": 0
+          },
+          "Branches": []
+        }
+      },
+      "Purefolio_backend.DatabaseStore/<getAllRegionData>d__13": {
+        "System.Void Purefolio_backend.DatabaseStore/<getAllRegionData>d__13::MoveNext()": {
+          "Lines": {
+            "128": 0,
+            "129": 0,
+            "130": 0
+          },
+          "Branches": []
+        }
+      },
+      "Purefolio_backend.DatabaseStore/<getAllEuroStatTables>d__14": {
+        "System.Void Purefolio_backend.DatabaseStore/<getAllEuroStatTables>d__14::MoveNext()": {
+          "Lines": {
+            "133": 1,
+            "134": 1,
+            "135": 1
+          },
+          "Branches": []
+        }
+      },
+      "Purefolio_backend.DatabaseStore/<createNace>d__15": {
+        "System.Void Purefolio_backend.DatabaseStore/<createNace>d__15::MoveNext()": {
+          "Lines": {
+            "138": 0,
+            "139": 0,
+            "140": 0,
+            "141": 0,
+            "142": 0
+          },
+          "Branches": [
+            {
+              "Line": 139,
+              "Offset": 68,
+              "EndOffset": 70,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 139,
+              "Offset": 68,
+              "EndOffset": 135,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "Purefolio_backend.DatabaseStore/<createEuroStatTable>d__16": {
+        "System.Void Purefolio_backend.DatabaseStore/<createEuroStatTable>d__16::MoveNext()": {
+          "Lines": {
+            "145": 0,
+            "146": 0,
+            "147": 0,
+            "148": 0,
+            "149": 0
+          },
+          "Branches": [
+            {
+              "Line": 146,
+              "Offset": 68,
+              "EndOffset": 70,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 146,
+              "Offset": 68,
+              "EndOffset": 135,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "Purefolio_backend.DatabaseStore/<createRegion>d__17": {
+        "System.Void Purefolio_backend.DatabaseStore/<createRegion>d__17::MoveNext()": {
+          "Lines": {
+            "151": 0,
+            "152": 0,
+            "153": 0,
+            "154": 0,
+            "155": 0
+          },
+          "Branches": [
+            {
+              "Line": 152,
+              "Offset": 68,
+              "EndOffset": 70,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 152,
+              "Offset": 68,
+              "EndOffset": 135,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "Purefolio_backend.DatabaseStore/<>c__DisplayClass19_0": {
+        "System.Boolean Purefolio_backend.DatabaseStore/<>c__DisplayClass19_0::<addNaceRegionData>b__0(Purefolio_backend.Models.NaceRegionData)": {
+          "Lines": {
+            "181": 0
+          },
+          "Branches": []
+        }
+      },
+      "Purefolio_backend.DatabaseStore/<addNaceRegionData>d__19": {
+        "System.Void Purefolio_backend.DatabaseStore/<addNaceRegionData>d__19::MoveNext()": {
+          "Lines": {
+            "177": 0,
+            "178": 0,
+            "179": 0,
+            "180": 0,
+            "182": 0,
+            "183": 0,
+            "184": 0,
+            "185": 0,
+            "187": 0,
+            "188": 0,
+            "189": 0,
+            "190": 0,
+            "191": 0,
+            "192": 0,
+            "193": 0
+          },
+          "Branches": [
+            {
+              "Line": 179,
+              "Offset": 500,
+              "EndOffset": 220,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 0
+            },
+            {
+              "Line": 182,
+              "Offset": 301,
+              "EndOffset": 306,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 184,
+              "Offset": 366,
+              "EndOffset": 368,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 184,
+              "Offset": 366,
+              "EndOffset": 438,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 182,
+              "Offset": 301,
+              "EndOffset": 449,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 179,
+              "Offset": 500,
+              "EndOffset": 505,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            }
+          ]
+        }
+      }
+    },
+    "C:\\Users\\bathe\\git\\customer-driven-project\\Purefolio-backend\\Purefolio-backend\\utils\\EuroStatJSONUnNester.cs": {
+      "Purefolio_backend.Utils.Field": {
+        "System.Void Purefolio_backend.Utils.Field::.ctor(System.String,System.Int32,System.Int32)": {
+          "Lines": {
+            "16": 120,
+            "17": 120,
+            "18": 120,
+            "19": 120,
+            "20": 120,
+            "21": 120
+          },
+          "Branches": []
+        }
+      },
+      "Purefolio_backend.Utils.EuroStatJSONUnNester": {
+        "System.Collections.Generic.Dictionary`2<System.Int32,System.String> Purefolio_backend.Utils.EuroStatJSONUnNester::GetNestedField(System.String)": {
+          "Lines": {
+            "50": 123,
+            "51": 123,
+            "52": 123,
+            "53": 123,
+            "54": 123,
+            "55": 123,
+            "56": 779,
+            "57": 123
+          },
+          "Branches": []
+        },
+        "System.String Purefolio_backend.Utils.EuroStatJSONUnNester::GetNaceCode(System.Int32)": {
+          "Lines": {
+            "59": 18,
+            "60": 18,
+            "61": 18
+          },
+          "Branches": []
+        },
+        "System.String Purefolio_backend.Utils.EuroStatJSONUnNester::GetRegionCode(System.Int32)": {
+          "Lines": {
+            "64": 18,
+            "65": 18,
+            "66": 18
+          },
+          "Branches": []
+        },
+        "System.Int32 Purefolio_backend.Utils.EuroStatJSONUnNester::GetYear(System.Int32)": {
+          "Lines": {
+            "69": 20,
+            "70": 20,
+            "71": 20
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.Dictionary`2<System.String,System.Object> Purefolio_backend.Utils.EuroStatJSONUnNester::GetJsonDict()": {
+          "Lines": {
+            "74": 166,
+            "75": 166,
+            "76": 166
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.Dictionary`2<System.String,System.String> Purefolio_backend.Utils.EuroStatJSONUnNester::GetValues()": {
+          "Lines": {
+            "79": 3,
+            "80": 3,
+            "81": 3
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.Dictionary`2<System.String,System.String> Purefolio_backend.Utils.EuroStatJSONUnNester::DeserializeValues()": {
+          "Lines": {
+            "84": 40,
+            "85": 40,
+            "86": 40
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<System.String> Purefolio_backend.Utils.EuroStatJSONUnNester::GetID()": {
+          "Lines": {
+            "94": 42,
+            "95": 42,
+            "96": 42
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<System.Int32> Purefolio_backend.Utils.EuroStatJSONUnNester::GetSize()": {
+          "Lines": {
+            "104": 44,
+            "105": 44,
+            "106": 44
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<Purefolio_backend.Utils.Field> Purefolio_backend.Utils.EuroStatJSONUnNester::GetFields()": {
+          "Lines": {
+            "109": 16,
+            "110": 16,
+            "111": 16
+          },
+          "Branches": []
+        },
+        "System.Int32 Purefolio_backend.Utils.EuroStatJSONUnNester::GetFieldIndex(System.String)": {
+          "Lines": {
+            "114": 54,
+            "115": 162,
+            "116": 54
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<Purefolio_backend.Utils.Field> Purefolio_backend.Utils.EuroStatJSONUnNester::CreateFields()": {
+          "Lines": {
+            "124": 40,
+            "125": 40,
+            "126": 40,
+            "128": 40,
+            "129": 40,
+            "130": 40,
+            "131": 40,
+            "132": 40,
+            "133": 40,
+            "134": 40,
+            "135": 160,
+            "136": 40
+          },
+          "Branches": []
+        },
+        "System.Boolean Purefolio_backend.Utils.EuroStatJSONUnNester::IsValidDataset()": {
+          "Lines": {
+            "145": 2,
+            "146": 2,
+            "147": 2,
+            "148": 18,
+            "149": 8,
+            "150": 0,
+            "151": 0,
+            "152": 0,
+            "154": 8,
+            "155": 1,
+            "156": 1,
+            "157": 1,
+            "159": 7,
+            "160": 1,
+            "161": 2
+          },
+          "Branches": [
+            {
+              "Line": 148,
+              "Offset": 228,
+              "EndOffset": 22,
+              "Path": 1,
+              "Ordinal": 15,
+              "Hits": 8
+            },
+            {
+              "Line": 150,
+              "Offset": 34,
+              "EndOffset": 36,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 8
+            },
+            {
+              "Line": 150,
+              "Offset": 47,
+              "EndOffset": 49,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 8
+            },
+            {
+              "Line": 150,
+              "Offset": 34,
+              "EndOffset": 65,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 150,
+              "Offset": 47,
+              "EndOffset": 65,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 150,
+              "Offset": 68,
+              "EndOffset": 70,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 150,
+              "Offset": 68,
+              "EndOffset": 90,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 8
+            },
+            {
+              "Line": 154,
+              "Offset": 107,
+              "EndOffset": 109,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 6
+            },
+            {
+              "Line": 154,
+              "Offset": 126,
+              "EndOffset": 128,
+              "Path": 0,
+              "Ordinal": 8,
+              "Hits": 5
+            },
+            {
+              "Line": 154,
+              "Offset": 145,
+              "EndOffset": 147,
+              "Path": 0,
+              "Ordinal": 10,
+              "Hits": 4
+            },
+            {
+              "Line": 154,
+              "Offset": 107,
+              "EndOffset": 169,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 4
+            },
+            {
+              "Line": 154,
+              "Offset": 126,
+              "EndOffset": 169,
+              "Path": 1,
+              "Ordinal": 9,
+              "Hits": 4
+            },
+            {
+              "Line": 154,
+              "Offset": 145,
+              "EndOffset": 169,
+              "Path": 1,
+              "Ordinal": 11,
+              "Hits": 4
+            },
+            {
+              "Line": 154,
+              "Offset": 174,
+              "EndOffset": 176,
+              "Path": 0,
+              "Ordinal": 12,
+              "Hits": 1
+            },
+            {
+              "Line": 154,
+              "Offset": 174,
+              "EndOffset": 210,
+              "Path": 1,
+              "Ordinal": 13,
+              "Hits": 7
+            },
+            {
+              "Line": 148,
+              "Offset": 228,
+              "EndOffset": 233,
+              "Path": 0,
+              "Ordinal": 14,
+              "Hits": 1
+            }
+          ]
+        },
+        "System.Void Purefolio_backend.Utils.EuroStatJSONUnNester::.ctor(System.String)": {
+          "Lines": {
+            "34": 80,
+            "35": 40,
+            "36": 40,
+            "37": 40,
+            "38": 40,
+            "39": 40,
+            "40": 40,
+            "41": 40,
+            "42": 40
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bathe\\git\\customer-driven-project\\Purefolio-backend\\Purefolio-backend\\Services\\BaseDataService.cs": {
+      "Purefolio_backend.Services.BaseDataService": {
+        "System.Void Purefolio_backend.Services.BaseDataService::.ctor(Microsoft.Extensions.Logging.ILogger`1<Purefolio_backend.Services.BaseDataService>,Purefolio_backend.IDatabaseStore,Purefolio_backend.BaseData)": {
+          "Lines": {
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0
+          },
+          "Branches": []
+        }
+      },
+      "Purefolio_backend.Services.BaseDataService/<PopulateDatabase>d__4": {
+        "System.Void Purefolio_backend.Services.BaseDataService/<PopulateDatabase>d__4::MoveNext()": {
+          "Lines": {
+            "24": 0,
+            "25": 0,
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0,
+            "31": 0,
+            "32": 0,
+            "33": 0,
+            "34": 0,
+            "36": 0,
+            "37": 0,
+            "38": 0,
+            "39": 0,
+            "41": 0,
+            "42": 0,
+            "43": 0,
+            "45": 0,
+            "46": 0,
+            "47": 0,
+            "48": 0,
+            "49": 0,
+            "50": 0,
+            "51": 0,
+            "52": 0,
+            "54": 0,
+            "55": 0,
+            "56": 0,
+            "58": 0,
+            "59": 0,
+            "60": 0,
+            "61": 0,
+            "62": 0,
+            "63": 0,
+            "64": 0,
+            "65": 0,
+            "67": 0,
+            "68": 0,
+            "69": 0
+          },
+          "Branches": [
+            {
+              "Line": 28,
+              "Offset": 759,
+              "EndOffset": 505,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 32,
+              "Offset": 557,
+              "EndOffset": 559,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 32,
+              "Offset": 557,
+              "EndOffset": 676,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 28,
+              "Offset": 759,
+              "EndOffset": 764,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 42,
+              "Offset": 1097,
+              "EndOffset": 843,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 0
+            },
+            {
+              "Line": 46,
+              "Offset": 895,
+              "EndOffset": 897,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 46,
+              "Offset": 895,
+              "EndOffset": 1014,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 0
+            },
+            {
+              "Line": 42,
+              "Offset": 1097,
+              "EndOffset": 1102,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 0
+            },
+            {
+              "Line": 55,
+              "Offset": 1432,
+              "EndOffset": 1181,
+              "Path": 1,
+              "Ordinal": 11,
+              "Hits": 0
+            },
+            {
+              "Line": 59,
+              "Offset": 1233,
+              "EndOffset": 1235,
+              "Path": 0,
+              "Ordinal": 8,
+              "Hits": 0
+            },
+            {
+              "Line": 59,
+              "Offset": 1233,
+              "EndOffset": 1352,
+              "Path": 1,
+              "Ordinal": 9,
+              "Hits": 0
+            },
+            {
+              "Line": 55,
+              "Offset": 1432,
+              "EndOffset": 1437,
+              "Path": 0,
+              "Ordinal": 10,
+              "Hits": 0
+            }
+          ]
+        }
+      }
+    },
+    "C:\\Users\\bathe\\git\\customer-driven-project\\Purefolio-backend\\Purefolio-backend\\Services\\EuroStatFetchService.cs": {
+      "Purefolio_backend.Services.EuroStatFetchService": {
+        "System.Int32 Purefolio_backend.Services.EuroStatFetchService::GetStartYear()": {
+          "Lines": {
+            "96": 14,
+            "97": 14,
+            "98": 14
+          },
+          "Branches": []
+        },
+        "System.Int32 Purefolio_backend.Services.EuroStatFetchService::GetEndYear()": {
+          "Lines": {
+            "100": 14,
+            "101": 14,
+            "102": 14
+          },
+          "Branches": []
+        },
+        "System.String Purefolio_backend.Services.EuroStatFetchService::GetStaticFilters()": {
+          "Lines": {
+            "104": 14,
+            "105": 14,
+            "106": 14
+          },
+          "Branches": []
+        },
+        "System.String Purefolio_backend.Services.EuroStatFetchService::GetEuroStatAPIEndpoint()": {
+          "Lines": {
+            "108": 14,
+            "109": 14,
+            "110": 14
+          },
+          "Branches": []
+        },
+        "System.String Purefolio_backend.Services.EuroStatFetchService::GetEuroStatURL(Purefolio_backend.Models.EuroStatTable,System.Int32,System.Collections.Generic.List`1<Purefolio_backend.Models.Nace>,System.Int32,System.Int32)": {
+          "Lines": {
+            "120": 2,
+            "121": 2,
+            "122": 2,
+            "123": 2,
+            "124": 2,
+            "125": 2,
+            "126": 2
+          },
+          "Branches": []
+        },
+        "System.String Purefolio_backend.Services.EuroStatFetchService::GetNaceFilters(System.Int32,System.Collections.Generic.List`1<Purefolio_backend.Models.Nace>)": {
+          "Lines": {
+            "135": 5,
+            "136": 6,
+            "137": 1,
+            "139": 4,
+            "140": 4,
+            "141": 4,
+            "142": 4,
+            "143": 4,
+            "144": 4,
+            "145": 4,
+            "146": 4,
+            "147": 28,
+            "148": 10,
+            "149": 10,
+            "150": 10,
+            "151": 4,
+            "152": 4,
+            "153": 5
+          },
+          "Branches": [
+            {
+              "Line": 136,
+              "Offset": 14,
+              "EndOffset": 16,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 136,
+              "Offset": 14,
+              "EndOffset": 25,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 4
+            },
+            {
+              "Line": 141,
+              "Offset": 56,
+              "EndOffset": 58,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 4
+            },
+            {
+              "Line": 141,
+              "Offset": 56,
+              "EndOffset": 75,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 4
+            },
+            {
+              "Line": 147,
+              "Offset": 144,
+              "EndOffset": 95,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 10
+            },
+            {
+              "Line": 147,
+              "Offset": 144,
+              "EndOffset": 146,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 4
+            }
+          ]
+        },
+        "System.Int32 Purefolio_backend.Services.EuroStatFetchService::GetFetchIterationsCount(System.Collections.Generic.List`1<Purefolio_backend.Models.Nace>)": {
+          "Lines": {
+            "161": 6,
+            "162": 6,
+            "163": 6,
+            "164": 6
+          },
+          "Branches": []
+        },
+        "System.Int32 Purefolio_backend.Services.EuroStatFetchService::GetMaxElementsFromFetch()": {
+          "Lines": {
+            "168": 6,
+            "169": 6,
+            "170": 6
+          },
+          "Branches": []
+        },
+        "System.String Purefolio_backend.Services.EuroStatFetchService::GetTimeFilters(System.Int32,System.Int32)": {
+          "Lines": {
+            "172": 5,
+            "173": 5,
+            "174": 28,
+            "175": 9,
+            "176": 9,
+            "177": 9,
+            "178": 5,
+            "179": 2,
+            "180": 2,
+            "182": 3,
+            "183": 5
+          },
+          "Branches": [
+            {
+              "Line": 174,
+              "Offset": 34,
+              "EndOffset": 11,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 9
+            },
+            {
+              "Line": 174,
+              "Offset": 34,
+              "EndOffset": 36,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 5
+            },
+            {
+              "Line": 178,
+              "Offset": 47,
+              "EndOffset": 49,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 2
+            },
+            {
+              "Line": 178,
+              "Offset": 47,
+              "EndOffset": 55,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 3
+            }
+          ]
+        },
+        "System.String Purefolio_backend.Services.EuroStatFetchService::GetErrorMessage(System.Net.Http.HttpResponseMessage)": {
+          "Lines": {
+            "191": 0,
+            "192": 0,
+            "193": 0,
+            "194": 0,
+            "195": 0
+          },
+          "Branches": []
+        },
+        "System.Void Purefolio_backend.Services.EuroStatFetchService::.ctor(Microsoft.Extensions.Logging.ILogger`1<Purefolio_backend.Services.EuroStatFetchService>,System.Net.Http.IHttpClientFactory,Purefolio_backend.IDatabaseStore,Purefolio_backend.Services.EuroStatJSONToObjectsConverterService)": {
+          "Lines": {
+            "25": 14,
+            "26": 14,
+            "27": 14,
+            "28": 14,
+            "29": 14,
+            "30": 14
+          },
+          "Branches": []
+        },
+        "System.Void Purefolio_backend.Services.EuroStatFetchService::.cctor()": {
+          "Lines": {
+            "15": 1,
+            "19": 1,
+            "20": 1,
+            "21": 1,
+            "22": 1
+          },
+          "Branches": []
+        }
+      },
+      "Purefolio_backend.Services.EuroStatFetchService/<PopulateDB>d__10": {
+        "System.Void Purefolio_backend.Services.EuroStatFetchService/<PopulateDB>d__10::MoveNext()": {
+          "Lines": {
+            "33": 0,
+            "34": 0,
+            "35": 0,
+            "36": 0,
+            "37": 0,
+            "38": 0,
+            "39": 0,
+            "41": 0,
+            "42": 0,
+            "43": 0,
+            "44": 0,
+            "45": 0,
+            "46": 0,
+            "47": 0,
+            "48": 0,
+            "50": 0,
+            "51": 0,
+            "52": 0,
+            "53": 0,
+            "54": 0,
+            "55": 0,
+            "56": 0
+          },
+          "Branches": [
+            {
+              "Line": 41,
+              "Offset": 526,
+              "EndOffset": 258,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 41,
+              "Offset": 526,
+              "EndOffset": 531,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "Purefolio_backend.Services.EuroStatFetchService/<FetchAndStore>d__11": {
+        "System.Void Purefolio_backend.Services.EuroStatFetchService/<FetchAndStore>d__11::MoveNext()": {
+          "Lines": {
+            "65": 0,
+            "66": 0,
+            "67": 0,
+            "68": 0,
+            "69": 0,
+            "70": 0,
+            "72": 0,
+            "73": 0,
+            "74": 0,
+            "75": 0,
+            "76": 0,
+            "77": 0,
+            "78": 0,
+            "79": 0,
+            "81": 0,
+            "82": 0,
+            "83": 0,
+            "84": 0,
+            "85": 0,
+            "86": 0,
+            "87": 0,
+            "88": 0,
+            "92": 0,
+            "93": 0
+          },
+          "Branches": [
+            {
+              "Line": 65,
+              "Offset": 16,
+              "EndOffset": 27,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 68,
+              "Offset": 1003,
+              "EndOffset": 193,
+              "Path": 1,
+              "Ordinal": 12,
+              "Hits": 0
+            },
+            {
+              "Line": 65,
+              "Offset": 16,
+              "EndOffset": 239,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 70,
+              "Offset": 243,
+              "EndOffset": 283,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 70,
+              "Offset": 243,
+              "EndOffset": 354,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 74,
+              "Offset": 429,
+              "EndOffset": 434,
+              "Path": 0,
+              "Ordinal": 7,
+              "Hits": 0
+            },
+            {
+              "Line": 70,
+              "Offset": 243,
+              "EndOffset": 551,
+              "Path": 2,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 70,
+              "Offset": 243,
+              "EndOffset": 690,
+              "Path": 3,
+              "Ordinal": 5,
+              "Hits": 0
+            },
+            {
+              "Line": 74,
+              "Offset": 429,
+              "EndOffset": 747,
+              "Path": 1,
+              "Ordinal": 8,
+              "Hits": 0
+            },
+            {
+              "Line": 70,
+              "Offset": 243,
+              "EndOffset": 844,
+              "Path": 4,
+              "Ordinal": 6,
+              "Hits": 0
+            },
+            {
+              "Line": 87,
+              "Offset": 926,
+              "EndOffset": 928,
+              "Path": 0,
+              "Ordinal": 9,
+              "Hits": 0
+            },
+            {
+              "Line": 87,
+              "Offset": 926,
+              "EndOffset": 932,
+              "Path": 1,
+              "Ordinal": 10,
+              "Hits": 0
+            },
+            {
+              "Line": 68,
+              "Offset": 1003,
+              "EndOffset": 1008,
+              "Path": 0,
+              "Ordinal": 11,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "Purefolio_backend.Services.EuroStatFetchService/<handleStatusCodeNotSuccess>d__22": {
+        "System.Void Purefolio_backend.Services.EuroStatFetchService/<handleStatusCodeNotSuccess>d__22::MoveNext()": {
+          "Lines": {
+            "209": 0,
+            "210": 0,
+            "211": 0,
+            "212": 0,
+            "213": 0,
+            "214": 0,
+            "215": 0,
+            "216": 0,
+            "217": 0,
+            "218": 0,
+            "219": 0,
+            "220": 0,
+            "221": 0,
+            "222": 0,
+            "223": 0,
+            "224": 0,
+            "225": 0,
+            "226": 0,
+            "227": 0,
+            "228": 0,
+            "229": 0
+          },
+          "Branches": [
+            {
+              "Line": 211,
+              "Offset": 272,
+              "EndOffset": 27,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 0
+            },
+            {
+              "Line": 216,
+              "Offset": 199,
+              "EndOffset": 201,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 216,
+              "Offset": 199,
+              "EndOffset": 241,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 211,
+              "Offset": 253,
+              "EndOffset": 255,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 211,
+              "Offset": 253,
+              "EndOffset": 267,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 211,
+              "Offset": 272,
+              "EndOffset": 277,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 221,
+              "Offset": 308,
+              "EndOffset": 310,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 0
+            },
+            {
+              "Line": 221,
+              "Offset": 308,
+              "EndOffset": 352,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 0
+            },
+            {
+              "Line": 225,
+              "Offset": 363,
+              "EndOffset": 365,
+              "Path": 0,
+              "Ordinal": 8,
+              "Hits": 0
+            },
+            {
+              "Line": 225,
+              "Offset": 376,
+              "EndOffset": 378,
+              "Path": 0,
+              "Ordinal": 10,
+              "Hits": 0
+            },
+            {
+              "Line": 225,
+              "Offset": 376,
+              "EndOffset": 390,
+              "Path": 1,
+              "Ordinal": 11,
+              "Hits": 0
+            },
+            {
+              "Line": 225,
+              "Offset": 363,
+              "EndOffset": 393,
+              "Path": 1,
+              "Ordinal": 9,
+              "Hits": 0
+            },
+            {
+              "Line": 225,
+              "Offset": 398,
+              "EndOffset": 400,
+              "Path": 0,
+              "Ordinal": 12,
+              "Hits": 0
+            },
+            {
+              "Line": 225,
+              "Offset": 398,
+              "EndOffset": 467,
+              "Path": 1,
+              "Ordinal": 13,
+              "Hits": 0
+            }
+          ]
+        }
+      }
+    },
+    "C:\\Users\\bathe\\git\\customer-driven-project\\Purefolio-backend\\Purefolio-backend\\Services\\EuroStatJSONToObjectsConverterService.cs": {
+      "Purefolio_backend.Services.EuroStatJSONToObjectsConverterService": {
+        "System.Collections.Generic.List`1<System.Int32> Purefolio_backend.Services.EuroStatJSONToObjectsConverterService::findIndexesOfFields(System.Int32,System.Collections.Generic.List`1<System.Int32>)": {
+          "Lines": {
+            "88": 18,
+            "89": 18,
+            "92": 18,
+            "93": 18,
+            "94": 18,
+            "95": 18,
+            "96": 18
+          },
+          "Branches": []
+        },
+        "System.Void Purefolio_backend.Services.EuroStatJSONToObjectsConverterService::.ctor(Microsoft.Extensions.Logging.ILogger`1<Newtonsoft.Json.JsonConverter>,Purefolio_backend.IDatabaseStore)": {
+          "Lines": {
+            "21": 18,
+            "22": 18,
+            "23": 18,
+            "24": 18,
+            "25": 18
+          },
+          "Branches": []
+        }
+      },
+      "Purefolio_backend.Services.EuroStatJSONToObjectsConverterService/<>c__DisplayClass4_0": {
+        "System.Boolean Purefolio_backend.Services.EuroStatJSONToObjectsConverterService/<>c__DisplayClass4_0::<Convert>b__1(Purefolio_backend.Models.Nace)": {
+          "Lines": {
+            "65": 40
+          },
+          "Branches": []
+        },
+        "System.Boolean Purefolio_backend.Services.EuroStatJSONToObjectsConverterService/<>c__DisplayClass4_0::<Convert>b__2(Purefolio_backend.Models.Region)": {
+          "Lines": {
+            "66": 40
+          },
+          "Branches": []
+        }
+      },
+      "Purefolio_backend.Services.EuroStatJSONToObjectsConverterService/<>c": {
+        "System.Int32 Purefolio_backend.Services.EuroStatJSONToObjectsConverterService/<>c::<Convert>b__4_0(Purefolio_backend.Utils.Field)": {
+          "Lines": {
+            "52": 64
+          },
+          "Branches": []
+        }
+      },
+      "Purefolio_backend.Services.EuroStatJSONToObjectsConverterService/<Convert>d__4": {
+        "System.Void Purefolio_backend.Services.EuroStatJSONToObjectsConverterService/<Convert>d__4::MoveNext()": {
+          "Lines": {
+            "34": 2,
+            "35": 2,
+            "36": 2,
+            "37": 2,
+            "38": 2,
+            "41": 2,
+            "42": 1,
+            "43": 1,
+            "46": 1,
+            "47": 1,
+            "50": 35,
+            "51": 16,
+            "53": 16,
+            "55": 16,
+            "56": 16,
+            "57": 16,
+            "59": 16,
+            "60": 16,
+            "61": 16,
+            "63": 16,
+            "68": 16,
+            "69": 16,
+            "70": 16,
+            "71": 16,
+            "72": 16,
+            "73": 16,
+            "74": 16,
+            "75": 16,
+            "76": 16,
+            "77": 1,
+            "78": 2
+          },
+          "Branches": [
+            {
+              "Line": 41,
+              "Offset": 105,
+              "EndOffset": 107,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 41,
+              "Offset": 105,
+              "EndOffset": 120,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            },
+            {
+              "Line": 50,
+              "Offset": 1106,
+              "EndOffset": 418,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 16
+            },
+            {
+              "Line": 68,
+              "Offset": 853,
+              "EndOffset": 855,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 16
+            },
+            {
+              "Line": 68,
+              "Offset": 853,
+              "EndOffset": 866,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 68,
+              "Offset": 871,
+              "EndOffset": 876,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 16
+            },
+            {
+              "Line": 68,
+              "Offset": 871,
+              "EndOffset": 1047,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 16
+            },
+            {
+              "Line": 50,
+              "Offset": 1106,
+              "EndOffset": 1111,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 1
+            }
+          ]
+        }
+      }
+    },
+    "C:\\Users\\bathe\\git\\customer-driven-project\\Purefolio-backend\\Purefolio-backend\\Models\\EuroStatTable.cs": {
+      "Purefolio_backend.Models.EuroStatTable": {
+        "System.Int32 Purefolio_backend.Models.EuroStatTable::get_tableId()": {
+          "Lines": {
+            "10": 0
+          },
+          "Branches": []
+        },
+        "System.String Purefolio_backend.Models.EuroStatTable::get_tableCode()": {
+          "Lines": {
+            "11": 200
+          },
+          "Branches": []
+        },
+        "System.String Purefolio_backend.Models.EuroStatTable::get_attributeName()": {
+          "Lines": {
+            "12": 189
+          },
+          "Branches": []
+        },
+        "System.String Purefolio_backend.Models.EuroStatTable::get_filters()": {
+          "Lines": {
+            "13": 56
+          },
+          "Branches": []
+        },
+        "System.String Purefolio_backend.Models.EuroStatTable::get_dataType()": {
+          "Lines": {
+            "14": 0
+          },
+          "Branches": []
+        },
+        "System.String Purefolio_backend.Models.EuroStatTable::get_unit()": {
+          "Lines": {
+            "15": 0
+          },
+          "Branches": []
+        },
+        "System.String Purefolio_backend.Models.EuroStatTable::get_datasetName()": {
+          "Lines": {
+            "16": 0
+          },
+          "Branches": []
+        },
+        "System.String Purefolio_backend.Models.EuroStatTable::get_esgFactor()": {
+          "Lines": {
+            "17": 0
+          },
+          "Branches": []
+        },
+        "System.String Purefolio_backend.Models.EuroStatTable::get_description()": {
+          "Lines": {
+            "18": 0
+          },
+          "Branches": []
+        },
+        "System.String Purefolio_backend.Models.EuroStatTable::get_href()": {
+          "Lines": {
+            "19": 0
+          },
+          "Branches": []
+        },
+        "System.Boolean Purefolio_backend.Models.EuroStatTable::Equals(System.Object)": {
+          "Lines": {
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "26": 0,
+            "27": 0
+          },
+          "Branches": [
+            {
+              "Line": 24,
+              "Offset": 9,
+              "EndOffset": 11,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 24,
+              "Offset": 28,
+              "EndOffset": 30,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 24,
+              "Offset": 9,
+              "EndOffset": 49,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 24,
+              "Offset": 28,
+              "EndOffset": 49,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Int32 Purefolio_backend.Models.EuroStatTable::GetHashCode()": {
+          "Lines": {
+            "30": 0,
+            "31": 0,
+            "32": 0
+          },
+          "Branches": []
+        },
+        "System.String Purefolio_backend.Models.EuroStatTable::ToString()": {
+          "Lines": {
+            "35": 0,
+            "36": 0,
+            "37": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bathe\\git\\customer-driven-project\\Purefolio-backend\\Purefolio-backend\\Models\\Nace.cs": {
+      "Purefolio_backend.Models.Nace": {
+        "System.Int32 Purefolio_backend.Models.Nace::get_naceId()": {
+          "Lines": {
+            "9": 0
+          },
+          "Branches": []
+        },
+        "System.String Purefolio_backend.Models.Nace::get_naceCode()": {
+          "Lines": {
+            "13": 120
+          },
+          "Branches": []
+        },
+        "System.String Purefolio_backend.Models.Nace::get_naceName()": {
+          "Lines": {
+            "14": 0
+          },
+          "Branches": []
+        },
+        "System.Boolean Purefolio_backend.Models.Nace::Equals(System.Object)": {
+          "Lines": {
+            "17": 3,
+            "18": 3,
+            "19": 3
+          },
+          "Branches": [
+            {
+              "Line": 18,
+              "Offset": 9,
+              "EndOffset": 11,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 3
+            },
+            {
+              "Line": 18,
+              "Offset": 9,
+              "EndOffset": 30,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Int32 Purefolio_backend.Models.Nace::GetHashCode()": {
+          "Lines": {
+            "22": 0,
+            "23": 0,
+            "24": 0
+          },
+          "Branches": []
+        },
+        "System.String Purefolio_backend.Models.Nace::ToString()": {
+          "Lines": {
+            "27": 0,
+            "28": 0,
+            "29": 0
+          },
+          "Branches": []
+        }
+      },
+      "Purefolio_backend.Models.NaceWithHasData": {
+        "System.Boolean Purefolio_backend.Models.NaceWithHasData::get_hasData()": {
+          "Lines": {
+            "34": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bathe\\git\\customer-driven-project\\Purefolio-backend\\Purefolio-backend\\Models\\NaceRegionData.cs": {
+      "Purefolio_backend.Models.NaceRegionData": {
+        "System.Int32 Purefolio_backend.Models.NaceRegionData::get_naceRegionDataId()": {
+          "Lines": {
+            "11": 0
+          },
+          "Branches": []
+        },
+        "Purefolio_backend.Models.Nace Purefolio_backend.Models.NaceRegionData::get_nace()": {
+          "Lines": {
+            "13": 0
+          },
+          "Branches": []
+        },
+        "System.Int32 Purefolio_backend.Models.NaceRegionData::get_naceId()": {
+          "Lines": {
+            "15": 88
+          },
+          "Branches": []
+        },
+        "Purefolio_backend.Models.Region Purefolio_backend.Models.NaceRegionData::get_region()": {
+          "Lines": {
+            "17": 0
+          },
+          "Branches": []
+        },
+        "System.Int32 Purefolio_backend.Models.NaceRegionData::get_regionId()": {
+          "Lines": {
+            "19": 94
+          },
+          "Branches": []
+        },
+        "System.Int32 Purefolio_backend.Models.NaceRegionData::get_year()": {
+          "Lines": {
+            "21": 86
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Double> Purefolio_backend.Models.NaceRegionData::get_emissionPerYear()": {
+          "Lines": {
+            "22": 26
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Double> Purefolio_backend.Models.NaceRegionData::get_genderPayGap()": {
+          "Lines": {
+            "23": 34
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Double> Purefolio_backend.Models.NaceRegionData::get_workAccidentsIncidentRate()": {
+          "Lines": {
+            "24": 18
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Double> Purefolio_backend.Models.NaceRegionData::get_environmentTaxes()": {
+          "Lines": {
+            "25": 0
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Double> Purefolio_backend.Models.NaceRegionData::get_fatalAccidentsAtWork()": {
+          "Lines": {
+            "26": 0
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Double> Purefolio_backend.Models.NaceRegionData::get_temporaryemployment()": {
+          "Lines": {
+            "27": 0
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Double> Purefolio_backend.Models.NaceRegionData::get_employeesPrimaryEducation()": {
+          "Lines": {
+            "28": 0
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Double> Purefolio_backend.Models.NaceRegionData::get_employeesSecondaryEducation()": {
+          "Lines": {
+            "29": 0
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Double> Purefolio_backend.Models.NaceRegionData::get_employeesTertiaryEducation()": {
+          "Lines": {
+            "30": 0
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Double> Purefolio_backend.Models.NaceRegionData::get_employeesLowWage()": {
+          "Lines": {
+            "31": 0
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Double> Purefolio_backend.Models.NaceRegionData::get_hoursPaidAndNot()": {
+          "Lines": {
+            "32": 0
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Double> Purefolio_backend.Models.NaceRegionData::get_hoursWorkWeek()": {
+          "Lines": {
+            "33": 0
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Double> Purefolio_backend.Models.NaceRegionData::get_jobVacancyRate()": {
+          "Lines": {
+            "34": 0
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Double> Purefolio_backend.Models.NaceRegionData::get_trainingParticipation()": {
+          "Lines": {
+            "35": 0
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Double> Purefolio_backend.Models.NaceRegionData::get_totalWaste()": {
+          "Lines": {
+            "36": 0
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Double> Purefolio_backend.Models.NaceRegionData::get_totalHazardousWaste()": {
+          "Lines": {
+            "37": 0
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Double> Purefolio_backend.Models.NaceRegionData::get_totalNonHazardousWaste()": {
+          "Lines": {
+            "38": 0
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Double> Purefolio_backend.Models.NaceRegionData::get_environmentalProtectionPollution()": {
+          "Lines": {
+            "39": 0
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Double> Purefolio_backend.Models.NaceRegionData::get_environmentalProtectionTech()": {
+          "Lines": {
+            "40": 0
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Double> Purefolio_backend.Models.NaceRegionData::get_seasonalWork()": {
+          "Lines": {
+            "41": 0
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Double> Purefolio_backend.Models.NaceRegionData::get_supplyEnergyProducts()": {
+          "Lines": {
+            "42": 0
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Double> Purefolio_backend.Models.NaceRegionData::get_supplyEnergyResiduals()": {
+          "Lines": {
+            "43": 0
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Double> Purefolio_backend.Models.NaceRegionData::get_useNaturalEnergyInputs()": {
+          "Lines": {
+            "44": 0
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Double> Purefolio_backend.Models.NaceRegionData::get_useEnergyProducts()": {
+          "Lines": {
+            "45": 0
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Double> Purefolio_backend.Models.NaceRegionData::get_useEnergyResiduals()": {
+          "Lines": {
+            "46": 0
+          },
+          "Branches": []
+        },
+        "Purefolio_backend.Models.NaceRegionData Purefolio_backend.Models.NaceRegionData::comparedByArea()": {
+          "Lines": {
+            "55": 0,
+            "56": 0,
+            "57": 0,
+            "58": 0,
+            "59": 0,
+            "60": 0,
+            "61": 0,
+            "62": 0,
+            "63": 0,
+            "64": 0,
+            "65": 0
+          },
+          "Branches": [
+            {
+              "Line": 56,
+              "Offset": 119,
+              "EndOffset": 15,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 0
+            },
+            {
+              "Line": 59,
+              "Offset": 44,
+              "EndOffset": 46,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 59,
+              "Offset": 44,
+              "EndOffset": 62,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 59,
+              "Offset": 65,
+              "EndOffset": 67,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 59,
+              "Offset": 65,
+              "EndOffset": 111,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 56,
+              "Offset": 119,
+              "EndOffset": 121,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Collections.Generic.List`1<System.Reflection.PropertyInfo> Purefolio_backend.Models.NaceRegionData::getDataProperties()": {
+          "Lines": {
+            "68": 2,
+            "69": 64,
+            "70": 2
+          },
+          "Branches": []
+        },
+        "System.Int32 Purefolio_backend.Models.NaceRegionData::GetHashCode()": {
+          "Lines": {
+            "73": 0,
+            "74": 0,
+            "75": 0
+          },
+          "Branches": []
+        },
+        "System.Boolean Purefolio_backend.Models.NaceRegionData::Equals(System.Object)": {
+          "Lines": {
+            "78": 9,
+            "79": 9,
+            "80": 0,
+            "81": 0,
+            "83": 9,
+            "84": 9,
+            "85": 9
+          },
+          "Branches": [
+            {
+              "Line": 79,
+              "Offset": 2,
+              "EndOffset": 4,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 9
+            },
+            {
+              "Line": 79,
+              "Offset": 2,
+              "EndOffset": 23,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 79,
+              "Offset": 26,
+              "EndOffset": 28,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 79,
+              "Offset": 26,
+              "EndOffset": 33,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 9
+            },
+            {
+              "Line": 84,
+              "Offset": 52,
+              "EndOffset": 54,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 7
+            },
+            {
+              "Line": 84,
+              "Offset": 66,
+              "EndOffset": 68,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 3
+            },
+            {
+              "Line": 84,
+              "Offset": 52,
+              "EndOffset": 84,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 6
+            },
+            {
+              "Line": 84,
+              "Offset": 66,
+              "EndOffset": 84,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 6
+            }
+          ]
+        },
+        "Purefolio_backend.Models.NaceRegionData Purefolio_backend.Models.NaceRegionData::merge(Purefolio_backend.Models.NaceRegionData)": {
+          "Lines": {
+            "88": 4,
+            "89": 5,
+            "90": 1,
+            "91": 53,
+            "92": 25,
+            "93": 25,
+            "94": 25,
+            "95": 1,
+            "96": 1,
+            "97": 1,
+            "98": 25,
+            "99": 1,
+            "100": 4,
+            "101": 4
+          },
+          "Branches": [
+            {
+              "Line": 89,
+              "Offset": 10,
+              "EndOffset": 12,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 91,
+              "Offset": 79,
+              "EndOffset": 30,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 25
+            },
+            {
+              "Line": 94,
+              "Offset": 57,
+              "EndOffset": 59,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 1
+            },
+            {
+              "Line": 94,
+              "Offset": 57,
+              "EndOffset": 71,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 25
+            },
+            {
+              "Line": 91,
+              "Offset": 79,
+              "EndOffset": 81,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 1
+            },
+            {
+              "Line": 89,
+              "Offset": 10,
+              "EndOffset": 99,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 4
+            }
+          ]
+        },
+        "System.Void Purefolio_backend.Models.NaceRegionData::.cctor()": {
+          "Lines": {
+            "50": 1,
+            "52": 1
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bathe\\git\\customer-driven-project\\Purefolio-backend\\Purefolio-backend\\Models\\Region.cs": {
+      "Purefolio_backend.Models.Region": {
+        "System.Int32 Purefolio_backend.Models.Region::get_regionId()": {
+          "Lines": {
+            "10": 0
+          },
+          "Branches": []
+        },
+        "System.String Purefolio_backend.Models.Region::get_regionCode()": {
+          "Lines": {
+            "14": 56
+          },
+          "Branches": []
+        },
+        "System.String Purefolio_backend.Models.Region::get_regionName()": {
+          "Lines": {
+            "16": 0
+          },
+          "Branches": []
+        },
+        "System.Int32 Purefolio_backend.Models.Region::get_area()": {
+          "Lines": {
+            "18": 0
+          },
+          "Branches": []
+        },
+        "System.Boolean Purefolio_backend.Models.Region::Equals(System.Object)": {
+          "Lines": {
+            "21": 3,
+            "22": 3,
+            "23": 3
+          },
+          "Branches": [
+            {
+              "Line": 22,
+              "Offset": 9,
+              "EndOffset": 11,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 3
+            },
+            {
+              "Line": 22,
+              "Offset": 9,
+              "EndOffset": 30,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Int32 Purefolio_backend.Models.Region::GetHashCode()": {
+          "Lines": {
+            "26": 0,
+            "27": 0,
+            "28": 0
+          },
+          "Branches": []
+        },
+        "System.String Purefolio_backend.Models.Region::ToString()": {
+          "Lines": {
+            "31": 0,
+            "32": 0,
+            "33": 0
+          },
+          "Branches": []
+        }
+      },
+      "Purefolio_backend.Models.RegionWithHasData": {
+        "System.Boolean Purefolio_backend.Models.RegionWithHasData::get_hasData()": {
+          "Lines": {
+            "38": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bathe\\git\\customer-driven-project\\Purefolio-backend\\Purefolio-backend\\Models\\RegionData.cs": {
+      "Purefolio_backend.Models.RegionData": {
+        "System.Int32 Purefolio_backend.Models.RegionData::get_regionDataId()": {
+          "Lines": {
+            "11": 0
+          },
+          "Branches": []
+        },
+        "System.Int32 Purefolio_backend.Models.RegionData::get_regionId()": {
+          "Lines": {
+            "13": 72
+          },
+          "Branches": []
+        },
+        "Purefolio_backend.Models.Region Purefolio_backend.Models.RegionData::get_region()": {
+          "Lines": {
+            "15": 0
+          },
+          "Branches": []
+        },
+        "System.Int32 Purefolio_backend.Models.RegionData::get_year()": {
+          "Lines": {
+            "17": 64
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Int32> Purefolio_backend.Models.RegionData::get_population()": {
+          "Lines": {
+            "18": 37
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Int32> Purefolio_backend.Models.RegionData::get_gdp()": {
+          "Lines": {
+            "20": 20
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Int32> Purefolio_backend.Models.RegionData::get_corruptionRate()": {
+          "Lines": {
+            "21": 38
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<System.Reflection.PropertyInfo> Purefolio_backend.Models.RegionData::getDataProperties()": {
+          "Lines": {
+            "28": 1,
+            "29": 8,
+            "30": 1
+          },
+          "Branches": []
+        },
+        "System.Int32 Purefolio_backend.Models.RegionData::GetHashCode()": {
+          "Lines": {
+            "33": 0,
+            "34": 0,
+            "35": 0
+          },
+          "Branches": []
+        },
+        "System.Boolean Purefolio_backend.Models.RegionData::Equals(System.Object)": {
+          "Lines": {
+            "38": 7,
+            "39": 7,
+            "40": 0,
+            "41": 0,
+            "43": 7,
+            "44": 7,
+            "45": 7
+          },
+          "Branches": [
+            {
+              "Line": 39,
+              "Offset": 2,
+              "EndOffset": 4,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 7
+            },
+            {
+              "Line": 39,
+              "Offset": 2,
+              "EndOffset": 23,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 39,
+              "Offset": 26,
+              "EndOffset": 28,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 39,
+              "Offset": 26,
+              "EndOffset": 33,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 7
+            },
+            {
+              "Line": 44,
+              "Offset": 52,
+              "EndOffset": 54,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 3
+            },
+            {
+              "Line": 44,
+              "Offset": 52,
+              "EndOffset": 70,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 4
+            }
+          ]
+        },
+        "Purefolio_backend.Models.RegionData Purefolio_backend.Models.RegionData::merge(Purefolio_backend.Models.RegionData)": {
+          "Lines": {
+            "48": 3,
+            "49": 4,
+            "50": 1,
+            "51": 9,
+            "52": 3,
+            "53": 3,
+            "54": 3,
+            "55": 1,
+            "56": 1,
+            "57": 1,
+            "58": 3,
+            "59": 1,
+            "60": 3,
+            "61": 3
+          },
+          "Branches": [
+            {
+              "Line": 49,
+              "Offset": 10,
+              "EndOffset": 12,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 51,
+              "Offset": 79,
+              "EndOffset": 30,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 3
+            },
+            {
+              "Line": 54,
+              "Offset": 57,
+              "EndOffset": 59,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 1
+            },
+            {
+              "Line": 54,
+              "Offset": 57,
+              "EndOffset": 71,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 3
+            },
+            {
+              "Line": 51,
+              "Offset": 79,
+              "EndOffset": 81,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 1
+            },
+            {
+              "Line": 49,
+              "Offset": 10,
+              "EndOffset": 99,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 3
+            }
+          ]
+        },
+        "System.Void Purefolio_backend.Models.RegionData::.cctor()": {
+          "Lines": {
+            "23": 1,
+            "24": 1,
+            "25": 1
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bathe\\git\\customer-driven-project\\Purefolio-backend\\Purefolio-backend\\Controllers\\EuroStatTableController.cs": {
+      "Purefolio_backend.Controllers.EuroStatTableController": {
+        "System.Void Purefolio_backend.Controllers.EuroStatTableController::.ctor(Microsoft.Extensions.Logging.ILogger`1<Purefolio_backend.Controllers.EuroStatTableController>,Purefolio_backend.IDatabaseStore)": {
+          "Lines": {
+            "17": 1,
+            "18": 1,
+            "19": 1,
+            "20": 1,
+            "21": 1,
+            "22": 1,
+            "23": 1
+          },
+          "Branches": []
+        }
+      },
+      "Purefolio_backend.Controllers.EuroStatTableController/<getAllTables>d__3": {
+        "System.Void Purefolio_backend.Controllers.EuroStatTableController/<getAllTables>d__3::MoveNext()": {
+          "Lines": {
+            "27": 0,
+            "28": 0,
+            "29": 0
+          },
+          "Branches": []
+        }
+      },
+      "Purefolio_backend.Controllers.EuroStatTableController/<>c": {
+        "System.String Purefolio_backend.Controllers.EuroStatTableController/<>c::<getESGFactors>b__4_0(Purefolio_backend.Models.EuroStatTable)": {
+          "Lines": {
+            "36": 10
+          },
+          "Branches": []
+        }
+      },
+      "Purefolio_backend.Controllers.EuroStatTableController/<getESGFactors>d__4": {
+        "System.Void Purefolio_backend.Controllers.EuroStatTableController/<getESGFactors>d__4::MoveNext()": {
+          "Lines": {
+            "34": 1,
+            "35": 1,
+            "37": 1
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bathe\\git\\customer-driven-project\\Purefolio-backend\\Purefolio-backend\\Controllers\\NaceController.cs": {
+      "Purefolio_backend.Controllers.NaceController": {
+        "System.Void Purefolio_backend.Controllers.NaceController::.ctor(Microsoft.Extensions.Logging.ILogger`1<Purefolio_backend.Controllers.NaceController>,Purefolio_backend.IDatabaseStore)": {
+          "Lines": {
+            "18": 1,
+            "19": 1,
+            "20": 1,
+            "21": 1,
+            "22": 1
+          },
+          "Branches": []
+        }
+      },
+      "Purefolio_backend.Controllers.NaceController/<GetAll>d__3": {
+        "System.Void Purefolio_backend.Controllers.NaceController/<GetAll>d__3::MoveNext()": {
+          "Lines": {
+            "26": 1,
+            "27": 1,
+            "28": 1
+          },
+          "Branches": []
+        }
+      },
+      "Purefolio_backend.Controllers.NaceController/<GetSingle>d__4": {
+        "System.Void Purefolio_backend.Controllers.NaceController/<GetSingle>d__4::MoveNext()": {
+          "Lines": {
+            "32": 0,
+            "33": 0,
+            "34": 0,
+            "35": 0,
+            "36": 0
+          },
+          "Branches": [
+            {
+              "Line": 34,
+              "Offset": 164,
+              "EndOffset": 166,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 34,
+              "Offset": 164,
+              "EndOffset": 185,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "Purefolio_backend.Controllers.NaceController/<Get>d__5": {
+        "System.Void Purefolio_backend.Controllers.NaceController/<Get>d__5::MoveNext()": {
+          "Lines": {
+            "40": 0,
+            "41": 0,
+            "42": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bathe\\git\\customer-driven-project\\Purefolio-backend\\Purefolio-backend\\Controllers\\NaceRegionDataController.cs": {
+      "Purefolio_backend.Controllers.NaceRegionDataController": {
+        "System.Void Purefolio_backend.Controllers.NaceRegionDataController::.ctor(Microsoft.Extensions.Logging.ILogger`1<Purefolio_backend.Controllers.NaceRegionDataController>,Purefolio_backend.IDatabaseStore)": {
+          "Lines": {
+            "19": 3,
+            "20": 3,
+            "21": 3,
+            "22": 3,
+            "23": 3,
+            "24": 3,
+            "25": 3,
+            "26": 3
+          },
+          "Branches": []
+        }
+      },
+      "Purefolio_backend.Controllers.NaceRegionDataController/<Get>d__3": {
+        "System.Void Purefolio_backend.Controllers.NaceRegionDataController/<Get>d__3::MoveNext()": {
+          "Lines": {
+            "32": 3,
+            "33": 3,
+            "34": 3
+          },
+          "Branches": []
+        }
+      },
+      "Purefolio_backend.Controllers.NaceRegionDataController/<GetYearsWithData>d__4": {
+        "System.Void Purefolio_backend.Controllers.NaceRegionDataController/<GetYearsWithData>d__4::MoveNext()": {
+          "Lines": {
+            "39": 0,
+            "40": 0,
+            "41": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bathe\\git\\customer-driven-project\\Purefolio-backend\\Purefolio-backend\\Controllers\\PopulateDatabaseController.cs": {
+      "Purefolio_backend.Controllers.PopulateDatabaseController": {
+        "System.Void Purefolio_backend.Controllers.PopulateDatabaseController::.ctor(Microsoft.Extensions.Logging.ILogger`1<Purefolio_backend.Controllers.PopulateDatabaseController>,Purefolio_backend.Services.BaseDataService,Purefolio_backend.Services.EuroStatFetchService)": {
+          "Lines": {
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0,
+            "30": 0,
+            "31": 0
+          },
+          "Branches": []
+        }
+      },
+      "Purefolio_backend.Controllers.PopulateDatabaseController/<PopulateDatabaseWithBaseAndEurostatData>d__4": {
+        "System.Void Purefolio_backend.Controllers.PopulateDatabaseController/<PopulateDatabaseWithBaseAndEurostatData>d__4::MoveNext()": {
+          "Lines": {
+            "35": 0,
+            "36": 0,
+            "37": 0,
+            "38": 0,
+            "39": 0
+          },
+          "Branches": []
+        }
+      },
+      "Purefolio_backend.Controllers.PopulateDatabaseController/<PopulateDatabaseWithBaseData>d__5": {
+        "System.Void Purefolio_backend.Controllers.PopulateDatabaseController/<PopulateDatabaseWithBaseData>d__5::MoveNext()": {
+          "Lines": {
+            "44": 0,
+            "45": 0,
+            "46": 0,
+            "47": 0
+          },
+          "Branches": []
+        }
+      },
+      "Purefolio_backend.Controllers.PopulateDatabaseController/<PopulateDatabaseWithEurostatData>d__6": {
+        "System.Void Purefolio_backend.Controllers.PopulateDatabaseController/<PopulateDatabaseWithEurostatData>d__6::MoveNext()": {
+          "Lines": {
+            "52": 0,
+            "53": 0,
+            "54": 0,
+            "55": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bathe\\git\\customer-driven-project\\Purefolio-backend\\Purefolio-backend\\Controllers\\RegionController.cs": {
+      "Purefolio_backend.Controllers.RegionController": {
+        "System.Void Purefolio_backend.Controllers.RegionController::.ctor(Microsoft.Extensions.Logging.ILogger`1<Purefolio_backend.Controllers.RegionController>,Purefolio_backend.IDatabaseStore)": {
+          "Lines": {
+            "18": 1,
+            "19": 1,
+            "20": 1,
+            "21": 1,
+            "22": 1
+          },
+          "Branches": []
+        }
+      },
+      "Purefolio_backend.Controllers.RegionController/<GetAll>d__3": {
+        "System.Void Purefolio_backend.Controllers.RegionController/<GetAll>d__3::MoveNext()": {
+          "Lines": {
+            "27": 1,
+            "28": 1,
+            "29": 1
+          },
+          "Branches": []
+        }
+      },
+      "Purefolio_backend.Controllers.RegionController/<Get>d__4": {
+        "System.Void Purefolio_backend.Controllers.RegionController/<Get>d__4::MoveNext()": {
+          "Lines": {
+            "33": 0,
+            "34": 0,
+            "35": 0,
+            "36": 0,
+            "37": 0
+          },
+          "Branches": [
+            {
+              "Line": 35,
+              "Offset": 164,
+              "EndOffset": 166,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 35,
+              "Offset": 164,
+              "EndOffset": 185,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "Purefolio_backend.Controllers.RegionController/<Get>d__5": {
+        "System.Void Purefolio_backend.Controllers.RegionController/<Get>d__5::MoveNext()": {
+          "Lines": {
+            "41": 0,
+            "42": 0,
+            "43": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Users\\bathe\\git\\customer-driven-project\\Purefolio-backend\\Purefolio-backend\\Controllers\\RegionDataController.cs": {
+      "Purefolio_backend.Controllers.RegionDataController": {
+        "System.Void Purefolio_backend.Controllers.RegionDataController::.ctor(Microsoft.Extensions.Logging.ILogger`1<Purefolio_backend.Controllers.RegionDataController>,Purefolio_backend.IDatabaseStore)": {
+          "Lines": {
+            "18": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0
+          },
+          "Branches": []
+        }
+      },
+      "Purefolio_backend.Controllers.RegionDataController/<Get>d__3": {
+        "System.Void Purefolio_backend.Controllers.RegionDataController/<Get>d__3::MoveNext()": {
+          "Lines": {
+            "26": 0,
+            "27": 0,
+            "28": 0
+          },
+          "Branches": []
+        }
+      }
+    }
+  }
+}
