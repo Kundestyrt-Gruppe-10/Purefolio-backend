@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace Purefolio_backend.Controllers
 {
-  [ApiController]
-  [Route("/naces")]
-  public class NaceController : ControllerBase
-  {
-      private readonly ILogger<NaceController> _logger;
+    [ApiController]
+    [Route("/naces")]
+    public class NaceController : ControllerBase
+    {
+        private readonly ILogger<NaceController> _logger;
 
-      private IDatabaseStore databaseStore;
+        private IDatabaseStore databaseStore;
 
-      public NaceController(ILogger<NaceController> logger, IDatabaseStore databaseStore)
+        public NaceController(ILogger<NaceController> logger, IDatabaseStore databaseStore)
         {
             _logger = logger;
             this.databaseStore = databaseStore;
@@ -36,10 +36,10 @@ namespace Purefolio_backend.Controllers
         }
 
         [HttpGet("hasdata/{regionId}/{tableId}")]
-        public async Task<ActionResult<IEnumerable<NaceWithHasData>>> Get(int regionId, int tableId)
+        public async Task<ActionResult<IEnumerable<NaceWithHasData>>> GetWithHasData(int regionId, int tableId)
         {
-            return await databaseStore.getAllNacesWithHasData(regionId:regionId, tableId:tableId);
+            return await databaseStore.getAllNacesWithHasData(regionId: regionId, tableId: tableId);
         }
     }
-  }
+}
 
