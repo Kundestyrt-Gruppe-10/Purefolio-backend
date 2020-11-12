@@ -27,10 +27,20 @@ namespace Purefolio_backend.Controllers.Tests
         }
 
         [TestMethod()]
-        public async Task GetTest()
+        public async Task GetAllTest()
         {
             ActionResult<IEnumerable<Region>> response = await regionController.GetAll();
             List<Region> regions = await this._databaseStore.getAllRegions();
+            Assert.IsTrue(regions.SequenceEqual(response.Value));
+        }
+
+        [TestMethod()]
+        [DataRow(1, 1)]
+        [DataRow(1, 4)]
+        public async Task GetWithHasDataTest(int naceId, int tableId)
+        {
+            ActionResult<IEnumerable<RegionWithHasData>> response = await regionController.GetWithHasData(naceId, tableId);
+            List<RegionWithHasData> regions = await this._databaseStore.getAllRegionsWithHasData(naceId, tableId);
             Assert.IsTrue(regions.SequenceEqual(response.Value));
         }
     }
