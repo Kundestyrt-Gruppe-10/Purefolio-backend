@@ -22,7 +22,7 @@ namespace Purefolio_backend.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<RegionData>> Get()
+        public async Task<IEnumerable<RegionData>> GetAllRegionData()
         {
             return await databaseStore.getAllRegionData();
         }
