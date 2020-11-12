@@ -25,19 +25,18 @@ namespace Purefolio_backend.Controllers.Tests
         }
 
         [TestMethod()]
-        public async Task GetTest()
-        {   List<string> expected =  new List<string>(){
-                "emissionPerYear",
-                "workAccidentsIncidentRate",
-                "genderPayGap",
-                "environmentTaxes",
-                "fatalAccidentsAtWork",
-                "temporaryemployment",
-                "employeesPrimaryEducation",
-                "employeesSecondaryEducation",
-                "employeesTertiaryEducation"
-            };
+        public async Task GetESGFactorTest()
+        {
+            List<EuroStatTable> tables = await this._databaseStore.getAllEuroStatTables();
+            List<String> expected = tables.ConvertAll(table => table.attributeName);
             Assert.IsTrue(expected.SequenceEqual(await euroStatTableController.getESGFactors()));
+        }
+
+        [TestMethod()]
+        public async Task GetAllTablesTest()
+        {
+            List<EuroStatTable> expected = await this._databaseStore.getAllEuroStatTables();
+            Assert.IsTrue(expected.SequenceEqual(await euroStatTableController.getAllTables()));
         }
     }
 }
