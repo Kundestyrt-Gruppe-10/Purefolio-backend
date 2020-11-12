@@ -33,17 +33,17 @@ namespace Purefolio_backend.Models
     public double? hoursWorkWeek { get; set; }
     public double? jobVacancyRate { get; set; }
     public double? trainingParticipation { get; set; }
-    public double? totalWaste { get; set; }
-    public double? totalHazardousWaste { get; set; }
-    public double? totalNonHazardousWaste { get; set; }
-    public double? environmentalProtectionPollution { get; set; }
-    public double? environmentalProtectionTech { get; set; }
-    public double? seasonalWork { get; set; }
-    public double? supplyEnergyProducts { get; set; }
-    public double? supplyEnergyResiduals { get; set; }
-    public double? useNaturalEnergyInputs { get; set; }
-    public double? useEnergyProducts { get; set; }
-    public double? useEnergyResiduals { get; set; }
+    //public double? totalWaste { get; set; }
+    //public double? totalHazardousWaste { get; set; }
+    //public double? totalNonHazardousWaste { get; set; }
+    //public double? environmentalProtectionPollution { get; set; }
+    //public double? environmentalProtectionTech { get; set; }
+    //public double? seasonalWork { get; set; }
+    //public double? supplyEnergyProducts { get; set; }
+    //public double? supplyEnergyResiduals { get; set; }
+    //public double? useNaturalEnergyInputs { get; set; }
+    //public double? useEnergyProducts { get; set; }
+    //public double? useEnergyResiduals { get; set; }
     
 
 
