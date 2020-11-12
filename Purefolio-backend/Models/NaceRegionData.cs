@@ -44,6 +44,7 @@ namespace Purefolio_backend.Models
     public double? useNaturalEnergyInputs { get; set; }
     public double? useEnergyProducts { get; set; }
     public double? useEnergyResiduals { get; set; }
+    public double? co2 { get; set; }
     
 
 
