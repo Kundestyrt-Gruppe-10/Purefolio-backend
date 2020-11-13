@@ -38,7 +38,7 @@ namespace Purefolio_backend.Models.Tests
         public void ObjectsShouldHaveRightAmountOfAttributes()
         {
             List<System.Reflection.PropertyInfo> props = nrd2WithoutData.getDataProperties(); 
-            Assert.AreEqual(props.Count(), 26); 
+            Assert.AreEqual(props.Count(), 15); 
         }
 
         [TestMethod()]
