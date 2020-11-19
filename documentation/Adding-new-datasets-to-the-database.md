@@ -1,4 +1,4 @@
-# Fetching URLs for the datasets
+# Adding new datasets to the database
 
 The URLs we use to fetch JSON objects from Eurostats' API are build like this:
 
@@ -24,7 +24,7 @@ To add new datasets follow these steps:
 
 4) Press generate. This will make an URL without the static part.
 
-5) Look at the generated query. See which filters are specific to this dataset. Typically this is a unit, and maybe something else, like in the example you also chose which environmental taxes to retrieve. 
+5) Look at the generated query. See which filters are specific to this dataset. Typically this is a unit, and maybe something else, like in the example you also chose which environmental taxes to retrieve.
 
 Let's show an example of this. From the example above:
 
